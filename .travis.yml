@@ -1,0 +1,33 @@
+dist: jammy
+language: node_js
+  # Node env
+
+install:
+  - yarn
+
+node_js:
+  # Node version
+  - 18
+
+cache:
+  yarn: true
+  # cache both npm modules and Cypress binary
+  directories:
+    - ~/.npm
+    - ~/.cache
+    - /home/travis/.cache/Cypress
+  # install dependencies and check that Cypress can run
+  override:
+    - npm ci
+    - npm run cy:verify
+
+jobs:
+  include:
+    - script: yarn build
+      name: "Build app"
+    - script: yarn test:app
+      name: "Test app"
+      script:
+        - yarn cypress install
+        - yarn test
+        - kill $(jobs -p) || true
