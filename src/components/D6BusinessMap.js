@@ -1,7 +1,9 @@
 'use strict';
+import styles from '!!raw-loader!./D6BusinessMap.css';
 import Display from './Display';
 import DataLoader from './DataLoader';
 import testData from './test-data.json';
+import logo from '../assets/logo2.png';
 // import Map from './Map';
 customElements.define('app-display', Display);
 customElements.define('app-data-loader', DataLoader);
@@ -25,32 +27,96 @@ export default class D6BusinessMap extends HTMLElement {
 
         this.testData = testData;
 
+        // Adding styles
+        const appStyles = document.createElement('style');
+        appStyles.textContent = styles;
+        this.shadowRoot.appendChild(appStyles);
+
+        // Creating app wrapper
         this.appWrapper = document.createElement('section');
         this.appWrapper.id = 'app-wrapper';
-
         shadow.appendChild(this.appWrapper);
+
+        // create navtools
+        this.nav = document.createElement('section');
+        this.nav.id = 'd6-map-nav';
+        this.filterBtn = document.createElement('cod-button');
+        this.filterBtn.setAttribute('data-label', '');
+        this.filterBtn.setAttribute('data-size', 'lg');
+        this.filterBtn.setAttribute('data-img', '');
+        this.filterBtn.setAttribute('data-img-alt', '');
+        this.filterBtn.setAttribute('data-shape', 'square');
+        this.filterBtn.setAttribute('data-nav-value', 'filters');
+        this.filterBtn.setAttribute('data-icon', 'house-fill');
+        this.filterBtn.setAttribute('data-icon-size', 'medium');
+        this.filterBtn.setAttribute('data-aria-label', 'Filters');
+        this.filterBtn.setAttribute('data-extra-classes', 'icon-center');
+        this.filterBtn.setAttribute('data-background-color', 'primary');
+        this.filterBtn.setAttribute('data-primary', true);
+        this.filterBtn.addEventListener('click', (ev) => {
+            let app = document.getElementsByTagName('d6-business-map');
+            app[0].setAttribute('data-app-state', 'active-filters');
+        });
+        this.nav.appendChild(this.filterBtn);
+
+        this.LayerBtn = document.createElement('cod-button');
+        this.LayerBtn.setAttribute('data-label', '');
+        this.LayerBtn.setAttribute('data-size', 'lg');
+        this.LayerBtn.setAttribute('data-img', '');
+        this.LayerBtn.setAttribute('data-img-alt', '');
+        this.LayerBtn.setAttribute('data-shape', 'square');
+        this.LayerBtn.setAttribute('data-nav-value', 'layers');
+        this.LayerBtn.setAttribute('data-icon', 'check-circle-fill');
+        this.LayerBtn.setAttribute('data-icon-size', 'medium');
+        this.LayerBtn.setAttribute('data-aria-label', 'Layers');
+        this.LayerBtn.setAttribute('data-extra-classes', 'icon-center');
+        this.LayerBtn.setAttribute('data-background-color', 'primary');
+        this.LayerBtn.setAttribute('data-primary', true);
+        this.LayerBtn.addEventListener('click', (ev) => {
+            let app = document.getElementsByTagName('d6-business-map');
+            app[0].setAttribute('data-app-state', 'active-layers');
+        });
+        this.nav.appendChild(this.LayerBtn);
+
+        this.infoBtn = document.createElement('cod-button');
+        this.infoBtn.setAttribute('data-label', '');
+        this.infoBtn.setAttribute('data-size', 'lg');
+        this.infoBtn.setAttribute('data-img', '');
+        this.infoBtn.setAttribute('data-img-alt', '');
+        this.infoBtn.setAttribute('data-shape', 'square');
+        this.infoBtn.setAttribute('data-nav-value', 'info');
+        this.infoBtn.setAttribute('data-icon', 'exclamation-circle-fill');
+        this.infoBtn.setAttribute('data-icon-size', 'medium');
+        this.infoBtn.setAttribute('data-aria-label', 'Information');
+        this.infoBtn.setAttribute('data-extra-classes', 'icon-center');
+        this.infoBtn.setAttribute('data-background-color', 'primary');
+        this.infoBtn.setAttribute('data-primary', true);
+        this.infoBtn.addEventListener('click', (ev) => {
+            let app = document.getElementsByTagName('d6-business-map');
+            app[0].setAttribute('data-app-state', 'active-info');
+        });
+        this.nav.appendChild(this.infoBtn);
+        shadow.appendChild(this.nav);
 
         // create panel component
         this.panel = document.createElement('cod-offcanvas');
         this.panel.id = 'd6-map-panel';
         this.panelHeader = document.createElement('cod-offcanvas-header');
-        this.panelTitle = document.createElement('h5');
-        this.panelTitle.innerText = 'Test Title';
-        this.panelHeader.appendChild(this.panelTitle);
+        this.panelLogo = document.createElement('img');
+        this.panelLogo.style.width = '6em';
+        this.panelLogo.style.position = 'relative';
+        this.panelLogo.style.left = '8em';
+        this.panelLogo.src = logo;
+        this.panelHeader.appendChild(this.panelLogo);
 
         this.panelBody = document.createElement('cod-offcanvas-body');
         this.panelContent = document.createElement('article');
-        this.panelContent.innerHTML = `
-        <p>
-        Some text as placeholder. In real life you can have the elements you
-        have chosen. Like, text, images, lists, etc.
-      </p>
-        `;
+        this.panelContent.innerHTML = ``;
         this.panelBody.appendChild(this.panelContent);
 
         this.panel.appendChild(this.panelHeader);
         this.panel.appendChild(this.panelBody);
-        this.appWrapper.appendChild(this.panel);
+        shadow.appendChild(this.panel);
 
         // Create map component
         this.map = document.createElement('cod-map');
@@ -90,12 +156,33 @@ export default class D6BusinessMap extends HTMLElement {
         switch (app.getAttribute('data-app-state')) {
             case 'active-panel':
                 let tempData = JSON.parse(this.getAttribute('data-panel-data'));
-                this.panelTitle.innerText = tempData.properties.business_name;
+                console.log(tempData.properties);
                 this.panelContent.innerHTML = `
-                    <p><strong>Address:</strong> ${tempData.properties.street_number} ${tempData.properties.street_name}
-                    <p><cod-icon data-icon="newspaper" data-size="small"></cod-icon> Information</p>
-                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> Home services<p>
-                    <p><cod-icon data-icon="calendar" data-size="small"></cod-icon> Services</p>
+                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">${tempData.properties.business_name}</p>
+                    <p><strong>Address:</strong> ${tempData.properties.address}
+                    <p><strong>Amenities</strong></p>
+                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> <cod-icon data-icon="calendar" data-size="small"></cod-icon> </p>
+                `;
+                this.panel.setAttribute('data-show', 'true');
+                break;
+
+            case 'active-filters':
+                this.panelContent.innerHTML = `
+                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Data Filters</p>
+                `;
+                this.panel.setAttribute('data-show', 'true');
+                break;
+
+            case 'active-layers':
+                this.panelContent.innerHTML = `
+                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Boundaries</p>
+                `;
+                this.panel.setAttribute('data-show', 'true');
+                break;
+
+            case 'active-info':
+                this.panelContent.innerHTML = `
+                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Boundaries</p>
                 `;
                 this.panel.setAttribute('data-show', 'true');
                 break;

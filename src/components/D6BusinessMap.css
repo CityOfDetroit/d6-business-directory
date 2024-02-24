@@ -1,0 +1,25 @@
+#app-wrapper{
+    position: relative;
+    display: flex;
+    -ms-flex-align: stretch;
+    height: 800px;
+}
+
+cod-map{
+    flex: 1;
+}
+
+#d6-map-nav{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 1em;
+    left: 1em;
+    z-index: 10;
+}
+
+.offcanvas-title img{
+    width: 6em;
+    position: relative;
+    left: 8em;
+}
