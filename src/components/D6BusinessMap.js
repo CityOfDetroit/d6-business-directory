@@ -169,6 +169,17 @@ export default class D6BusinessMap extends HTMLElement {
             case 'active-filters':
                 this.panelContent.innerHTML = `
                     <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Data Filters</p>
+                    <p><strong>By ownership:</strong></p>
+                    <cod-form-check data-id="council-district" data-name="council-district" data-value="council-district" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Council District"></cod-form-check>
+                    <cod-form-check data-id="neighborhoods" data-name="neighborhoods" data-value="neighborhoods" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Neighborhoods"></cod-form-check>
+                    <cod-form-check data-id="police-precincts" data-name="police-precincts" data-value="police-precincts" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Police Precincts"></cod-form-check>
+                    <cod-form-check data-id="zip-codes" data-name="zip-codes" data-value="zip-codes" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Zip Codes"></cod-form-check>
+
+                    <p><strong>By service:</strong></p>
+                    <cod-form-check data-id="council-district" data-name="council-district" data-value="council-district" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Council District"></cod-form-check>
+                    <cod-form-check data-id="neighborhoods" data-name="neighborhoods" data-value="neighborhoods" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Neighborhoods"></cod-form-check>
+                    <cod-form-check data-id="police-precincts" data-name="police-precincts" data-value="police-precincts" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Police Precincts"></cod-form-check>
+                    <cod-form-check data-id="zip-codes" data-name="zip-codes" data-value="zip-codes" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Zip Codes"></cod-form-check>
                 `;
                 this.panel.setAttribute('data-show', 'true');
                 break;
@@ -176,13 +187,21 @@ export default class D6BusinessMap extends HTMLElement {
             case 'active-layers':
                 this.panelContent.innerHTML = `
                     <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Boundaries</p>
+                    <cod-form-check data-id="council-district" data-name="council-district" data-value="council-district" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Council District"></cod-form-check>
+                    <cod-form-check data-id="neighborhoods" data-name="neighborhoods" data-value="neighborhoods" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Neighborhoods"></cod-form-check>
+                    <cod-form-check data-id="police-precincts" data-name="police-precincts" data-value="police-precincts" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Police Precincts"></cod-form-check>
+                    <cod-form-check data-id="zip-codes" data-name="zip-codes" data-value="zip-codes" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Zip Codes"></cod-form-check>
                 `;
                 this.panel.setAttribute('data-show', 'true');
                 break;
 
             case 'active-info':
                 this.panelContent.innerHTML = `
-                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Boundaries</p>
+                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Informantion</p>
+                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> Wifi</p>
+                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> Wifi</p>
+                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> Wifi</p>
+                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> Wifi</p>
                 `;
                 this.panel.setAttribute('data-show', 'true');
                 break;
