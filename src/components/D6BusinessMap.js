@@ -2,7 +2,8 @@
 import styles from '!!raw-loader!./D6BusinessMap.css';
 import Display from './Display';
 import DataLoader from './DataLoader';
-import testData from './test-data.json';
+import layers from './layers.json';
+import mainData from './test-data.json';
 import logo from '../assets/logo2.png';
 // import Map from './Map';
 customElements.define('app-display', Display);
@@ -25,7 +26,8 @@ export default class D6BusinessMap extends HTMLElement {
         const app = document.getElementsByTagName('d6-business-map');
         let tempState = app[0].getAttribute('data-app-state');
 
-        this.testData = testData;
+        this.mainData = mainData;
+        this.layers = layers;
 
         // Adding styles
         const appStyles = document.createElement('style');
@@ -119,13 +121,15 @@ export default class D6BusinessMap extends HTMLElement {
         shadow.appendChild(this.panel);
 
         // Create map component
+        let tempMainData = {"id":"schools","layers":[{"name":"data-points","type":"circle","radius":10,"color":"#004445","active":true,"sort":10,"source":"data-points"}],"source":this.mainData.data,};
         this.map = document.createElement('cod-map');
         this.map.id = 'd6-map';
         this.map.setAttribute('data-parent-component', 'd6-business-map');
         this.map.setAttribute('data-map-mode', 'map-panel');
         this.map.setAttribute('data-map-active-data', this.getAttribute('data-map-active-data'));
-        this.map.setAttribute('data-map-data', JSON.stringify(this.testData));
-        this. map.setAttribute('data-location', this.getAttribute('data-location'));
+        this.map.setAttribute('data-map-data', JSON.stringify(tempMainData));
+        this.map.setAttribute('data-map-layers', JSON.stringify(this.layers.layers));
+        this.map.setAttribute('data-location', this.getAttribute('data-location'));
         this.map.setAttribute('data-map-state', 'init');
         this.appWrapper.appendChild(this.map);
     }
