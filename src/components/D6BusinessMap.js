@@ -12,7 +12,7 @@ customElements.define('app-data-loader', DataLoader);
 
 export default class D6BusinessMap extends HTMLElement {
     static get observedAttributes() {
-        return ['data-app-state', 'data-parcel-id', 'data-map-state'];
+        return ['data-app-state', 'data-parcel-id', 'data-map-state', 'data-active-boundaries', 'data-active-filters'];
     }
 
     constructor() {
@@ -136,7 +136,20 @@ export default class D6BusinessMap extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         console.log(`App - attribute: ${name}, old: ${oldValue}, new: ${newValue}`);
-        this.loadApp(this);
+        switch (name) {
+            case 'data-active-filters':
+                
+                break;
+
+            case 'data-active-boundaries':
+                console.log(newValue);
+                break;
+        
+            default:
+                this.loadApp(this);
+                break;
+        }
+        
     }
 
     clearApp(app) {
@@ -164,8 +177,45 @@ export default class D6BusinessMap extends HTMLElement {
                 this.panelContent.innerHTML = `
                     <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">${tempData.properties.business_name}</p>
                     <p><strong>Address:</strong> ${tempData.properties.address}
-                    <p><strong>Amenities</strong></p>
-                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> <cod-icon data-icon="calendar" data-size="small"></cod-icon> </p>
+                    ${(tempData.properties.profit_or_nonprofit) ? `<p><strong>Business Type:</strong> ${tempData.properties.profit_or_nonprofit}</p>` : ``}
+
+                    <p><strong>Business Owner Demographics:</strong></p>
+                    <ul>
+                    ${(tempData.properties.is_asian_owned) ? `<li><strong>Asian Owned:</strong> Yes</li>` : `<li><strong>Asian Owned:</strong> No</li>`}
+                    ${(tempData.properties.is_black_owned) ? `<li><strong>Black Owned:</strong> Yes</li>` : `<li><strong>Black Owned:</strong> No</li>`}
+                    ${(tempData.properties.is_lgbtq_owned) ? `<li><strong>LGBTQ Owned:</strong> Yes</li>` : `<li><strong>LGBTQ Owned:</strong> No</li>`}
+                    ${(tempData.properties.is_indigenous_owned) ? `<li><strong>Indigenous Owned:</strong> Yes</li>` : `<li><strong>Indigenous Owned:</strong> No</li>`}
+                    ${(tempData.properties.is_middle_eastern_owned) ? `<li><strong>Middle Eastern Owned:</strong> Yes</li>` : `<li><strong>Middle Eastern Owned:</strong> No</li>`}
+                    ${(tempData.properties.is_veteran_owned) ? `<li><strong>Veteran Owned:</strong> Yes</li>` : `<li><strong>Veteran Owned:</strong> No</li>`}
+                    ${(tempData.properties.is_minority_owned) ? `<li><strong>Minority Owned:</strong> Yes</li>` : `<li><strong>Minority Owned:</strong> No</li>`}
+                    ${(tempData.properties.is_woman_owned) ? `<li><strong>Woman Owned:</strong> Yes</li>` : `<li><strong>Woman Owned:</strong> No</li>`}
+                    </ul>
+
+                    <p><strong>Service:</strong></p>
+                    <ul>
+                    ${(tempData.properties.has_clinic_community_health_ser) ? `<li><strong>Community Health:</strong> Yes</li>` : `<li><strong>Community Health:</strong> No</li>`}
+                    ${(tempData.properties.has_dental_service) ? `<li><strong>Dental:</strong> Yes</li>` : `<li><strong>Dental:</strong> No</li>`}
+                    ${(tempData.properties.has_emergency_urgent_care_servi) ? `<li><strong>Urgen Care:</strong> Yes</li>` : `<li><strong>Urgent Care:</strong> No</li>`}
+                    ${(tempData.properties.has_family_health_service) ? `<li><strong>Family Health:</strong> Yes</li>` : `<li><strong>Family Health:</strong> No</li>`}
+                    ${(tempData.properties.has_mental_health_service) ? `<li><strong>Mental Health:</strong> Yes</li>` : `<li><strong>Mental Health:</strong> No</li>`}
+                    ${(tempData.properties.has_pediatric_service) ? `<li><strong>Pediatrics:</strong> Yes</li>` : `<li><strong>Pediatrics:</strong> No</li>`}
+                    ${(tempData.properties.has_primary_care_service) ? `<li><strong>Primary Care:</strong> Yes</li>` : `<li><strong>Primary Care:</strong> No</li>`}
+                    ${(tempData.properties.has_sexual_health_service) ? `<li><strong>Sexual Health:</strong> Yes</li>` : `<li><strong>Sexual Health:</strong> No</li>`}
+                    ${(tempData.properties.has_specialist_service) ? `<li><strong>Specialist:</strong> Yes</li>` : `<li><strong>Specialist:</strong> No</li>`}
+                    ${(tempData.properties.has_other_health_service) ? `<li><strong>Other Health Services:</strong> Yes</li>` : `<li><strong>Other Health Services:</strong> No</li>`}
+                    </ul>
+
+                    <p><strong>Amenities:</strong></p>
+                    <p>
+                    ${(tempData.properties.is_public_transit_accessible) ? `<cod-icon data-icon="house" data-size="small"></cod-icon>` : ``}
+                    ${(tempData.properties.is_ada_accessible) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_bike_rack) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_parking_lot) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.is_cash_only) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_free_wifi) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_gender_neutral_bathrooms) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_rental_space) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
+                    </p>
                 `;
                 this.panel.setAttribute('data-show', 'true');
                 break;
@@ -189,13 +239,114 @@ export default class D6BusinessMap extends HTMLElement {
                 break;
 
             case 'active-layers':
-                this.panelContent.innerHTML = `
-                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Boundaries</p>
-                    <cod-form-check data-id="council-district" data-name="council-district" data-value="council-district" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Council District"></cod-form-check>
-                    <cod-form-check data-id="neighborhoods" data-name="neighborhoods" data-value="neighborhoods" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Neighborhoods"></cod-form-check>
-                    <cod-form-check data-id="police-precincts" data-name="police-precincts" data-value="police-precincts" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Police Precincts"></cod-form-check>
-                    <cod-form-check data-id="zip-codes" data-name="zip-codes" data-value="zip-codes" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Zip Codes"></cod-form-check>
-                `;
+                this.panelContent.innerHTML = '';
+                const title = document.createElement('p');
+                title.innerText = 'Boundaries';
+                title.style.backgroundColor = '#745DA8';
+                title.style.color = '#fff';
+                title.className = 'fs-3 fw-bold text-center';
+
+                const layerCheckboxes = document.createElement('cod-form-check-group');
+                layerCheckboxes.setAttribute('data-type', 'checkbox');
+
+                const councilCheckbox = document.createElement('cod-form-check');
+                councilCheckbox.setAttribute('data-checked', 'true');
+                councilCheckbox.setAttribute('data-id', 'council-district');
+                councilCheckbox.setAttribute('data-name', 'map-layer');
+                councilCheckbox.setAttribute('data-value', 'council-district');
+                councilCheckbox.setAttribute('data-type', 'checkbox');
+                councilCheckbox.setAttribute('data-label', 'Council District');
+                councilCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    const app = document.getElementsByTagName('d6-business-map');
+                    let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
+                    if(ev.target.formCheck.checked){
+                        boundaries = `${boundaries},${ev.target.formCheck.id}`;
+                    }else{
+                        let tempBoundaries = boundaries.split(',');
+                        boundaries = [];
+                        tempBoundaries.forEach((boundary) => {
+                            (boundary !== ev.target.formCheck.id) ? boundaries.push(ev.target.formCheck.id) : 0;
+                        });
+                        boundaries = boundaries.join(' ');
+                    }
+                    app[0].setAttribute('data-active-boundaries', boundaries);
+                });
+
+                const neighborhoodCheckbox = document.createElement('cod-form-check');
+                neighborhoodCheckbox.setAttribute('data-id', 'neighborhoods');
+                neighborhoodCheckbox.setAttribute('data-name', 'map-layer');
+                neighborhoodCheckbox.setAttribute('data-value', 'neighborhoods');
+                neighborhoodCheckbox.setAttribute('data-type', 'checkbox');
+                neighborhoodCheckbox.setAttribute('data-label', 'Neighborhoods');neighborhoodCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    const app = document.getElementsByTagName('d6-business-map');
+                    let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
+                    if(ev.target.formCheck.checked){
+                        boundaries = `${boundaries},${ev.target.formCheck.id}`;
+                    }else{
+                        let tempBoundaries = boundaries.split(',');
+                        boundaries = [];
+                        tempBoundaries.forEach((boundary) => {
+                            (boundary !== ev.target.formCheck.id) ? boundaries.push(ev.target.formCheck.id) : 0;
+                        });
+                        boundaries = boundaries.join(' ');
+                    }
+                    app[0].setAttribute('data-active-boundaries', boundaries);
+                });
+
+                const policePrecinctsCheckbox = document.createElement('cod-form-check');
+                policePrecinctsCheckbox.setAttribute('data-id', 'police-precincts');
+                policePrecinctsCheckbox.setAttribute('data-name', 'map-layer');
+                policePrecinctsCheckbox.setAttribute('data-value', 'police-precincts');
+                policePrecinctsCheckbox.setAttribute('data-type', 'checkbox');
+                policePrecinctsCheckbox.setAttribute('data-label', 'Police Precincts');policePrecinctsCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    const app = document.getElementsByTagName('d6-business-map');
+                    let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
+                    if(ev.target.formCheck.checked){
+                        boundaries = `${boundaries},${ev.target.formCheck.id}`;
+                    }else{
+                        let tempBoundaries = boundaries.split(',');
+                        boundaries = [];
+                        tempBoundaries.forEach((boundary) => {
+                            (boundary !== ev.target.formCheck.id) ? boundaries.push(ev.target.formCheck.id) : 0;
+                        });
+                        boundaries = boundaries.join(' ');
+                    }
+                    app[0].setAttribute('data-active-boundaries', boundaries);
+                });
+
+                const zipCodesCheckbox = document.createElement('cod-form-check');
+                zipCodesCheckbox.setAttribute('data-id', 'zip-codes')
+                zipCodesCheckbox.setAttribute('data-name', 'map-layer');
+                zipCodesCheckbox.setAttribute('data-value', 'zip-codes');
+                zipCodesCheckbox.setAttribute('data-type', 'checkbox');
+                zipCodesCheckbox.setAttribute('data-label', 'Zip Codes');
+                zipCodesCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    const app = document.getElementsByTagName('d6-business-map');
+                    let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
+                    if(ev.target.formCheck.checked){
+                        boundaries = `${boundaries},${ev.target.formCheck.id}`;
+                    }else{
+                        let tempBoundaries = boundaries.split(',');
+                        boundaries = [];
+                        tempBoundaries.forEach((boundary) => {
+                            (boundary !== ev.target.formCheck.id) ? boundaries.push(ev.target.formCheck.id) : 0;
+                        });
+                        boundaries = boundaries.join(' ');
+                    }
+                    app[0].setAttribute('data-active-boundaries', boundaries);
+                });
+
+                this.panelContent.appendChild(title);
+                layerCheckboxes.appendChild(councilCheckbox);
+                layerCheckboxes.appendChild(neighborhoodCheckbox);
+                layerCheckboxes.appendChild(policePrecinctsCheckbox);
+                layerCheckboxes.appendChild(zipCodesCheckbox);
+                this.panelContent.appendChild(layerCheckboxes);
+
                 this.panel.setAttribute('data-show', 'true');
                 break;
 
