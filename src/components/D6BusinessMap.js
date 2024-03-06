@@ -126,11 +126,11 @@ export default class D6BusinessMap extends HTMLElement {
         this.map.id = 'd6-map';
         this.map.setAttribute('data-parent-component', 'd6-business-map');
         this.map.setAttribute('data-map-mode', 'map-panel');
-        this.map.setAttribute('data-map-active-data', this.getAttribute('data-map-active-data'));
         this.map.setAttribute('data-map-data', JSON.stringify(tempMainData));
         this.map.setAttribute('data-map-layers', JSON.stringify(this.layers.layers));
         this.map.setAttribute('data-location', this.getAttribute('data-location'));
         this.map.setAttribute('data-map-state', 'init');
+        app[0].setAttribute('data-active-boundaries', 'council-district');
         this.appWrapper.appendChild(this.map);
     }
 
@@ -142,7 +142,16 @@ export default class D6BusinessMap extends HTMLElement {
                 break;
 
             case 'data-active-boundaries':
-                console.log(newValue);
+                const oldBoundaries = oldValue.split(',');
+                const newBoundaries = newValue.split(',');
+                let difference;
+                if(newBoundaries.length > oldBoundaries.length){
+                    difference = this.arrayDifference(newBoundaries, oldBoundaries);
+                    this.changeVisibility(difference, 'visible', this.map);
+                }else{
+                    difference = this.arrayDifference(oldBoundaries, newBoundaries);
+                    this.changeVisibility(difference, 'none', this.map);
+                }
                 break;
         
             default:
@@ -150,6 +159,24 @@ export default class D6BusinessMap extends HTMLElement {
                 break;
         }
         
+    }
+
+    arrayDifference(arr1, arr2) {
+        const difference = [];
+     
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr2.indexOf(arr1[i]) === -1) {
+                difference.push(arr1[i]);
+            }
+        }
+     
+        return difference;
+    }
+
+    changeVisibility(layers, visibility, _map){
+        layers.forEach(layer => {
+          _map.map.setLayoutProperty(layer, "visibility", visibility);
+        });
     }
 
     clearApp(app) {
@@ -260,16 +287,17 @@ export default class D6BusinessMap extends HTMLElement {
                     console.log(ev.target.formCheck.checked);
                     const app = document.getElementsByTagName('d6-business-map');
                     let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
+                    let tempBoundaries = boundaries.split(',');
+                    boundaries = [];
                     if(ev.target.formCheck.checked){
-                        boundaries = `${boundaries},${ev.target.formCheck.id}`;
+                        boundaries = tempBoundaries;
+                        boundaries.push(ev.target.formCheck.id);
                     }else{
-                        let tempBoundaries = boundaries.split(',');
-                        boundaries = [];
                         tempBoundaries.forEach((boundary) => {
-                            (boundary !== ev.target.formCheck.id) ? boundaries.push(ev.target.formCheck.id) : 0;
+                            (boundary === ev.target.formCheck.id) ? 0 : boundaries.push(boundary);
                         });
-                        boundaries = boundaries.join(' ');
                     }
+                    boundaries = boundaries.join(',');
                     app[0].setAttribute('data-active-boundaries', boundaries);
                 });
 
@@ -282,16 +310,17 @@ export default class D6BusinessMap extends HTMLElement {
                     console.log(ev.target.formCheck.checked);
                     const app = document.getElementsByTagName('d6-business-map');
                     let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
+                    let tempBoundaries = boundaries.split(',');
+                    boundaries = [];
                     if(ev.target.formCheck.checked){
-                        boundaries = `${boundaries},${ev.target.formCheck.id}`;
+                        boundaries = tempBoundaries;
+                        boundaries.push(ev.target.formCheck.id);
                     }else{
-                        let tempBoundaries = boundaries.split(',');
-                        boundaries = [];
                         tempBoundaries.forEach((boundary) => {
-                            (boundary !== ev.target.formCheck.id) ? boundaries.push(ev.target.formCheck.id) : 0;
+                            (boundary === ev.target.formCheck.id) ? 0 : boundaries.push(boundary);
                         });
-                        boundaries = boundaries.join(' ');
                     }
+                    boundaries = boundaries.join(',');
                     app[0].setAttribute('data-active-boundaries', boundaries);
                 });
 
@@ -304,16 +333,17 @@ export default class D6BusinessMap extends HTMLElement {
                     console.log(ev.target.formCheck.checked);
                     const app = document.getElementsByTagName('d6-business-map');
                     let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
+                    let tempBoundaries = boundaries.split(',');
+                    boundaries = [];
                     if(ev.target.formCheck.checked){
-                        boundaries = `${boundaries},${ev.target.formCheck.id}`;
+                        boundaries = tempBoundaries;
+                        boundaries.push(ev.target.formCheck.id);
                     }else{
-                        let tempBoundaries = boundaries.split(',');
-                        boundaries = [];
                         tempBoundaries.forEach((boundary) => {
-                            (boundary !== ev.target.formCheck.id) ? boundaries.push(ev.target.formCheck.id) : 0;
+                            (boundary === ev.target.formCheck.id) ? 0 : boundaries.push(boundary);
                         });
-                        boundaries = boundaries.join(' ');
                     }
+                    boundaries = boundaries.join(',');
                     app[0].setAttribute('data-active-boundaries', boundaries);
                 });
 
@@ -327,16 +357,17 @@ export default class D6BusinessMap extends HTMLElement {
                     console.log(ev.target.formCheck.checked);
                     const app = document.getElementsByTagName('d6-business-map');
                     let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
+                    let tempBoundaries = boundaries.split(',');
+                    boundaries = [];
                     if(ev.target.formCheck.checked){
-                        boundaries = `${boundaries},${ev.target.formCheck.id}`;
+                        boundaries = tempBoundaries;
+                        boundaries.push(ev.target.formCheck.id);
                     }else{
-                        let tempBoundaries = boundaries.split(',');
-                        boundaries = [];
                         tempBoundaries.forEach((boundary) => {
-                            (boundary !== ev.target.formCheck.id) ? boundaries.push(ev.target.formCheck.id) : 0;
+                            (boundary === ev.target.formCheck.id) ? 0 : boundaries.push(boundary);
                         });
-                        boundaries = boundaries.join(' ');
                     }
+                    boundaries = boundaries.join(',');
                     app[0].setAttribute('data-active-boundaries', boundaries);
                 });
 
