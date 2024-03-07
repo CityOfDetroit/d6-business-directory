@@ -130,7 +130,7 @@ export default class D6BusinessMap extends HTMLElement {
         this.map.setAttribute('data-map-layers', JSON.stringify(this.layers.layers));
         this.map.setAttribute('data-location', this.getAttribute('data-location'));
         this.map.setAttribute('data-map-state', 'init');
-        app[0].setAttribute('data-active-boundaries', 'council-district');
+        app[0].setAttribute('data-active-boundaries', 'coucil-district-6-lines');
         this.appWrapper.appendChild(this.map);
     }
 
@@ -174,6 +174,8 @@ export default class D6BusinessMap extends HTMLElement {
     }
 
     changeVisibility(layers, visibility, _map){
+        console.log(layers);
+        console.log(visibility);
         layers.forEach(layer => {
           _map.map.setLayoutProperty(layer, "visibility", visibility);
         });
@@ -280,7 +282,7 @@ export default class D6BusinessMap extends HTMLElement {
                 councilCheckbox.setAttribute('data-checked', 'true');
                 councilCheckbox.setAttribute('data-id', 'council-district');
                 councilCheckbox.setAttribute('data-name', 'map-layer');
-                councilCheckbox.setAttribute('data-value', 'council-district');
+                councilCheckbox.setAttribute('data-value', 'coucil-district-6-lines');
                 councilCheckbox.setAttribute('data-type', 'checkbox');
                 councilCheckbox.setAttribute('data-label', 'Council District');
                 councilCheckbox.addEventListener('change', (ev) => {
@@ -291,10 +293,10 @@ export default class D6BusinessMap extends HTMLElement {
                     boundaries = [];
                     if(ev.target.formCheck.checked){
                         boundaries = tempBoundaries;
-                        boundaries.push(ev.target.formCheck.id);
+                        boundaries.push(ev.target.formCheck.value);
                     }else{
                         tempBoundaries.forEach((boundary) => {
-                            (boundary === ev.target.formCheck.id) ? 0 : boundaries.push(boundary);
+                            (boundary === ev.target.formCheck.value) ? 0 : boundaries.push(boundary);
                         });
                     }
                     boundaries = boundaries.join(',');
