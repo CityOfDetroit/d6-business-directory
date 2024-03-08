@@ -26,7 +26,7 @@ export default class D6BusinessMap extends HTMLElement {
         const app = document.getElementsByTagName('d6-business-map');
         let tempState = app[0].getAttribute('data-app-state');
 
-        this.mainData = mainData;
+        this.mainData = {"name":"d6","data":"https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/council_surveyed_businesses/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token="};
         this.layers = layers;
 
         // Adding styles
@@ -126,6 +126,7 @@ export default class D6BusinessMap extends HTMLElement {
         this.map.id = 'd6-map';
         this.map.setAttribute('data-parent-component', 'd6-business-map');
         this.map.setAttribute('data-map-mode', 'map-panel');
+        this.map.setAttribute('data-zoom', "12");
         this.map.setAttribute('data-map-data', JSON.stringify(tempMainData));
         this.map.setAttribute('data-map-layers', JSON.stringify(this.layers.layers));
         this.map.setAttribute('data-location', this.getAttribute('data-location'));
@@ -138,19 +139,30 @@ export default class D6BusinessMap extends HTMLElement {
         console.log(`App - attribute: ${name}, old: ${oldValue}, new: ${newValue}`);
         switch (name) {
             case 'data-active-filters':
-                
+                const newFilters = newValue.split(',');
+                let url= this.buildQuery(newFilters);
+                console.log(url);
+                const app = this;
+                fetch(url)
+                .then((resp) => resp.json()) // Transform the data into json
+                .then(function (data) {
+                    console.log(data);
+                    (app.map.map.getSource('data-points')) ? app.map.map.getSource('data-points').setData(data) : 0;
+                }).catch(err => {
+                // console.log(err);
+                });
                 break;
 
             case 'data-active-boundaries':
                 const oldBoundaries = oldValue.split(',');
                 const newBoundaries = newValue.split(',');
-                let difference;
+                let boundariesDiff;
                 if(newBoundaries.length > oldBoundaries.length){
-                    difference = this.arrayDifference(newBoundaries, oldBoundaries);
-                    this.changeVisibility(difference, 'visible', this.map);
+                    boundariesDiff = this.arrayDifference(newBoundaries, oldBoundaries);
+                    this.changeVisibility(boundariesDiff, 'visible', this.map);
                 }else{
-                    difference = this.arrayDifference(oldBoundaries, newBoundaries);
-                    this.changeVisibility(difference, 'none', this.map);
+                    boundariesDiff = this.arrayDifference(oldBoundaries, newBoundaries);
+                    this.changeVisibility(boundariesDiff, 'none', this.map);
                 }
                 break;
         
@@ -173,6 +185,32 @@ export default class D6BusinessMap extends HTMLElement {
         return difference;
     }
 
+    buildQuery(filters){
+        console.log(filters)
+        let tmpWhere = [];
+        filters.forEach(filter => {
+            switch (filter) {
+                case 'is_asian_owned':
+                    tmpWhere.push('is_asian_owned%3D1');
+                    break;
+            
+                case 'is_black_owned':
+                    tmpWhere.push('is_black_owned%3D1');
+                    break;
+
+                case 'has_clinic_community_health_ser':
+                    tmpWhere.push('has_clinic_community_health_ser%3D1');
+                    break;
+                default:
+                    break;
+            }
+        });
+        tmpWhere = tmpWhere.join('+AND+');
+        (tmpWhere === '') ? tmpWhere = '1%3D1' : 0;
+        return `https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/council_surveyed_businesses/FeatureServer/0/query?where=${tmpWhere}&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=geojson&token=`;
+        
+    }
+
     changeVisibility(layers, visibility, _map){
         console.log(layers);
         console.log(visibility);
@@ -191,6 +229,44 @@ export default class D6BusinessMap extends HTMLElement {
 
     clearPanel(app) {
 
+    }
+
+    updateBoundaries(ev){
+        console.log(ev.target.formCheck.checked);
+        const app = document.getElementsByTagName('d6-business-map');
+        let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
+        let tempBoundaries = boundaries.split(',');
+        boundaries = [];
+        if(ev.target.formCheck.checked){
+            boundaries = tempBoundaries;
+            boundaries.push(ev.target.formCheck.value);
+        }else{
+            let multiLayers = ev.target.formCheck.value.split(',');
+            tempBoundaries.forEach((boundary) => {
+                (multiLayers.includes(boundary)) ? 0 : boundaries.push(boundary);
+            });
+        }
+        boundaries = boundaries.join(',');
+        app[0].setAttribute('data-active-boundaries', boundaries);
+    }
+
+    updateMainData(ev){
+        console.log(ev.target.formCheck.checked);
+        const app = document.getElementsByTagName('d6-business-map');
+        let filters = (app[0].getAttribute('data-active-filters') === null) ? '' : app[0].getAttribute('data-active-filters');
+        let tempFilters = filters.split(',');
+        filters = [];
+        if(ev.target.formCheck.checked){
+            filters = tempFilters;
+            filters.push(ev.target.formCheck.value);
+        }else{
+            let multiLayers = ev.target.formCheck.value.split(',');
+            tempFilters.forEach((filter) => {
+                (multiLayers.includes(filter)) ? 0 : filters.push(filter);
+            });
+        }
+        filters = filters.join(',');
+        app[0].setAttribute('data-active-filters', filters);
     }
 
     loadApp(app) {
@@ -250,20 +326,72 @@ export default class D6BusinessMap extends HTMLElement {
                 break;
 
             case 'active-filters':
-                this.panelContent.innerHTML = `
-                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Data Filters</p>
-                    <p><strong>By ownership:</strong></p>
-                    <cod-form-check data-id="council-district" data-name="council-district" data-value="council-district" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Council District"></cod-form-check>
-                    <cod-form-check data-id="neighborhoods" data-name="neighborhoods" data-value="neighborhoods" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Neighborhoods"></cod-form-check>
-                    <cod-form-check data-id="police-precincts" data-name="police-precincts" data-value="police-precincts" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Police Precincts"></cod-form-check>
-                    <cod-form-check data-id="zip-codes" data-name="zip-codes" data-value="zip-codes" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Zip Codes"></cod-form-check>
+                this.panelContent.innerHTML = '';
+                const titleFilters = document.createElement('p');
+                titleFilters.innerText = 'Data Filters';
+                titleFilters.style.backgroundColor = '#745DA8';
+                titleFilters.style.color = '#fff';
+                titleFilters.className = 'fs-3 fw-bold text-center';
 
-                    <p><strong>By service:</strong></p>
-                    <cod-form-check data-id="council-district" data-name="council-district" data-value="council-district" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Council District"></cod-form-check>
-                    <cod-form-check data-id="neighborhoods" data-name="neighborhoods" data-value="neighborhoods" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Neighborhoods"></cod-form-check>
-                    <cod-form-check data-id="police-precincts" data-name="police-precincts" data-value="police-precincts" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Police Precincts"></cod-form-check>
-                    <cod-form-check data-id="zip-codes" data-name="zip-codes" data-value="zip-codes" data-type="checkbox" data-btn-color="undefined" data-checked="undefined" data-label="Zip Codes"></cod-form-check>
-                `;
+                const ownershipSection = document.createElement('p');
+                ownershipSection.innerText = 'By ownership:';
+                ownershipSection.style.fontWeight ='bold';
+
+                const ownershipFilterCheckboxes = document.createElement('cod-form-check-group');
+                ownershipFilterCheckboxes.setAttribute('data-type', 'checkbox');
+
+                const asianOwnedCheckbox = document.createElement('cod-form-check');
+                asianOwnedCheckbox.setAttribute('data-checked', 'false');
+                asianOwnedCheckbox.setAttribute('data-id', 'asian-owned');
+                asianOwnedCheckbox.setAttribute('data-name', 'data-filters');
+                asianOwnedCheckbox.setAttribute('data-value', 'is_asian_owned');
+                asianOwnedCheckbox.setAttribute('data-type', 'checkbox');
+                asianOwnedCheckbox.setAttribute('data-label', 'Asian Owned');
+                asianOwnedCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                const blackOwnedCheckbox = document.createElement('cod-form-check');
+                blackOwnedCheckbox.setAttribute('data-checked', 'false');
+                blackOwnedCheckbox.setAttribute('data-id', 'black-owned');
+                blackOwnedCheckbox.setAttribute('data-name', 'data-filters');
+                blackOwnedCheckbox.setAttribute('data-value', 'is_black_owned');
+                blackOwnedCheckbox.setAttribute('data-type', 'checkbox');
+                blackOwnedCheckbox.setAttribute('data-label', 'Back Owned');
+                blackOwnedCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                const servicesSection = document.createElement('p');
+                servicesSection.innerText = 'By services:';
+                servicesSection.style.fontWeight ='bold';
+
+                const servicesFilterCheckboxes = document.createElement('cod-form-check-group');
+                servicesFilterCheckboxes.setAttribute('data-type', 'checkbox');
+
+                const communityHealthCheckbox = document.createElement('cod-form-check');
+                communityHealthCheckbox.setAttribute('data-checked', 'false');
+                communityHealthCheckbox.setAttribute('data-id', 'community-health');
+                communityHealthCheckbox.setAttribute('data-name', 'data-filters');
+                communityHealthCheckbox.setAttribute('data-value', 'has_clinic_community_health_ser');
+                communityHealthCheckbox.setAttribute('data-type', 'checkbox');
+                communityHealthCheckbox.setAttribute('data-label', 'Community Health');
+                communityHealthCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                this.panelContent.appendChild(titleFilters);
+                this.panelContent.appendChild(ownershipSection);
+                ownershipFilterCheckboxes.appendChild(asianOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(blackOwnedCheckbox);
+                this.panelContent.appendChild(ownershipFilterCheckboxes);
+                this.panelContent.appendChild(servicesSection);
+                servicesFilterCheckboxes.appendChild(communityHealthCheckbox)
+                this.panelContent.appendChild(servicesFilterCheckboxes);
+
                 this.panel.setAttribute('data-show', 'true');
                 break;
 
@@ -287,90 +415,38 @@ export default class D6BusinessMap extends HTMLElement {
                 councilCheckbox.setAttribute('data-label', 'Council District');
                 councilCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
-                    const app = document.getElementsByTagName('d6-business-map');
-                    let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
-                    let tempBoundaries = boundaries.split(',');
-                    boundaries = [];
-                    if(ev.target.formCheck.checked){
-                        boundaries = tempBoundaries;
-                        boundaries.push(ev.target.formCheck.value);
-                    }else{
-                        tempBoundaries.forEach((boundary) => {
-                            (boundary === ev.target.formCheck.value) ? 0 : boundaries.push(boundary);
-                        });
-                    }
-                    boundaries = boundaries.join(',');
-                    app[0].setAttribute('data-active-boundaries', boundaries);
+                    this.updateBoundaries(ev);
                 });
 
                 const neighborhoodCheckbox = document.createElement('cod-form-check');
                 neighborhoodCheckbox.setAttribute('data-id', 'neighborhoods');
                 neighborhoodCheckbox.setAttribute('data-name', 'map-layer');
-                neighborhoodCheckbox.setAttribute('data-value', 'neighborhoods');
+                neighborhoodCheckbox.setAttribute('data-value', 'neighborhoods-lines,neighborhoods-fill,neighborhood-labels');
                 neighborhoodCheckbox.setAttribute('data-type', 'checkbox');
                 neighborhoodCheckbox.setAttribute('data-label', 'Neighborhoods');neighborhoodCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
-                    const app = document.getElementsByTagName('d6-business-map');
-                    let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
-                    let tempBoundaries = boundaries.split(',');
-                    boundaries = [];
-                    if(ev.target.formCheck.checked){
-                        boundaries = tempBoundaries;
-                        boundaries.push(ev.target.formCheck.id);
-                    }else{
-                        tempBoundaries.forEach((boundary) => {
-                            (boundary === ev.target.formCheck.id) ? 0 : boundaries.push(boundary);
-                        });
-                    }
-                    boundaries = boundaries.join(',');
-                    app[0].setAttribute('data-active-boundaries', boundaries);
+                    this.updateBoundaries(ev);
                 });
 
                 const policePrecinctsCheckbox = document.createElement('cod-form-check');
                 policePrecinctsCheckbox.setAttribute('data-id', 'police-precincts');
                 policePrecinctsCheckbox.setAttribute('data-name', 'map-layer');
-                policePrecinctsCheckbox.setAttribute('data-value', 'police-precincts');
+                policePrecinctsCheckbox.setAttribute('data-value', 'police-precincts-lines,police-precincts-fill');
                 policePrecinctsCheckbox.setAttribute('data-type', 'checkbox');
                 policePrecinctsCheckbox.setAttribute('data-label', 'Police Precincts');policePrecinctsCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
-                    const app = document.getElementsByTagName('d6-business-map');
-                    let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
-                    let tempBoundaries = boundaries.split(',');
-                    boundaries = [];
-                    if(ev.target.formCheck.checked){
-                        boundaries = tempBoundaries;
-                        boundaries.push(ev.target.formCheck.id);
-                    }else{
-                        tempBoundaries.forEach((boundary) => {
-                            (boundary === ev.target.formCheck.id) ? 0 : boundaries.push(boundary);
-                        });
-                    }
-                    boundaries = boundaries.join(',');
-                    app[0].setAttribute('data-active-boundaries', boundaries);
+                    this.updateBoundaries(ev);
                 });
 
                 const zipCodesCheckbox = document.createElement('cod-form-check');
                 zipCodesCheckbox.setAttribute('data-id', 'zip-codes')
                 zipCodesCheckbox.setAttribute('data-name', 'map-layer');
-                zipCodesCheckbox.setAttribute('data-value', 'zip-codes');
+                zipCodesCheckbox.setAttribute('data-value', 'zip-codes-lines,zip-codes-fill');
                 zipCodesCheckbox.setAttribute('data-type', 'checkbox');
                 zipCodesCheckbox.setAttribute('data-label', 'Zip Codes');
                 zipCodesCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
-                    const app = document.getElementsByTagName('d6-business-map');
-                    let boundaries = (app[0].getAttribute('data-active-boundaries') === null) ? '' : app[0].getAttribute('data-active-boundaries');
-                    let tempBoundaries = boundaries.split(',');
-                    boundaries = [];
-                    if(ev.target.formCheck.checked){
-                        boundaries = tempBoundaries;
-                        boundaries.push(ev.target.formCheck.id);
-                    }else{
-                        tempBoundaries.forEach((boundary) => {
-                            (boundary === ev.target.formCheck.id) ? 0 : boundaries.push(boundary);
-                        });
-                    }
-                    boundaries = boundaries.join(',');
-                    app[0].setAttribute('data-active-boundaries', boundaries);
+                    this.updateBoundaries(ev);
                 });
 
                 this.panelContent.appendChild(title);
