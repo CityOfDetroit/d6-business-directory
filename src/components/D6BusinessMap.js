@@ -49,7 +49,7 @@ export default class D6BusinessMap extends HTMLElement {
         this.filterBtn.setAttribute('data-img-alt', '');
         this.filterBtn.setAttribute('data-shape', 'square');
         this.filterBtn.setAttribute('data-nav-value', 'filters');
-        this.filterBtn.setAttribute('data-icon', 'house-fill');
+        this.filterBtn.setAttribute('data-icon', 'funnel');
         this.filterBtn.setAttribute('data-icon-size', 'medium');
         this.filterBtn.setAttribute('data-aria-label', 'Filters');
         this.filterBtn.setAttribute('data-extra-classes', 'icon-center');
@@ -68,7 +68,7 @@ export default class D6BusinessMap extends HTMLElement {
         this.LayerBtn.setAttribute('data-img-alt', '');
         this.LayerBtn.setAttribute('data-shape', 'square');
         this.LayerBtn.setAttribute('data-nav-value', 'layers');
-        this.LayerBtn.setAttribute('data-icon', 'check-circle-fill');
+        this.LayerBtn.setAttribute('data-icon', 'bounding-box');
         this.LayerBtn.setAttribute('data-icon-size', 'medium');
         this.LayerBtn.setAttribute('data-aria-label', 'Layers');
         this.LayerBtn.setAttribute('data-extra-classes', 'icon-center');
@@ -87,7 +87,7 @@ export default class D6BusinessMap extends HTMLElement {
         this.infoBtn.setAttribute('data-img-alt', '');
         this.infoBtn.setAttribute('data-shape', 'square');
         this.infoBtn.setAttribute('data-nav-value', 'info');
-        this.infoBtn.setAttribute('data-icon', 'exclamation-circle-fill');
+        this.infoBtn.setAttribute('data-icon', 'exclamation-circle');
         this.infoBtn.setAttribute('data-icon-size', 'medium');
         this.infoBtn.setAttribute('data-aria-label', 'Information');
         this.infoBtn.setAttribute('data-extra-classes', 'icon-center');
@@ -126,7 +126,8 @@ export default class D6BusinessMap extends HTMLElement {
         this.map.id = 'd6-map';
         this.map.setAttribute('data-parent-component', 'd6-business-map');
         this.map.setAttribute('data-map-mode', 'map-panel');
-        this.map.setAttribute('data-zoom', "12");
+        this.map.setAttribute('data-center', "-83.103111,42.31103400000001");
+        this.map.setAttribute('data-zoom', "11.5");
         this.map.setAttribute('data-map-data', JSON.stringify(tempMainData));
         this.map.setAttribute('data-map-layers', JSON.stringify(this.layers.layers));
         this.map.setAttribute('data-location', this.getAttribute('data-location'));
@@ -312,14 +313,14 @@ export default class D6BusinessMap extends HTMLElement {
 
                     <p><strong>Amenities:</strong></p>
                     <p>
-                    ${(tempData.properties.is_public_transit_accessible) ? `<cod-icon data-icon="house" data-size="small"></cod-icon>` : ``}
-                    ${(tempData.properties.is_ada_accessible) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
-                    ${(tempData.properties.has_bike_rack) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
-                    ${(tempData.properties.has_parking_lot) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
-                    ${(tempData.properties.is_cash_only) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
-                    ${(tempData.properties.has_free_wifi) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
-                    ${(tempData.properties.has_gender_neutral_bathrooms) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
-                    ${(tempData.properties.has_rental_space) ? `<cod-icon data-icon="calendar" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.is_public_transit_accessible) ? `<cod-icon data-icon="bus-front" data-size="small"></cod-icon>` : ``}
+                    ${(tempData.properties.is_ada_accessible) ? `<cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_bike_rack) ? `<cod-icon data-icon="bicycle" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_parking_lot) ? `<cod-icon data-icon="p-circle-fill" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.is_cash_only) ? `<cod-icon data-icon="cash" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_free_wifi) ? `<cod-icon data-icon="wifi" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_gender_neutral_bathrooms) ? `<cod-icon data-icon="toilet" data-size="small"></cod-icon>` : ``} 
+                    ${(tempData.properties.has_rental_space) ? `<cod-icon data-icon="building" data-size="small"></cod-icon>` : ``} 
                     </p>
                 `;
                 this.panel.setAttribute('data-show', 'true');
@@ -406,17 +407,17 @@ export default class D6BusinessMap extends HTMLElement {
                 const layerCheckboxes = document.createElement('cod-form-check-group');
                 layerCheckboxes.setAttribute('data-type', 'checkbox');
 
-                const councilCheckbox = document.createElement('cod-form-check');
-                councilCheckbox.setAttribute('data-checked', 'true');
-                councilCheckbox.setAttribute('data-id', 'council-district');
-                councilCheckbox.setAttribute('data-name', 'map-layer');
-                councilCheckbox.setAttribute('data-value', 'coucil-district-6-lines');
-                councilCheckbox.setAttribute('data-type', 'checkbox');
-                councilCheckbox.setAttribute('data-label', 'Council District');
-                councilCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
-                    this.updateBoundaries(ev);
-                });
+                // const councilCheckbox = document.createElement('cod-form-check');
+                // councilCheckbox.setAttribute('data-checked', 'true');
+                // councilCheckbox.setAttribute('data-id', 'council-district');
+                // councilCheckbox.setAttribute('data-name', 'map-layer');
+                // councilCheckbox.setAttribute('data-value', 'coucil-district-6-lines');
+                // councilCheckbox.setAttribute('data-type', 'checkbox');
+                // councilCheckbox.setAttribute('data-label', 'Council District');
+                // councilCheckbox.addEventListener('change', (ev) => {
+                //     console.log(ev.target.formCheck.checked);
+                //     this.updateBoundaries(ev);
+                // });
 
                 const neighborhoodCheckbox = document.createElement('cod-form-check');
                 neighborhoodCheckbox.setAttribute('data-id', 'neighborhoods');
@@ -450,7 +451,7 @@ export default class D6BusinessMap extends HTMLElement {
                 });
 
                 this.panelContent.appendChild(title);
-                layerCheckboxes.appendChild(councilCheckbox);
+                // layerCheckboxes.appendChild(councilCheckbox);
                 layerCheckboxes.appendChild(neighborhoodCheckbox);
                 layerCheckboxes.appendChild(policePrecinctsCheckbox);
                 layerCheckboxes.appendChild(zipCodesCheckbox);
@@ -460,13 +461,36 @@ export default class D6BusinessMap extends HTMLElement {
                 break;
 
             case 'active-info':
+                const lngLabel = document.createElement('label');
+                lngLabel.className = 'fw-bold';
+                lngLabel.htmlFor = 'language-selector';
+                lngLabel.innerText = 'Select Language';
+                const lngSelector = document.createElement('cod-form-select');
+                lngSelector.setAttribute('data-id', 'language-selector');
+                lngSelector.setAttribute('data-aria-label', 'Select language');
+                lngSelector.innerHTML = `
+                    <option value="">Select language</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="ar">عربي</option>
+                `;
+                lngSelector.addEventListener('change', (ev) => {
+                    console.log(ev.target);
+                });
                 this.panelContent.innerHTML = `
                     <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Informantion</p>
-                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> Wifi</p>
-                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> Wifi</p>
-                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> Wifi</p>
-                    <p><cod-icon data-icon="house" data-size="small"></cod-icon> Wifi</p>
+                    <p><strong>Icon Descriptions</strong></p>
+                    <p><cod-icon data-icon="bus-front" data-size="small"></cod-icon> Public transit accessible</p>
+                    <p><cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon> ADA accessible</p>
+                    <p><cod-icon data-icon="bicycle" data-size="small"></cod-icon> Bike rack</p>
+                    <p><cod-icon data-icon="p-circle" data-size="small"></cod-icon> Parking lot</p>
+                    <p><cod-icon data-icon="cash" data-size="small"></cod-icon> Cash only</p>
+                    <p><cod-icon data-icon="wifi" data-size="small"></cod-icon> Free WiFi</p>
+                    <p><cod-icon data-icon="building" data-size="small"></cod-icon> Rental space</p>
                 `;
+                this.panelContent.appendChild(lngLabel);
+                this.panelContent.appendChild(lngSelector);
                 this.panel.setAttribute('data-show', 'true');
                 break;
 

@@ -16992,7 +16992,7 @@
         "source": "mly",
         "source-layer": "image",
         "maxzoom": 22,
-        "minzoom": 11,
+        "minzoom": 13,
         "filter": [
           "all",
           ["==", "is_pano", true],
@@ -17024,7 +17024,7 @@
         "type": "line",
         "source": "parcels",
         "source-layer": "parcels",
-        "minzoom": 11,
+        "minzoom": 13,
         "layout": {
           "visibility": "visible"
         },
@@ -17094,7 +17094,7 @@
         "source": "parcels",
         "source-layer": "parcels",
         "interactive": true,
-        "minzoom": 12,
+        "minzoom": 13,
         "layout": {
           "visibility": "visible"
         },
