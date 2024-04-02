@@ -205,9 +205,74 @@ export default class D6BusinessMap extends HTMLElement {
                     tmpWhere.push('is_black_owned%3D1');
                     break;
 
+                case 'is_asian_owned':
+                    tmpWhere.push('is_asian_owned%3D1');
+                    break;
+
+                case 'is_lgbtq_owned':
+                    tmpWhere.push('is_lgbtq_owned%3D1');
+                    break;
+
+                case 'is_indigenous_owned':
+                    tmpWhere.push('is_indigenous_owned%3D1');
+                    break;
+
+                case 'is_middle_eastern_owned':
+                    tmpWhere.push('is_middle_eastern_owned%3D1');
+                    break;
+
+                case 'is_veteran_owned':
+                    tmpWhere.push('is_veteran_owned%3D1');
+                    break;
+
+                case 'is_minority_owned':
+                    tmpWhere.push('is_minority_owned%3D1');
+                    break;
+
+                case 'is_woman_owned':
+                    tmpWhere.push('is_woman_owned%3D1');
+                    break;
+
                 case 'has_clinic_community_health_ser':
                     tmpWhere.push('has_clinic_community_health_ser%3D1');
                     break;
+
+                case 'has_dental_service':
+                    tmpWhere.push('has_dental_service%3D1');
+                    break;
+
+                case 'has_emergency_urgent_care_servi':
+                    tmpWhere.push('has_emergency_urgent_care_servi%3D1');
+                    break;
+
+                case 'has_family_health_service':
+                    tmpWhere.push('has_family_health_service%3D1');
+                    break;
+
+                case 'has_mental_health_service':
+                    tmpWhere.push('has_mental_health_service%3D1');
+                    break;
+
+                case 'has_pediatric_service':
+                    tmpWhere.push('has_pediatric_service%3D1');
+                    break;
+
+                case 'has_primary_care_service':
+                    tmpWhere.push('has_primary_care_service%3D1');
+                    break;
+
+                case 'has_sexual_health_service':
+                    tmpWhere.push('has_sexual_health_service%3D1');
+                    break;
+
+                case 'has_specialist_service':
+                    tmpWhere.push('has_specialist_service%3D1');
+                    break;
+
+                case 'has_other_health_service':
+                    tmpWhere.push('has_other_health_service%3D1');
+                    break;
+
                 default:
                     break;
             }
@@ -338,7 +403,7 @@ export default class D6BusinessMap extends HTMLElement {
                 titleFilters.className = 'fs-3 fw-bold text-center';
 
                 const ownershipSection = document.createElement('p');
-                ownershipSection.innerText = 'By ownership:';
+                ownershipSection.innerText = this.languageText[currentLanguage]['filters'][1];
                 ownershipSection.style.fontWeight ='bold';
 
                 const ownershipFilterCheckboxes = document.createElement('section');
@@ -350,7 +415,7 @@ export default class D6BusinessMap extends HTMLElement {
                 asianOwnedCheckbox.setAttribute('data-value', 'is_asian_owned');
                 (currenFilters.includes('is_asian_owned')) ? asianOwnedCheckbox.setAttribute('data-checked', true) : 0;
                 asianOwnedCheckbox.setAttribute('data-type', 'checkbox');
-                asianOwnedCheckbox.setAttribute('data-label', 'Asian Owned');
+                asianOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][2]);
                 asianOwnedCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
                     this.updateMainData(ev);
@@ -363,14 +428,92 @@ export default class D6BusinessMap extends HTMLElement {
                 blackOwnedCheckbox.setAttribute('data-value', 'is_black_owned');
                 (currenFilters.includes('is_black_owned')) ? blackOwnedCheckbox.setAttribute('data-checked', true) : 0;
                 blackOwnedCheckbox.setAttribute('data-type', 'checkbox');
-                blackOwnedCheckbox.setAttribute('data-label', 'Back Owned');
+                blackOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][3]);
                 blackOwnedCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
                     this.updateMainData(ev);
                 });
 
+                const lgbtqOwnedCheckbox = document.createElement('cod-form-check');
+                lgbtqOwnedCheckbox.setAttribute('data-checked', 'false');
+                lgbtqOwnedCheckbox.setAttribute('data-id', 'lgbtq-owned');
+                lgbtqOwnedCheckbox.setAttribute('data-name', 'data-filters');
+                lgbtqOwnedCheckbox.setAttribute('data-value', 'is_lgbtq_owned');
+                (currenFilters.includes('is_lgbtq_owned')) ? lgbtqOwnedCheckbox.setAttribute('data-checked', true) : 0;
+                lgbtqOwnedCheckbox.setAttribute('data-type', 'checkbox');
+                lgbtqOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][4]);
+                lgbtqOwnedCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                const indigenousOwnedCheckbox = document.createElement('cod-form-check');
+                indigenousOwnedCheckbox.setAttribute('data-checked', 'false');
+                indigenousOwnedCheckbox.setAttribute('data-id', 'indigenous-owned');
+                indigenousOwnedCheckbox.setAttribute('data-name', 'data-filters');
+                indigenousOwnedCheckbox.setAttribute('data-value', 'is_indigenous_owned');
+                (currenFilters.includes('is_indigenous_owned')) ? indigenousOwnedCheckbox.setAttribute('data-checked', true) : 0;
+                indigenousOwnedCheckbox.setAttribute('data-type', 'checkbox');
+                indigenousOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][5]);
+                indigenousOwnedCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                const middleEasternOwnedCheckbox = document.createElement('cod-form-check');
+                middleEasternOwnedCheckbox.setAttribute('data-checked', 'false');
+                middleEasternOwnedCheckbox.setAttribute('data-id', 'middle-eastern-owned');
+                middleEasternOwnedCheckbox.setAttribute('data-name', 'data-filters');
+                middleEasternOwnedCheckbox.setAttribute('data-value', 'is_middle_eastern_owned');
+                (currenFilters.includes('is_middle_eastern_owned')) ? middleEasternOwnedCheckbox.setAttribute('data-checked', true) : 0;
+                middleEasternOwnedCheckbox.setAttribute('data-type', 'checkbox');
+                middleEasternOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][6]);
+                middleEasternOwnedCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                const veteranOwnedCheckbox = document.createElement('cod-form-check');
+                veteranOwnedCheckbox.setAttribute('data-checked', 'false');
+                veteranOwnedCheckbox.setAttribute('data-id', 'veteran-owned');
+                veteranOwnedCheckbox.setAttribute('data-name', 'data-filters');
+                veteranOwnedCheckbox.setAttribute('data-value', 'is_veteran_owned');
+                (currenFilters.includes('is_veteran_owned')) ? veteranOwnedCheckbox.setAttribute('data-checked', true) : 0;
+                veteranOwnedCheckbox.setAttribute('data-type', 'checkbox');
+                veteranOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][7]);
+                veteranOwnedCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });  
+                
+                const minorityOwnedCheckbox = document.createElement('cod-form-check');
+                minorityOwnedCheckbox.setAttribute('data-checked', 'false');
+                minorityOwnedCheckbox.setAttribute('data-id', 'minority-owned');
+                minorityOwnedCheckbox.setAttribute('data-name', 'data-filters');
+                minorityOwnedCheckbox.setAttribute('data-value', 'is_minority_owned');
+                (currenFilters.includes('is_minority_owned')) ? minorityOwnedCheckbox.setAttribute('data-checked', true) : 0;
+                minorityOwnedCheckbox.setAttribute('data-type', 'checkbox');
+                minorityOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][8]);
+                minorityOwnedCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });  
+
+                const womanOwnedCheckbox = document.createElement('cod-form-check');
+                womanOwnedCheckbox.setAttribute('data-checked', 'false');
+                womanOwnedCheckbox.setAttribute('data-id', 'minority-owned');
+                womanOwnedCheckbox.setAttribute('data-name', 'data-filters');
+                womanOwnedCheckbox.setAttribute('data-value', 'is_woman_owned');
+                (currenFilters.includes('is_woman_owned')) ? womanOwnedCheckbox.setAttribute('data-checked', true) : 0;
+                womanOwnedCheckbox.setAttribute('data-type', 'checkbox');
+                womanOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][9]);
+                womanOwnedCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                }); 
+
                 const servicesSection = document.createElement('p');
-                servicesSection.innerText = 'By services:';
+                servicesSection.innerText = this.languageText[currentLanguage]['filters'][10];
                 servicesSection.style.fontWeight ='bold';
 
                 const servicesFilterCheckboxes = document.createElement('section');
@@ -382,8 +525,125 @@ export default class D6BusinessMap extends HTMLElement {
                 communityHealthCheckbox.setAttribute('data-value', 'has_clinic_community_health_ser');
                 (currenFilters.includes('has_clinic_community_health_ser')) ? communityHealthCheckbox.setAttribute('data-checked', true) : 0;
                 communityHealthCheckbox.setAttribute('data-type', 'checkbox');
-                communityHealthCheckbox.setAttribute('data-label', 'Community Health');
+                communityHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][11]);
                 communityHealthCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                const dentalCheckbox = document.createElement('cod-form-check');
+                dentalCheckbox.setAttribute('data-checked', 'false');
+                dentalCheckbox.setAttribute('data-id', 'dental');
+                dentalCheckbox.setAttribute('data-name', 'data-filters');
+                dentalCheckbox.setAttribute('data-value', 'has_dental_service');
+                (currenFilters.includes('has_dental_service')) ? dentalCheckbox.setAttribute('data-checked', true) : 0;
+                dentalCheckbox.setAttribute('data-type', 'checkbox');
+                dentalCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][12]);
+                dentalCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                const emergencyUrgentCareCheckbox = document.createElement('cod-form-check');
+                emergencyUrgentCareCheckbox.setAttribute('data-checked', 'false');
+                emergencyUrgentCareCheckbox.setAttribute('data-id', 'emergency-urgent-care');
+                emergencyUrgentCareCheckbox.setAttribute('data-name', 'data-filters');
+                emergencyUrgentCareCheckbox.setAttribute('data-value', 'has_emergency_urgent_care_servi');
+                (currenFilters.includes('has_emergency_urgent_care_servi')) ? emergencyUrgentCareCheckbox.setAttribute('data-checked', true) : 0;
+                emergencyUrgentCareCheckbox.setAttribute('data-type', 'checkbox');
+                emergencyUrgentCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][13]);
+                emergencyUrgentCareCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                const familyHealthCheckbox = document.createElement('cod-form-check');
+                familyHealthCheckbox.setAttribute('data-checked', 'false');
+                familyHealthCheckbox.setAttribute('data-id', 'family-health');
+                familyHealthCheckbox.setAttribute('data-name', 'data-filters');
+                familyHealthCheckbox.setAttribute('data-value', 'has_family_health_service');
+                (currenFilters.includes('has_family_health_service')) ? familyHealthCheckbox.setAttribute('data-checked', true) : 0;
+                familyHealthCheckbox.setAttribute('data-type', 'checkbox');
+                familyHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][14]);
+                familyHealthCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+                
+                const mentalHealthCheckbox = document.createElement('cod-form-check');
+                mentalHealthCheckbox.setAttribute('data-checked', 'false');
+                mentalHealthCheckbox.setAttribute('data-id', 'mental-health');
+                mentalHealthCheckbox.setAttribute('data-name', 'data-filters');
+                mentalHealthCheckbox.setAttribute('data-value', 'has_mental_health_service');
+                (currenFilters.includes('has_mental_health_service')) ? mentalHealthCheckbox.setAttribute('data-checked', true) : 0;
+                mentalHealthCheckbox.setAttribute('data-type', 'checkbox');
+                mentalHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][15]);
+                mentalHealthCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });  
+
+                const pediatricCheckbox = document.createElement('cod-form-check');
+                pediatricCheckbox.setAttribute('data-checked', 'false');
+                pediatricCheckbox.setAttribute('data-id', 'pediatric');
+                pediatricCheckbox.setAttribute('data-name', 'data-filters');
+                pediatricCheckbox.setAttribute('data-value', 'has_pediatric_service');
+                (currenFilters.includes('has_pediatric_service')) ? pediatricCheckbox.setAttribute('data-checked', true) : 0;
+                pediatricCheckbox.setAttribute('data-type', 'checkbox');
+                pediatricCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][16]);
+                pediatricCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });  
+
+                const primaryCareCheckbox = document.createElement('cod-form-check');
+                primaryCareCheckbox.setAttribute('data-checked', 'false');
+                primaryCareCheckbox.setAttribute('data-id', 'primary-care');
+                primaryCareCheckbox.setAttribute('data-name', 'data-filters');
+                primaryCareCheckbox.setAttribute('data-value', 'has_primary_care_service');
+                (currenFilters.includes('has_primary_care_service')) ? primaryCareCheckbox.setAttribute('data-checked', true) : 0;
+                primaryCareCheckbox.setAttribute('data-type', 'checkbox');
+                primaryCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][17]);
+                primaryCareCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });  
+                   
+                const sexualHealthCheckbox = document.createElement('cod-form-check');
+                sexualHealthCheckbox.setAttribute('data-checked', 'false');
+                sexualHealthCheckbox.setAttribute('data-id', 'sexual-health');
+                sexualHealthCheckbox.setAttribute('data-name', 'data-filters');
+                sexualHealthCheckbox.setAttribute('data-value', 'has_sexual_health_service');
+                (currenFilters.includes('has_sexual_health_service')) ? sexualHealthCheckbox.setAttribute('data-checked', true) : 0;
+                sexualHealthCheckbox.setAttribute('data-type', 'checkbox');
+                sexualHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][18]);
+                sexualHealthCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });     
+
+                const specialistCheckbox = document.createElement('cod-form-check');
+                specialistCheckbox.setAttribute('data-checked', 'false');
+                specialistCheckbox.setAttribute('data-id', 'specialist');
+                specialistCheckbox.setAttribute('data-name', 'data-filters');
+                specialistCheckbox.setAttribute('data-value', 'has_specialist_service');
+                (currenFilters.includes('has_specialist_service')) ? specialistCheckbox.setAttribute('data-checked', true) : 0;
+                specialistCheckbox.setAttribute('data-type', 'checkbox');
+                specialistCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][19]);
+                specialistCheckbox.addEventListener('change', (ev) => {
+                    console.log(ev.target.formCheck.checked);
+                    this.updateMainData(ev);
+                });
+
+                const otherHealthCheckbox = document.createElement('cod-form-check');
+                otherHealthCheckbox.setAttribute('data-checked', 'false');
+                otherHealthCheckbox.setAttribute('data-id', 'other-health');
+                otherHealthCheckbox.setAttribute('data-name', 'data-filters');
+                otherHealthCheckbox.setAttribute('data-value', 'has_other_health_service');
+                (currenFilters.includes('has_other_health_service')) ? otherHealthCheckbox.setAttribute('data-checked', true) : 0;
+                otherHealthCheckbox.setAttribute('data-type', 'checkbox');
+                otherHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][20]);
+                otherHealthCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
                     this.updateMainData(ev);
                 });
@@ -392,9 +652,24 @@ export default class D6BusinessMap extends HTMLElement {
                 this.panelContent.appendChild(ownershipSection);
                 ownershipFilterCheckboxes.appendChild(asianOwnedCheckbox);
                 ownershipFilterCheckboxes.appendChild(blackOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(lgbtqOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(indigenousOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(middleEasternOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(veteranOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(minorityOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(womanOwnedCheckbox);
                 this.panelContent.appendChild(ownershipFilterCheckboxes);
                 this.panelContent.appendChild(servicesSection);
-                servicesFilterCheckboxes.appendChild(communityHealthCheckbox)
+                servicesFilterCheckboxes.appendChild(communityHealthCheckbox);
+                servicesFilterCheckboxes.appendChild(dentalCheckbox);
+                servicesFilterCheckboxes.appendChild(emergencyUrgentCareCheckbox);
+                servicesFilterCheckboxes.appendChild(familyHealthCheckbox);
+                servicesFilterCheckboxes.appendChild(mentalHealthCheckbox);
+                servicesFilterCheckboxes.appendChild(pediatricCheckbox);
+                servicesFilterCheckboxes.appendChild(primaryCareCheckbox);
+                servicesFilterCheckboxes.appendChild(sexualHealthCheckbox);
+                servicesFilterCheckboxes.appendChild(specialistCheckbox);
+                servicesFilterCheckboxes.appendChild(otherHealthCheckbox);
                 this.panelContent.appendChild(servicesFilterCheckboxes);
 
                 this.panel.setAttribute('data-show', 'true');
@@ -478,10 +753,10 @@ export default class D6BusinessMap extends HTMLElement {
                 lngSelector.setAttribute('data-aria-label', 'Select language');
                 lngSelector.innerHTML = `
                     <option value="">Select language</option>
-                    <option value="en" selected>English</option>
-                    <option value="es">Español</option>
-                    <option value="bn">বাংলা</option>
-                    <option value="ar">عربي</option>
+                    <option value="en" ${(currentLanguage === 'en') ? 'selected' : ''}>English</option>
+                    <option value="es" ${(currentLanguage === 'es') ? 'selected' : ''}>Español</option>
+                    <option value="bn" ${(currentLanguage === 'bn') ? 'selected' : ''}>বাংলা</option>
+                    <option value="ar" ${(currentLanguage === 'ar') ? 'selected' : ''}>عربي</option>
                 `;
                 const d6 = this;
                 lngSelector.addEventListener('change', (ev) => {

@@ -2,25 +2,25 @@
     "en": {
         "intro": [],
         "boundaries": ["Boundaries"],
-        "filters": ["Data Filters"],
+        "filters": ["Data Filters","By Ownership:","Asian Owned","Black Owned","LGBTQ Owned","Indigenous Owned","Middle Eastern Owned","Veteran Owned","Minority Owned","Woman Owned","By Services:","Community Health","Dental","Emergency/Urgent Care","Family Health","Mental Health","Pediatrics","Primary Care","Sexual Health","Specialist","Other Health Services"],
         "info": ["Information"]
     },
     "es": {
         "intro": [],
         "boundaries": ["Zonas"],
-        "filters": ["Filtros de datos"],
+        "filters": ["Filtros de datos","Por propiedad:","Propiedad asiática","Propiedad negra","Propiedad LGBTQ","Propiedad indígena","Propiedad del Medio Oriente","Propiedad de veteranos","Propiedad de minorías","Propiedad de una mujer","Por Servicios:","Salud de la comunidad","Dental","Atención de emergencia/urgencia","Salud Familiar","Salud mental","Pediatría","Atención primaria","Salud sexual","Especialista","Otros servicios de salud"],
         "info": ["Información"]
     },
     "bn": {
         "intro": [],
         "boundaries": ["সীমানা"],
-        "filters": ["ডেটা ফিল্টার"],
+        "filters": ["ডেটা ফিল্টার","মালিকানা দ্বারা:","এশিয়ান মালিকানাধীন","কালো মালিকানাধীন","LGBTQ মালিকানাধীন","আদিবাসী মালিকানাধীন","মধ্যপ্রাচ্যের মালিকানাধীন","অভিজ্ঞ মালিকানাধীন","সংখ্যালঘু মালিকানাধীন","মহিলা মালিকানাধীন","পরিষেবা দ্বারা:","নগর স্বাস্থ্য কেন্দ্র","ডেন্টাল","জরুরী/জরুরী যত্ন","পারিবারিক স্বাস্থ্য","মানসিক সাস্থ্য","পেডিয়াট্রিক্স","প্রাথমিক যত্ন","যৌন স্বাস্থ্য","বিশেষজ্ঞ","অন্যান্য স্বাস্থ্য পরিষেবা"],
         "info": ["তথ্য"]
     },
     "ar": {
         "intro": [],
         "boundaries": ["حدود"],
-        "filters": ["مرشحات البيانات"],
+        "filters": ["مرشحات البيانات","حسب الملكية:","المملوكة الآسيوية","الأسود المملوكة","مملوكة LGBTQ","مملوكة للسكان الأصليين","الشرق الأوسط المملوكة","المملوكة للمحاربين القدامى","تملكها أقلية","امرأة مملوكة","حسب الخدمات:","صحة المجتمع","طب الأسنان","الطوارئ / الرعاية العاجلة","صحة الأسرة","الصحة النفسية","طب الأطفال","الرعاية الصحية الأولية","الصحة الجنسية","متخصص","خدمات صحية أخرى"],
         "info": ["معلومة"]
     }
 }
