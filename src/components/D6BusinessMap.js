@@ -4,6 +4,7 @@ import Display from './Display';
 import DataLoader from './DataLoader';
 import layers from './layers.json';
 import mainData from './test-data.json';
+import languageText from './language-text.json';
 import logo from '../assets/logo2.png';
 // import Map from './Map';
 customElements.define('app-display', Display);
@@ -12,7 +13,7 @@ customElements.define('app-data-loader', DataLoader);
 
 export default class D6BusinessMap extends HTMLElement {
     static get observedAttributes() {
-        return ['data-app-state', 'data-parcel-id', 'data-map-state', 'data-active-boundaries', 'data-active-filters'];
+        return ['data-app-state', 'data-parcel-id', 'data-map-state', 'data-active-boundaries', 'data-active-filters','data-language'];
     }
 
     constructor() {
@@ -28,6 +29,9 @@ export default class D6BusinessMap extends HTMLElement {
 
         this.mainData = {"name":"d6","data":"https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/council_surveyed_businesses/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token="};
         this.layers = layers;
+
+        this.languageText = languageText;
+        console.log(this.languageText);
 
         // Adding styles
         const appStyles = document.createElement('style');
@@ -166,6 +170,10 @@ export default class D6BusinessMap extends HTMLElement {
                     this.changeVisibility(boundariesDiff, 'none', this.map);
                 }
                 break;
+            
+            case 'data-language':
+                console.log(`changing language to ${newValue}`);
+                break;
         
             default:
                 this.loadApp(this);
@@ -276,6 +284,8 @@ export default class D6BusinessMap extends HTMLElement {
         const appWrapper = document.createElement('div');
         appWrapper.id = 'app-wrapper';
         const dataLoader = document.createElement('app-data-loader');
+        const currentLanguage = app.getAttribute('data-language');
+        console.log(currentLanguage);
         switch (app.getAttribute('data-app-state')) {
             case 'active-panel':
                 let tempData = JSON.parse(this.getAttribute('data-panel-data'));
@@ -329,7 +339,7 @@ export default class D6BusinessMap extends HTMLElement {
             case 'active-filters':
                 this.panelContent.innerHTML = '';
                 const titleFilters = document.createElement('p');
-                titleFilters.innerText = 'Data Filters';
+                titleFilters.innerText = this.languageText[currentLanguage]['filters'][0];
                 titleFilters.style.backgroundColor = '#745DA8';
                 titleFilters.style.color = '#fff';
                 titleFilters.className = 'fs-3 fw-bold text-center';
@@ -399,7 +409,7 @@ export default class D6BusinessMap extends HTMLElement {
             case 'active-layers':
                 this.panelContent.innerHTML = '';
                 const title = document.createElement('p');
-                title.innerText = 'Boundaries';
+                title.innerText = this.languageText[currentLanguage]['boundaries'][0];
                 title.style.backgroundColor = '#745DA8';
                 title.style.color = '#fff';
                 title.className = 'fs-3 fw-bold text-center';
@@ -470,16 +480,18 @@ export default class D6BusinessMap extends HTMLElement {
                 lngSelector.setAttribute('data-aria-label', 'Select language');
                 lngSelector.innerHTML = `
                     <option value="">Select language</option>
-                    <option value="en">English</option>
+                    <option value="en" selected>English</option>
                     <option value="es">Español</option>
                     <option value="bn">বাংলা</option>
                     <option value="ar">عربي</option>
                 `;
+                const d6 = this;
                 lngSelector.addEventListener('change', (ev) => {
-                    console.log(ev.target);
+                    const shadow = ev.target.shadowRoot;
+                    d6.setAttribute('data-language', shadow.childNodes[1].value);
                 });
                 this.panelContent.innerHTML = `
-                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">Informantion</p>
+                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">${this.languageText[currentLanguage]['info'][0]}</p>
                     <p><strong>Icon Descriptions</strong></p>
                     <p><cod-icon data-icon="bus-front" data-size="small"></cod-icon> Public transit accessible</p>
                     <p><cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon> ADA accessible</p>
@@ -488,6 +500,7 @@ export default class D6BusinessMap extends HTMLElement {
                     <p><cod-icon data-icon="cash" data-size="small"></cod-icon> Cash only</p>
                     <p><cod-icon data-icon="wifi" data-size="small"></cod-icon> Free WiFi</p>
                     <p><cod-icon data-icon="building" data-size="small"></cod-icon> Rental space</p>
+                    <hr>
                 `;
                 this.panelContent.appendChild(lngLabel);
                 this.panelContent.appendChild(lngSelector);

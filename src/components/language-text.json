@@ -1,0 +1,26 @@
+{
+    "en": {
+        "intro": [],
+        "boundaries": ["Boundaries"],
+        "filters": ["Data Filters"],
+        "info": ["Information"]
+    },
+    "es": {
+        "intro": [],
+        "boundaries": ["Zonas"],
+        "filters": ["Filtros de datos"],
+        "info": ["Información"]
+    },
+    "bn": {
+        "intro": [],
+        "boundaries": ["সীমানা"],
+        "filters": ["ডেটা ফিল্টার"],
+        "info": ["তথ্য"]
+    },
+    "ar": {
+        "intro": [],
+        "boundaries": ["حدود"],
+        "filters": ["مرشحات البيانات"],
+        "info": ["معلومة"]
+    }
+}
