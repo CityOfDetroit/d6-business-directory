@@ -23,3 +23,7 @@ cod-map{
     position: relative;
     left: 8em;
 }
+
+#d6-start-screen{
+    z-index: 11;
+}

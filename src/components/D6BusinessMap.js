@@ -2,12 +2,11 @@
 import styles from '!!raw-loader!./D6BusinessMap.css';
 import Display from './Display';
 import layers from './layers.json';
-import mainData from './test-data.json';
 import languageText from './language-text.json';
 import logo from '../assets/logo2.png';
-// import Map from './Map';
+import centroid from '@turf/centroid';
+
 customElements.define('app-display', Display);
-// customElements.define('app-map', Map);
 
 export default class D6BusinessMap extends HTMLElement {
     static get observedAttributes() {
@@ -26,6 +25,7 @@ export default class D6BusinessMap extends HTMLElement {
         let tempState = app[0].getAttribute('data-app-state');
 
         this.mainData = {"name":"d6","data":"https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/council_surveyed_businesses/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token="};
+
         this.layers = layers;
 
         this.languageText = languageText;
@@ -122,8 +122,35 @@ export default class D6BusinessMap extends HTMLElement {
         this.panel.appendChild(this.panelBody);
         shadow.appendChild(this.panel);
 
+        // create start screen
+        this.startScreen = document.createElement('cod-modal');
+        this.startScreen.setAttribute('data-id', 'd6-start-screen');
+        this.startScreen.innerHTML = `
+        <cod-modal-header data-extra-classes="bg-warning border-bottom-0">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Welcome to the D6 Business Directory</h1>
+        </cod-modal-header>
+        <cod-modal-body data-extra-classes="bg-warning">
+        <p class="text-center">Some instructions here.</p>
+        <ul>
+            <li>Test 1</li>
+            <li>Test 2</li>
+            <li>Test 3</li>
+        </ul>
+        </cod-modal-body>
+        <cod-modal-footer data-extra-classes="bg-warning border-top-0" data-button-extra-classes="btn-primary">
+        </cod-modal-footer>
+        `;
+
+        shadow.appendChild(this.startScreen);
+
+        this.startScreen.setAttribute('data-show', true);
+
+        // Add label layers
+        this.layers = this.createLabelLayers();
+
+        console.log(this.layers);
         // Create map component
-        let tempMainData = {"id":"schools","layers":[{"name":"data-points","type":"circle","radius":10,"color":"#004445","active":true,"sort":10,"source":"data-points"}],"source":this.mainData.data,};
+        let tempMainData = {"id":"schools","layers":[{"name":"data-points","type":"circle","radius":7,"color":"#745da8","active":true,"sort":10,"source":"data-points"}],"source":this.mainData.data,};
         this.map = document.createElement('cod-map');
         this.map.id = 'd6-map';
         this.map.setAttribute('data-parent-component', 'd6-business-map');
@@ -136,6 +163,60 @@ export default class D6BusinessMap extends HTMLElement {
         this.map.setAttribute('data-map-state', 'init');
         app[0].setAttribute('data-active-boundaries', 'coucil-district-6-lines');
         this.appWrapper.appendChild(this.map);
+    }
+
+    createLabelLayers(){
+        const layers = this.layers;
+        let sources = ['neighborhoods','police-precincts','zip-codes'];
+        layers.layers.forEach((layer) => {
+            if(sources.includes(layer.name)){
+                fetch(layer.source)
+                .then((resp) => resp.json()) // Transform the data into json
+                .then(function (data) {
+                    let tmpLabelLayer = {"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"EPSG:4326"}},"features":[]};
+                    data.features.forEach((polygon) => {
+                        let tmpCenter = centroid(polygon.geometry);
+                        switch (layer.name) {
+                            case 'neighborhoods':
+                                tmpCenter.properties['name'] = (polygon.properties.nhood_name  == 'Central Southwest') ? 'Southwest' : polygon.properties.nhood_name;
+                                tmpLabelLayer.features.push(tmpCenter);
+                                break;
+
+                            case 'police-precincts':
+                                tmpCenter.properties['name'] = polygon.properties.name;
+                                tmpLabelLayer.features.push(tmpCenter);
+                                break;
+
+                            case 'zip-codes':
+                                tmpCenter.properties['name'] = polygon.properties.zipcode;
+                                tmpLabelLayer.features.push(tmpCenter);
+                                break;
+                        
+                            default:
+                                break;
+                        }
+                        
+                    });
+                    switch (layer.name) {
+                        case 'neighborhoods':
+                            layers.layers[1].source = tmpLabelLayer;
+                            break;
+
+                        case 'police-precincts':
+                            layers.layers[3].source = tmpLabelLayer;
+                            break;
+
+                        case 'zip-codes':
+                            layers.layers[5].source = tmpLabelLayer;
+                            break;
+                    
+                        default:
+                            break;
+                    }
+                });
+            }
+        });
+        return layers;
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -170,7 +251,7 @@ export default class D6BusinessMap extends HTMLElement {
                 break;
             
             case 'data-language':
-                console.log(`changing language to ${newValue}`);
+                this.setAttribute('data-app-state', this.getAttribute('data-app-state'));
                 break;
         
             default:
@@ -345,41 +426,43 @@ export default class D6BusinessMap extends HTMLElement {
         let currenFilters = [];
         (app.getAttribute('data-active-filters') != null) ? currenFilters = app.getAttribute('data-active-filters').split(',') : 0;
         switch (app.getAttribute('data-app-state')) {
+            case 'start-screen':
+                break;
             case 'active-panel':
                 let tempData = JSON.parse(this.getAttribute('data-panel-data'));
                 console.log(tempData.properties);
                 this.panelContent.innerHTML = `
                     <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">${tempData.properties.business_name}</p>
-                    <p><strong>Address:</strong> ${tempData.properties.address}
-                    ${(tempData.properties.profit_or_nonprofit) ? `<p><strong>Business Type:</strong> ${tempData.properties.profit_or_nonprofit}</p>` : ``}
+                    <p><strong>${this.languageText[currentLanguage]['panel'][0]}</strong> ${tempData.properties.address}
+                    ${(tempData.properties.profit_or_nonprofit) ? `<p><strong>${this.languageText[currentLanguage]['panel'][1]}</strong> ${tempData.properties.profit_or_nonprofit}</p>` : ``}
 
-                    <p><strong>Business Owner Demographics:</strong></p>
+                    <p><strong>${this.languageText[currentLanguage]['panel'][2]}</strong></p>
                     <ul>
-                    ${(tempData.properties.is_asian_owned) ? `<li><strong>Asian Owned:</strong> Yes</li>` : `<li><strong>Asian Owned:</strong> No</li>`}
-                    ${(tempData.properties.is_black_owned) ? `<li><strong>Black Owned:</strong> Yes</li>` : `<li><strong>Black Owned:</strong> No</li>`}
-                    ${(tempData.properties.is_lgbtq_owned) ? `<li><strong>LGBTQ Owned:</strong> Yes</li>` : `<li><strong>LGBTQ Owned:</strong> No</li>`}
-                    ${(tempData.properties.is_indigenous_owned) ? `<li><strong>Indigenous Owned:</strong> Yes</li>` : `<li><strong>Indigenous Owned:</strong> No</li>`}
-                    ${(tempData.properties.is_middle_eastern_owned) ? `<li><strong>Middle Eastern Owned:</strong> Yes</li>` : `<li><strong>Middle Eastern Owned:</strong> No</li>`}
-                    ${(tempData.properties.is_veteran_owned) ? `<li><strong>Veteran Owned:</strong> Yes</li>` : `<li><strong>Veteran Owned:</strong> No</li>`}
-                    ${(tempData.properties.is_minority_owned) ? `<li><strong>Minority Owned:</strong> Yes</li>` : `<li><strong>Minority Owned:</strong> No</li>`}
-                    ${(tempData.properties.is_woman_owned) ? `<li><strong>Woman Owned:</strong> Yes</li>` : `<li><strong>Woman Owned:</strong> No</li>`}
+                    ${(tempData.properties.is_asian_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][3]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][3]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_black_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][4]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][4]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_lgbtq_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][5]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][5]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_indigenous_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][6]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][6]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_middle_eastern_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][7]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][7]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_veteran_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][8]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][8]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_minority_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][9]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][9]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_woman_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][10]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][10]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
                     </ul>
 
-                    <p><strong>Service:</strong></p>
+                    <p><strong>${this.languageText[currentLanguage]['panel'][11]}</strong></p>
                     <ul>
-                    ${(tempData.properties.has_clinic_community_health_ser) ? `<li><strong>Community Health:</strong> Yes</li>` : `<li><strong>Community Health:</strong> No</li>`}
-                    ${(tempData.properties.has_dental_service) ? `<li><strong>Dental:</strong> Yes</li>` : `<li><strong>Dental:</strong> No</li>`}
-                    ${(tempData.properties.has_emergency_urgent_care_servi) ? `<li><strong>Urgen Care:</strong> Yes</li>` : `<li><strong>Urgent Care:</strong> No</li>`}
-                    ${(tempData.properties.has_family_health_service) ? `<li><strong>Family Health:</strong> Yes</li>` : `<li><strong>Family Health:</strong> No</li>`}
-                    ${(tempData.properties.has_mental_health_service) ? `<li><strong>Mental Health:</strong> Yes</li>` : `<li><strong>Mental Health:</strong> No</li>`}
-                    ${(tempData.properties.has_pediatric_service) ? `<li><strong>Pediatrics:</strong> Yes</li>` : `<li><strong>Pediatrics:</strong> No</li>`}
-                    ${(tempData.properties.has_primary_care_service) ? `<li><strong>Primary Care:</strong> Yes</li>` : `<li><strong>Primary Care:</strong> No</li>`}
-                    ${(tempData.properties.has_sexual_health_service) ? `<li><strong>Sexual Health:</strong> Yes</li>` : `<li><strong>Sexual Health:</strong> No</li>`}
-                    ${(tempData.properties.has_specialist_service) ? `<li><strong>Specialist:</strong> Yes</li>` : `<li><strong>Specialist:</strong> No</li>`}
-                    ${(tempData.properties.has_other_health_service) ? `<li><strong>Other Health Services:</strong> Yes</li>` : `<li><strong>Other Health Services:</strong> No</li>`}
+                    ${(tempData.properties.has_clinic_community_health_ser) ? `<li><strong>${this.languageText[currentLanguage]['panel'][12]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][12]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.has_dental_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][13]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][13]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.has_emergency_urgent_care_servi) ? `<li><strong>${this.languageText[currentLanguage]['panel'][14]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][14]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.has_family_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][15]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][15]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.has_mental_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][16]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][16]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.has_pediatric_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][17]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][17]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.has_primary_care_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][18]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][18]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.has_sexual_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][19]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][19]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.has_specialist_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][20]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][20]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.has_other_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][21]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][21]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
                     </ul>
 
-                    <p><strong>Amenities:</strong></p>
+                    <p><strong>${this.languageText[currentLanguage]['panel'][22]}</strong></p>
                     <p>
                     ${(tempData.properties.is_public_transit_accessible) ? `<cod-icon data-icon="bus-front" data-size="small"></cod-icon>` : ``}
                     ${(tempData.properties.is_ada_accessible) ? `<cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon>` : ``} 
@@ -704,7 +787,7 @@ export default class D6BusinessMap extends HTMLElement {
                 (currenBoundaries.includes('neighborhoods-lines')) ? neighborhoodCheckbox.setAttribute('data-checked', true) : 0;
                 neighborhoodCheckbox.setAttribute('data-value', 'neighborhoods-lines,neighborhoods-fill,neighborhood-labels');
                 neighborhoodCheckbox.setAttribute('data-type', 'checkbox');
-                neighborhoodCheckbox.setAttribute('data-label', 'Neighborhoods');neighborhoodCheckbox.addEventListener('change', (ev) => {
+                neighborhoodCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['boundaries'][1]);neighborhoodCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
                     this.updateBoundaries(ev);
                 });
@@ -714,9 +797,9 @@ export default class D6BusinessMap extends HTMLElement {
                 policePrecinctsCheckbox.setAttribute('data-name', 'map-layer');
                 console.log(currenBoundaries.includes('police-precincts-lines'));
                 (currenBoundaries.includes('police-precincts-lines')) ? policePrecinctsCheckbox.setAttribute('data-checked', true) : 0;
-                policePrecinctsCheckbox.setAttribute('data-value', 'police-precincts-lines,police-precincts-fill');
+                policePrecinctsCheckbox.setAttribute('data-value', 'police-precincts-lines,police-precincts-fill,police-precincts-labels');
                 policePrecinctsCheckbox.setAttribute('data-type', 'checkbox');
-                policePrecinctsCheckbox.setAttribute('data-label', 'Police Precincts');policePrecinctsCheckbox.addEventListener('change', (ev) => {
+                policePrecinctsCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['boundaries'][2]);policePrecinctsCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
                     this.updateBoundaries(ev);
                 });
@@ -725,9 +808,9 @@ export default class D6BusinessMap extends HTMLElement {
                 zipCodesCheckbox.setAttribute('data-id', 'zip-codes')
                 zipCodesCheckbox.setAttribute('data-name', 'map-layer');
                 (currenBoundaries.includes('zip-codes-lines')) ? zipCodesCheckbox.setAttribute('data-checked', true) : 0;
-                zipCodesCheckbox.setAttribute('data-value', 'zip-codes-lines,zip-codes-fill');
+                zipCodesCheckbox.setAttribute('data-value', 'zip-codes-lines,zip-codes-fill,zip-codes-labels');
                 zipCodesCheckbox.setAttribute('data-type', 'checkbox');
-                zipCodesCheckbox.setAttribute('data-label', 'Zip Codes');
+                zipCodesCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['boundaries'][3]);
                 zipCodesCheckbox.addEventListener('change', (ev) => {
                     console.log(ev.target.formCheck.checked);
                     this.updateBoundaries(ev);
@@ -747,10 +830,10 @@ export default class D6BusinessMap extends HTMLElement {
                 const lngLabel = document.createElement('label');
                 lngLabel.className = 'fw-bold';
                 lngLabel.htmlFor = 'language-selector';
-                lngLabel.innerText = 'Select Language';
+                lngLabel.innerText = this.languageText[currentLanguage]['info'][9];
                 const lngSelector = document.createElement('cod-form-select');
                 lngSelector.setAttribute('data-id', 'language-selector');
-                lngSelector.setAttribute('data-aria-label', 'Select language');
+                lngSelector.setAttribute('data-aria-label', this.languageText[currentLanguage]['info'][9]);
                 lngSelector.innerHTML = `
                     <option value="">Select language</option>
                     <option value="en" ${(currentLanguage === 'en') ? 'selected' : ''}>English</option>
@@ -765,14 +848,14 @@ export default class D6BusinessMap extends HTMLElement {
                 });
                 this.panelContent.innerHTML = `
                     <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">${this.languageText[currentLanguage]['info'][0]}</p>
-                    <p><strong>Icon Descriptions</strong></p>
-                    <p><cod-icon data-icon="bus-front" data-size="small"></cod-icon> Public transit accessible</p>
-                    <p><cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon> ADA accessible</p>
-                    <p><cod-icon data-icon="bicycle" data-size="small"></cod-icon> Bike rack</p>
-                    <p><cod-icon data-icon="p-circle" data-size="small"></cod-icon> Parking lot</p>
-                    <p><cod-icon data-icon="cash" data-size="small"></cod-icon> Cash only</p>
-                    <p><cod-icon data-icon="wifi" data-size="small"></cod-icon> Free WiFi</p>
-                    <p><cod-icon data-icon="building" data-size="small"></cod-icon> Rental space</p>
+                    <p><strong>${this.languageText[currentLanguage]['info'][1]}</strong></p>
+                    <p><cod-icon data-icon="bus-front" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][2]}</p>
+                    <p><cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][3]}</p>
+                    <p><cod-icon data-icon="bicycle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][4]}</p>
+                    <p><cod-icon data-icon="p-circle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][5]}</p>
+                    <p><cod-icon data-icon="cash" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][6]}</p>
+                    <p><cod-icon data-icon="wifi" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][7]}</p>
+                    <p><cod-icon data-icon="building" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][8]}</p>
                     <hr>
                 `;
                 this.panelContent.appendChild(lngLabel);

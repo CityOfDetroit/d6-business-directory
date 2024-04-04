@@ -22,7 +22,7 @@
           "source": "neighborhoods"
         }
       ],
-      "source": "https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/Current_City_of_Detroit_Neighborhoods/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=*&returnGeometry=true&returnCentroid=false&returnEnvelope=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token="
+      "source": "https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/Current_City_of_Detroit_Neighborhoods/FeatureServer/0/query?where=&objectIds=&time=&geometry=%7B%22rings%22:%5B%5B%5B-83.1320996355041,42.3646518257198%5D,%5B-83.0642768315531,42.356786022708%5D,%5B-83.0409565667773,42.3284742614117%5D,%5B-83.160728943609,42.2553319508101%5D,%5B-83.1641605079943,42.2866738658063%5D,%5B-83.1419451710181,42.3040697098989%5D,%5B-83.1499042444353,42.366344338128%5D,%5B-83.1320996355041,42.3646518257198%5D%5D%5D,%22spatialReference%22:%7B%22wkid%22:4326%7D%7D&geometryType=esriGeometryPolygon&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=geojson"
     },
     {
       "name": "neighborhood-labels",
@@ -39,7 +39,420 @@
           "source": "neighborhood-labels"
         }
       ],
-      "source": "https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/theNeighborhoods/FeatureServer/2/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token="
+      "source": {
+        "type": "FeatureCollection",
+        "crs": {
+            "type": "name",
+            "properties": {
+                "name": "EPSG:4326"
+            }
+        },
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Corktown"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.07282646989103,
+                        42.32961501309612
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Boynton"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.1579648533529,
+                        42.27024489996674
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Oakwood Heights"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.15508659062496,
+                        42.28717068851953
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Delray"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.11296323072324,
+                        42.29778775884678
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Claytown"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.1372729131192,
+                        42.33376856293899
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Barton-McFarland"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.16001923650751,
+                        42.36381195702009
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Springwells"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.1337558547591,
+                        42.30714823602721
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Chadsey Condon"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.10737760168989,
+                        42.338791990914615
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Woodbridge"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.08133686849408,
+                        42.349030442971795
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Nardin Park"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.13077289912039,
+                        42.375735013140826
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Petoskey-Otsego"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.11918399996382,
+                        42.36275220516867
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "North Corktown"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.07759700001928,
+                        42.33638424529505
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Cultural Center"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.06168146658668,
+                        42.36197836659175
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Carbon Works"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.12902757657342,
+                        42.29056056758165
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Michigan-Martin"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.1218418540499,
+                        42.32730659525782
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Hubbard Farms"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.08931246670545,
+                        42.318165766622805
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Jeffries"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.0723868857715,
+                        42.34702419994705
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Southwest"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.1008023415964,
+                        42.31957932899555
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Hubbard Richard"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.07259022120435,
+                        42.32402512391472
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "NW Goldberg"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.10152098612888,
+                        42.35535822224762
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Brush Park"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.05209596296444,
+                        42.34448261114053
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Core City"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.08571334608533,
+                        42.34346378537158
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Midwest"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.12620126448498,
+                        42.35465050488514
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "LaSalle Gardens"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.09701643203283,
+                        42.36524323933571
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Wildemere Park"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.10536059986863,
+                        42.36211034281844
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Downtown"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.0486367620086,
+                        42.33541705812017
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Midtown"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.06147678876276,
+                        42.34487308216902
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Wayne State"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.07172635481048,
+                        42.35720306446915
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Elijah McCoy"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.0856930728994,
+                        42.35797401438465
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "West Side Industrial"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.07746939713722,
+                        42.31825860418131
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Mexicantown"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.08419597827165,
+                        42.32063926092315
+                    ]
+                }
+            }
+        ]
+      }
     },
     {
       "name": "police-precincts",
@@ -63,7 +476,86 @@
           "source": "police-precincts"
         }
       ],
-      "source": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/DPD_Precincts_Reid2/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=*&returnGeometry=true&returnCentroid=false&returnEnvelope=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token="
+      "source": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/DPD_Precincts_Reid2/FeatureServer/0/query?query?where=&objectIds=&time=&geometry=%7B%22rings%22:%5B%5B%5B-83.1320996355041,42.3646518257198%5D,%5B-83.0642768315531,42.356786022708%5D,%5B-83.0409565667773,42.3284742614117%5D,%5B-83.160728943609,42.2553319508101%5D,%5B-83.1641605079943,42.2866738658063%5D,%5B-83.1419451710181,42.3040697098989%5D,%5B-83.1499042444353,42.366344338128%5D,%5B-83.1320996355041,42.3646518257198%5D%5D%5D,%22spatialReference%22:%7B%22wkid%22:4326%7D%7D&geometryType=esriGeometryPolygon&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=geojson"
+    },
+    {
+      "name": "police-precincts-labels",
+      "layers": [
+        {
+          "name": "police-precincts-labels",
+          "type": "text",
+          "color": "#004445",
+          "opacity": null,
+          "width": null,
+          "active": false,
+          "size": 18,
+          "text": "name",
+          "source": "police-precincts-labels"
+        }
+      ],
+      "source": {
+        "type": "FeatureCollection",
+        "crs": {
+            "type": "name",
+            "properties": {
+                "name": "EPSG:4326"
+            }
+        },
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "10"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.12541577921839,
+                        42.37984807216043
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "02"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.16300432338159,
+                        42.37707565997647
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "03"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.07080108270279,
+                        42.35507659946862
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "04"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.13126490810902,
+                        42.29754212403098
+                    ]
+                }
+            }
+        ]
+      }
     },
     {
       "name": "zip-codes",
@@ -87,7 +579,164 @@
           "source": "zip-codes"
         }
       ],
-      "source": "https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/ZipCodes/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=*&returnGeometry=true&returnCentroid=false&returnEnvelope=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token="
+      "source": "https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/ZipCodes/FeatureServer/0/query?query?where=&objectIds=&time=&geometry=%7B%22rings%22:%5B%5B%5B-83.1320996355041,42.3646518257198%5D,%5B-83.0642768315531,42.356786022708%5D,%5B-83.0409565667773,42.3284742614117%5D,%5B-83.160728943609,42.2553319508101%5D,%5B-83.1641605079943,42.2866738658063%5D,%5B-83.1419451710181,42.3040697098989%5D,%5B-83.1499042444353,42.366344338128%5D,%5B-83.1320996355041,42.3646518257198%5D%5D%5D,%22spatialReference%22:%7B%22wkid%22:4326%7D%7D&geometryType=esriGeometryPolygon&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=geojson"
+    },
+    {
+      "name": "zip-codes-labels",
+      "layers": [
+        {
+          "name": "zip-codes-labels",
+          "type": "text",
+          "color": "#004445",
+          "opacity": null,
+          "width": null,
+          "active": false,
+          "size": 18,
+          "text": "name",
+          "source": "zip-codes-labels"
+        }
+      ],
+      "source": {
+        "type": "FeatureCollection",
+        "crs": {
+            "type": "name",
+            "properties": {
+                "name": "EPSG:4326"
+            }
+        },
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48217"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.15747506005572,
+                        42.28552547780845
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48204"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.14024042751899,
+                        42.36615057371983
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48210"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.13217799269209,
+                        42.3405603001169
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48209"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.11710302399314,
+                        42.29451023438793
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48206"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.10916791825414,
+                        42.37588429276462
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48208"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.09385877016358,
+                        42.349792930410075
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48202"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.07388335555508,
+                        42.36697127728427
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48216"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.07496285230572,
+                        42.32327940328287
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48201"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.0593872943856,
+                        42.34454480372727
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "48226"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.04367510228893,
+                        42.33246074385938
+                    ]
+                }
+            }
+        ]
+      } 
     },
     {
       "name": "coucil-district-6",
