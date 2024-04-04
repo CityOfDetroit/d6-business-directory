@@ -150,7 +150,7 @@ export default class D6BusinessMap extends HTMLElement {
 
         console.log(this.layers);
         // Create map component
-        let tempMainData = {"id":"schools","layers":[{"name":"data-points","type":"circle","radius":7,"color":"#745da8","active":true,"sort":10,"source":"data-points"}],"source":this.mainData.data,};
+        let tempMainData = {"id":"d6-business","layers":[{"name":"data-points","type":"circle","radius":7,"color":"#745da8","active":true,"sort":10,"source":"data-points"}],"source":this.mainData.data,};
         this.map = document.createElement('cod-map');
         this.map.id = 'd6-map';
         this.map.setAttribute('data-parent-component', 'd6-business-map');
@@ -223,18 +223,20 @@ export default class D6BusinessMap extends HTMLElement {
         console.log(`App - attribute: ${name}, old: ${oldValue}, new: ${newValue}`);
         switch (name) {
             case 'data-active-filters':
-                const newFilters = newValue.split(',');
-                let url= this.buildQuery(newFilters);
-                console.log(url);
-                const app = this;
-                fetch(url)
-                .then((resp) => resp.json()) // Transform the data into json
-                .then(function (data) {
-                    console.log(data);
-                    (app.map.map.getSource('data-points')) ? app.map.map.getSource('data-points').setData(data) : 0;
-                }).catch(err => {
-                // console.log(err);
-                });
+                if(oldValue !== null){
+                    const newFilters = newValue.split(',');
+                    let url= this.buildQuery(newFilters);
+                    console.log(url);
+                    const app = this;
+                    fetch(url)
+                    .then((resp) => resp.json()) // Transform the data into json
+                    .then(function (data) {
+                        console.log(data);
+                        (app.map.map.getSource('data-points')) ? app.map.map.getSource('data-points').setData(data) : 0;
+                    }).catch(err => {
+                    // console.log(err);
+                    });
+                }
                 break;
 
             case 'data-active-boundaries':
