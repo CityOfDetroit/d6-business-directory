@@ -487,6 +487,9 @@ export default class D6BusinessMap extends HTMLElement {
                 titleFilters.style.color = '#fff';
                 titleFilters.className = 'fs-3 fw-bold text-center';
 
+                const filterInstructions = document.createElement('p');
+                filterInstructions.innerText = this.languageText[currentLanguage]['filters'][21];
+
                 const ownershipSection = document.createElement('p');
                 ownershipSection.innerText = this.languageText[currentLanguage]['filters'][1];
                 ownershipSection.style.fontWeight ='bold';
@@ -734,6 +737,7 @@ export default class D6BusinessMap extends HTMLElement {
                 });
 
                 this.panelContent.appendChild(titleFilters);
+                this.panelContent.appendChild(filterInstructions);
                 this.panelContent.appendChild(ownershipSection);
                 ownershipFilterCheckboxes.appendChild(asianOwnedCheckbox);
                 ownershipFilterCheckboxes.appendChild(blackOwnedCheckbox);
@@ -790,7 +794,6 @@ export default class D6BusinessMap extends HTMLElement {
                 neighborhoodCheckbox.setAttribute('data-value', 'neighborhoods-lines,neighborhoods-fill,neighborhood-labels');
                 neighborhoodCheckbox.setAttribute('data-type', 'checkbox');
                 neighborhoodCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['boundaries'][1]);neighborhoodCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
                     this.updateBoundaries(ev);
                 });
 
@@ -802,7 +805,6 @@ export default class D6BusinessMap extends HTMLElement {
                 policePrecinctsCheckbox.setAttribute('data-value', 'police-precincts-lines,police-precincts-fill,police-precincts-labels');
                 policePrecinctsCheckbox.setAttribute('data-type', 'checkbox');
                 policePrecinctsCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['boundaries'][2]);policePrecinctsCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
                     this.updateBoundaries(ev);
                 });
 
@@ -814,7 +816,17 @@ export default class D6BusinessMap extends HTMLElement {
                 zipCodesCheckbox.setAttribute('data-type', 'checkbox');
                 zipCodesCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['boundaries'][3]);
                 zipCodesCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    this.updateBoundaries(ev);
+                });
+
+                const cityFacilitiesCheckbox = document.createElement('cod-form-check');
+                cityFacilitiesCheckbox.setAttribute('data-id', 'city-facilites')
+                cityFacilitiesCheckbox.setAttribute('data-name', 'map-layer');
+                (currenBoundaries.includes('city-facilities')) ? cityFacilitiesCheckbox.setAttribute('data-checked', true) : 0;
+                cityFacilitiesCheckbox.setAttribute('data-value', 'city-facilities');
+                cityFacilitiesCheckbox.setAttribute('data-type', 'checkbox');
+                cityFacilitiesCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['boundaries'][4]);
+                cityFacilitiesCheckbox.addEventListener('change', (ev) => {
                     this.updateBoundaries(ev);
                 });
 
@@ -823,12 +835,20 @@ export default class D6BusinessMap extends HTMLElement {
                 layerCheckboxes.appendChild(neighborhoodCheckbox);
                 layerCheckboxes.appendChild(policePrecinctsCheckbox);
                 layerCheckboxes.appendChild(zipCodesCheckbox);
+                layerCheckboxes.appendChild(cityFacilitiesCheckbox);
                 this.panelContent.appendChild(layerCheckboxes);
 
                 this.panel.setAttribute('data-show', 'true');
                 break;
 
             case 'active-info':
+                this.panelContent.innerHTML = '';
+                const infoTitle = document.createElement('p');
+                infoTitle.innerText = this.languageText[currentLanguage]['info'][0];
+                infoTitle.style.backgroundColor = '#745DA8';
+                infoTitle.style.color = '#fff';
+                infoTitle.className = 'fs-3 fw-bold text-center';
+
                 const lngLabel = document.createElement('label');
                 lngLabel.className = 'fw-bold';
                 lngLabel.htmlFor = 'language-selector';
@@ -848,20 +868,24 @@ export default class D6BusinessMap extends HTMLElement {
                     const shadow = ev.target.shadowRoot;
                     d6.setAttribute('data-language', shadow.childNodes[1].value);
                 });
-                this.panelContent.innerHTML = `
-                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">${this.languageText[currentLanguage]['info'][0]}</p>
-                    <p><strong>${this.languageText[currentLanguage]['info'][1]}</strong></p>
-                    <p><cod-icon data-icon="bus-front" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][2]}</p>
-                    <p><cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][3]}</p>
-                    <p><cod-icon data-icon="bicycle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][4]}</p>
-                    <p><cod-icon data-icon="p-circle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][5]}</p>
-                    <p><cod-icon data-icon="cash" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][6]}</p>
-                    <p><cod-icon data-icon="wifi" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][7]}</p>
-                    <p><cod-icon data-icon="building" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][8]}</p>
-                    <hr>
+
+                const iconLabels = document.createElement('article');
+                iconLabels.innerHTML = `  
+                <hr>
+                <p><strong>${this.languageText[currentLanguage]['info'][1]}</strong></p>
+                <p><cod-icon data-icon="bus-front" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][2]}</p>
+                <p><cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][3]}</p>
+                <p><cod-icon data-icon="bicycle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][4]}</p>
+                <p><cod-icon data-icon="p-circle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][5]}</p>
+                <p><cod-icon data-icon="cash" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][6]}</p>
+                <p><cod-icon data-icon="wifi" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][7]}</p>
+                <p><cod-icon data-icon="building" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][8]}</p>
                 `;
+
+                this.panelContent.appendChild(infoTitle);
                 this.panelContent.appendChild(lngLabel);
                 this.panelContent.appendChild(lngSelector);
+                this.panelContent.appendChild(iconLabels);
                 this.panel.setAttribute('data-show', 'true');
                 break;
 

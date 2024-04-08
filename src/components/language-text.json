@@ -4,8 +4,8 @@
         "no": ["No"],
         "intro": [],
         "panel": ["Address:","Business Type:","Business Owner Demographics:","Asian Owned:","Black Owned:","LGBTQ Owned:","Indigenous Owned:","Middle Eastern Owned:","Veteran Owned:","Minority Owned:","Woman Owned:","Service:","Community Health:","Dental:","Urgent Care:","Family Health:","Mental Health:","Pediatrics:","Primary Care:","Sexual Health:","Specialist:","Other Health Services:","Amenities:"],
-        "boundaries": ["Boundaries","Neighborhoods","Police Precincts","Zip Codes"],
-        "filters": ["Data Filters","By Ownership:","Asian Owned","Black Owned","LGBTQ Owned","Indigenous Owned","Middle Eastern Owned","Veteran Owned","Minority Owned","Woman Owned","By Services:","Community Health","Dental","Emergency/Urgent Care","Family Health","Mental Health","Pediatrics","Primary Care","Sexual Health","Specialist","Other Health Services"],
+        "boundaries": ["Boundaries","Neighborhoods","Police Precincts","Zip Codes","City facilities"],
+        "filters": ["Data Filters","By Ownership:","Asian Owned","Black Owned","LGBTQ Owned","Indigenous Owned","Middle Eastern Owned","Veteran Owned","Minority Owned","Woman Owned","By Services:","Community Health","Dental","Emergency/Urgent Care","Family Health","Mental Health","Pediatrics","Primary Care","Sexual Health","Specialist","Other Health Services","Note: Selecting multiple filters will include only businesses who meet all criteria, not just one or some of them."],
         "info": ["Information","Icon Descriptions","Public transit accessible","ADA accessible","Bike rack","Parking lot","Cash only","Free WiFi","Rental space","Select Language"]
     },
     "es": {
@@ -13,8 +13,8 @@
         "no": ["No"],
         "intro": [],
         "panel": ["DIRECCIÓN:","Tipo de negocio:","Datos demográficos del propietario de la empresa:","Propiedad asiática:","Propiedad de negros:","Propiedad LGBTQ:","Propiedad indígena:","Propiedad de Medio Oriente:","Propiedad de veteranos:","Propiedad de minorías:","Propiedad de una mujer:","Servicio:","Salud de la comunidad:","Dental:","Atención de urgencias:","Salud Familiar:","Salud mental:","Pediatría:","Atención primaria:","Salud sexual:","Especialista:","Otros Servicios de Salud:","Comodidades:"],
-        "boundaries": ["Zonas","Barrios","Recintos policiales","Códigos ZIP"],
-        "filters": ["Filtros de datos","Por propiedad:","Propiedad asiática","Propiedad negra","Propiedad LGBTQ","Propiedad indígena","Propiedad del Medio Oriente","Propiedad de veteranos","Propiedad de minorías","Propiedad de una mujer","Por Servicios:","Salud de la comunidad","Dental","Atención de emergencia/urgencia","Salud Familiar","Salud mental","Pediatría","Atención primaria","Salud sexual","Especialista","Otros servicios de salud"],
+        "boundaries": ["Zonas","Barrios","Recintos policiales","Códigos ZIP","Instalaciones de la ciudad"],
+        "filters": ["Filtros de datos","Por propiedad:","Propiedad asiática","Propiedad negra","Propiedad LGBTQ","Propiedad indígena","Propiedad del Medio Oriente","Propiedad de veteranos","Propiedad de minorías","Propiedad de una mujer","Por Servicios:","Salud de la comunidad","Dental","Atención de emergencia/urgencia","Salud Familiar","Salud mental","Pediatría","Atención primaria","Salud sexual","Especialista","Otros servicios de salud","Nota: Al seleccionar varios filtros, solo se incluirán las empresas que cumplan con todos los criterios, no solo uno o algunos de ellos."],
         "info": ["Información","Descripciones de iconos","Transporte público accesible","Accesible según la ADA","Portabicicletas","Estacionamiento","Solamente efectivo","Wi-Fi gratis","Espacio de alquiler","Seleccione el idioma"]
     },
     "bn": {
@@ -22,8 +22,8 @@
         "no": ["না"],
         "intro": [],
         "panel": ["ঠিকানা:","ব্যবসার ধরণ:","ব্যবসার মালিক জনসংখ্যা:","এশিয়ান মালিকানাধীন:","কালো মালিকানাধীন:","LGBTQ মালিকানাধীন:","আদিবাসী মালিকানাধীন:","মধ্য প্রাচ্যের মালিকানাধীন:","অভিজ্ঞ ব্যক্তি মালিকানাধীন:","সংখ্যালঘু মালিকানাধীন:","মহিলা মালিকানাধীন:","পরিষেবা:","নগর স্বাস্থ্য কেন্দ্র:","দাঁতের:","জরুরী যত্ন:","পারিবারিক স্বাস্থ্য:","মানসিক সাস্থ্য:","শিশুরোগ:","প্রাথমিক যত্ন:","যৌন স্বাস্থ্য:","বিশেষজ্ঞ:","অন্যান্য স্বাস্থ্য পরিষেবা:","সুযোগ-সুবিধা:"],
-        "boundaries": ["সীমানা","আশেপাশের এলাকা","পুলিশ প্রিন্সিক্টস","জিপ কোড"],
-        "filters": ["ডেটা ফিল্টার","মালিকানা দ্বারা:","এশিয়ান মালিকানাধীন","কালো মালিকানাধীন","LGBTQ মালিকানাধীন","আদিবাসী মালিকানাধীন","মধ্যপ্রাচ্যের মালিকানাধীন","অভিজ্ঞ মালিকানাধীন","সংখ্যালঘু মালিকানাধীন","মহিলা মালিকানাধীন","পরিষেবা দ্বারা:","নগর স্বাস্থ্য কেন্দ্র","ডেন্টাল","জরুরী/জরুরী যত্ন","পারিবারিক স্বাস্থ্য","মানসিক সাস্থ্য","পেডিয়াট্রিক্স","প্রাথমিক যত্ন","যৌন স্বাস্থ্য","বিশেষজ্ঞ","অন্যান্য স্বাস্থ্য পরিষেবা"],
+        "boundaries": ["সীমানা","আশেপাশের এলাকা","পুলিশ প্রিন্সিক্টস","জিপ কোড","শহরের সুবিধা"],
+        "filters": ["ডেটা ফিল্টার","মালিকানা দ্বারা:","এশিয়ান মালিকানাধীন","কালো মালিকানাধীন","LGBTQ মালিকানাধীন","আদিবাসী মালিকানাধীন","মধ্যপ্রাচ্যের মালিকানাধীন","অভিজ্ঞ মালিকানাধীন","সংখ্যালঘু মালিকানাধীন","মহিলা মালিকানাধীন","পরিষেবা দ্বারা:","নগর স্বাস্থ্য কেন্দ্র","ডেন্টাল","জরুরী/জরুরী যত্ন","পারিবারিক স্বাস্থ্য","মানসিক সাস্থ্য","পেডিয়াট্রিক্স","প্রাথমিক যত্ন","যৌন স্বাস্থ্য","বিশেষজ্ঞ","অন্যান্য স্বাস্থ্য পরিষেবা","দ্রষ্টব্য: একাধিক ফিল্টার নির্বাচন করা শুধুমাত্র এমন ব্যবসাগুলিকে অন্তর্ভুক্ত করবে যারা সমস্ত মানদণ্ড পূরণ করে, শুধুমাত্র একটি বা তাদের মধ্যে কয়েকটি নয়।"],
         "info": ["তথ্য","আইকন বর্ণনা","পাবলিক ট্রানজিট অ্যাক্সেসযোগ্য","ADA অ্যাক্সেসযোগ্য","বাইক র্যাক","পার্কিং লট","শুধুমাত্র নগদ","বিনামূল্যে ওয়াইফাই","ভাড়ার জায়গা","ভাষা নির্বাচন কর"]
     },
     "ar": {
@@ -31,8 +31,8 @@
         "no": ["لا"],
         "intro": [],
         "panel": ["عنوان:","نوع العمل:","التركيبة السكانية لأصحاب الأعمال:","المملوكة الآسيوية:","المملوكة السوداء:","مملوكة LGBTQ:","المملوكة للسكان الأصليين:","مملوكة من الشرق الأوسط:","المملوكة للمحاربين القدامى:","تملكها أقلية:","امرأة مملوكة:","خدمة:","صحة المجتمع:","طب الأسنان:","الرعاية العاجلة:","صحة الأسرة:","الصحة النفسية:","طب الأطفال:","الرعاية الصحية الأولية:","الصحة الجنسية:","متخصص:","الخدمات الصحية الأخرى:","وسائل الراحة:"],
-        "boundaries": ["حدود","أحياء","مخافر الشرطة","الرمز البريدي"],
-        "filters": ["مرشحات البيانات","حسب الملكية:","المملوكة الآسيوية","الأسود المملوكة","مملوكة LGBTQ","مملوكة للسكان الأصليين","الشرق الأوسط المملوكة","المملوكة للمحاربين القدامى","تملكها أقلية","امرأة مملوكة","حسب الخدمات:","صحة المجتمع","طب الأسنان","الطوارئ / الرعاية العاجلة","صحة الأسرة","الصحة النفسية","طب الأطفال","الرعاية الصحية الأولية","الصحة الجنسية","متخصص","خدمات صحية أخرى"],
+        "boundaries": ["حدود","أحياء","مخافر الشرطة","الرمز البريدي","مرافق المدينة"],
+        "filters": ["مرشحات البيانات","حسب الملكية:","المملوكة الآسيوية","الأسود المملوكة","مملوكة LGBTQ","مملوكة للسكان الأصليين","الشرق الأوسط المملوكة","المملوكة للمحاربين القدامى","تملكها أقلية","امرأة مملوكة","حسب الخدمات:","صحة المجتمع","طب الأسنان","الطوارئ / الرعاية العاجلة","صحة الأسرة","الصحة النفسية","طب الأطفال","الرعاية الصحية الأولية","الصحة الجنسية","متخصص","خدمات صحية أخرى","ملاحظة: سيؤدي تحديد عوامل تصفية متعددة إلى تضمين الأنشطة التجارية التي تستوفي جميع المعايير فقط، وليس معيارًا واحدًا فقط أو بعضها."],
         "info": ["معلومة","أوصاف الأيقونات","وسائل النقل العام يمكن الوصول إليها","يمكن الوصول إلى ADA","رف الدراجة","ساحة لانتظار السيارات","نقد فقط","واى فاى مجانى","مساحة للإيجار","اختار اللغة"]
     }
 }
