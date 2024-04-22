@@ -6,6 +6,7 @@
             {
                 "name":"city-facilities",
                 "type":"circle",
+                "clickable":true,
                 "radius":7,
                 "color":"#004445",
                 "active":false,

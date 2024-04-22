@@ -126,18 +126,26 @@ export default class D6BusinessMap extends HTMLElement {
         this.startScreen = document.createElement('cod-modal');
         this.startScreen.setAttribute('data-id', 'd6-start-screen');
         this.startScreen.innerHTML = `
-        <cod-modal-header data-extra-classes="bg-warning border-bottom-0">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Welcome to the D6 Business Directory</h1>
-        </cod-modal-header>
-        <cod-modal-body data-extra-classes="bg-warning">
-        <p class="text-center">Some instructions here.</p>
+        <cod-modal-body data-extra-classes="">
+        <div class="modal-title d-flex" id="exampleModalLabel"><img class="w-50 m-auto" src="${logo}" alt="Gabriela Santiago-Romero Detroit City Council District 6"></div>
+        <p class="h5 text-center" style="background-color:#745DA8;color:#fff">Welcome to Council Member Santiago-Romero's District 6 Business Directory!</h2>
+        <p>This directory provides an overview of businesses located within Detroit City Council District 6 (D6). Those listed have opted-in to this directory, so please note this is not exhaustive of all D6 businesses.</p>
+        <p>Here are some other helpful tips for navigating this directory:</p>
         <ul>
-            <li>Test 1</li>
-            <li>Test 2</li>
-            <li>Test 3</li>
+            <li>Scroll around and zoom in/out on this map to see what in various neighborhoods.</li>
+            <li>Click on any of the purple dots to view a D6 business profile, which includes location, business type, ownership demographics, and services and amenities available.</li>
+            <li>Additional tools:
+                <ul>
+                    <li>The filter icon (top) on the upper left will allow you to filter businesses by ownership and/or type of service available.</li>
+                    <li>The boundary icon (middle) on the upper left will allow you to toggle on overlay additional maps to see neighborhood boundaries, zip code boundaries, police precinct boundaries, and view some City Facilities (i.e. recreation centers, police precincts, libraries, and municipal buildings).</li>
+                    <li>The info icon (bottom) on the upper left will allow you to translate this director into other languages and view icon descriptions associated with business amenities.</li>
+                </ul>
+            </li>
         </ul>
+        <p>If you are a local business in D6 and would like to be included, please complete <strong><a href="https://google.com" target="_blank">this form</a></strong> for review.</p>
+        <p>For any questions, please email <a href="mailto:councilmembergabriela@detroitmi.gov">councilmembergabriela@detroitmi.gov</a> with subject line "D6 Directory".</p>
         </cod-modal-body>
-        <cod-modal-footer data-extra-classes="bg-warning border-top-0" data-button-extra-classes="btn-primary">
+        <cod-modal-footer data-extra-classes="border-top-0" data-button-extra-classes="btn-secondary">
         </cod-modal-footer>
         `;
 
@@ -150,6 +158,8 @@ export default class D6BusinessMap extends HTMLElement {
 
         console.log(this.layers);
         // Create map component
+        let popupLayers = ["city-facilities"];
+        let popupStructure = {"city-facilities":[{"type":"field-value","label":"Name:","value":"Facility"}]}
         let tempMainData = {"id":"d6-business","layers":[{"name":"data-points","type":"circle","radius":7,"color":"#745da8","active":true,"sort":10,"source":"data-points"}],"source":this.mainData.data,};
         this.map = document.createElement('cod-map');
         this.map.id = 'd6-map';
@@ -157,6 +167,8 @@ export default class D6BusinessMap extends HTMLElement {
         this.map.setAttribute('data-map-mode', 'map-panel');
         this.map.setAttribute('data-center', "-83.103111,42.31103400000001");
         this.map.setAttribute('data-zoom', "11.5");
+        this.map.setAttribute('data-popup-layers', JSON.stringify(popupLayers));
+        this.map.setAttribute('data-popup-structure', JSON.stringify(popupStructure));
         this.map.setAttribute('data-map-data', JSON.stringify(tempMainData));
         this.map.setAttribute('data-map-layers', JSON.stringify(this.layers.layers));
         this.map.setAttribute('data-location', this.getAttribute('data-location'));
@@ -869,6 +881,12 @@ export default class D6BusinessMap extends HTMLElement {
                     d6.setAttribute('data-language', shadow.childNodes[1].value);
                 });
 
+                const notes = document.createElement('p');
+                notes.innerHTML =  `
+                <hr>
+                ${this.languageText[currentLanguage]['info'][10]}
+                `;
+
                 const iconLabels = document.createElement('article');
                 iconLabels.innerHTML = `  
                 <hr>
@@ -885,6 +903,7 @@ export default class D6BusinessMap extends HTMLElement {
                 this.panelContent.appendChild(infoTitle);
                 this.panelContent.appendChild(lngLabel);
                 this.panelContent.appendChild(lngSelector);
+                this.panelContent.appendChild(notes);
                 this.panelContent.appendChild(iconLabels);
                 this.panel.setAttribute('data-show', 'true');
                 break;
