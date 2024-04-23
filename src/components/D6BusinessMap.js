@@ -159,7 +159,7 @@ export default class D6BusinessMap extends HTMLElement {
         console.log(this.layers);
         // Create map component
         let popupLayers = ["city-facilities"];
-        let popupStructure = {"city-facilities":[{"type":"field-value","label":"Name:","value":"Facility"}]}
+        let popupStructure = {"city-facilities":[{"type":"field-value","label":"Name:","value":"Facility"},{"type":"field-value","label":"Address:","value":"Address"}]}
         let tempMainData = {"id":"d6-business","layers":[{"name":"data-points","type":"circle","radius":7,"color":"#745da8","active":true,"sort":10,"source":"data-points"}],"source":this.mainData.data,};
         this.map = document.createElement('cod-map');
         this.map.id = 'd6-map';

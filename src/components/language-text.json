@@ -4,7 +4,7 @@
         "no": ["No"],
         "intro": [],
         "panel": ["Address:","Business Type:","Business Owner Demographics:","Asian Owned:","Black Owned:","LGBTQ Owned:","Indigenous Owned:","Middle Eastern Owned:","Veteran Owned:","Minority Owned:","Woman Owned:","Service:","Community Health:","Dental:","Urgent Care:","Family Health:","Mental Health:","Pediatrics:","Primary Care:","Sexual Health:","Specialist:","Other Health Services:","Amenities:"],
-        "boundaries": ["Boundaries","Neighborhoods","Police Precincts","Zip Codes","City facilities"],
+        "boundaries": ["Boundaries","Neighborhoods","Police Precincts","Zip Codes","City Facilities"],
         "filters": ["Data Filters","By Ownership:","Asian Owned","Black Owned","LGBTQ Owned","Indigenous Owned","Middle Eastern Owned","Veteran Owned","Minority Owned","Woman Owned","By Services:","Community Health","Dental","Emergency/Urgent Care","Family Health","Mental Health","Pediatrics","Primary Care","Sexual Health","Specialist","Other Health Services","Note: Selecting multiple filters will include only businesses who meet all criteria, not just one or some of them."],
         "info": ["Information","Icon Descriptions","Public transit accessible","ADA accessible","Bike rack","Parking lot","Cash only","Free WiFi","Rental space","Select Language","This directory is brought to you by the Office of Council Member Gabriela Santiago-Romero with the support of the Department of Innovation and Technology. All businesses included in this directory requested to be listed. If you are a local business operating in D6 and would like to be listed, please complete this form for review (note: only businesses located and operating in D6 will be approved, as this is a D6-specific directory)."]
     },
