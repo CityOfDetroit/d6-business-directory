@@ -368,6 +368,58 @@ export default class D6BusinessMap extends HTMLElement {
                     tmpWhere.push('has_other_health_service%3D1');
                     break;
 
+                case 'is_ads_comms_marketing':
+                    tmpWhere.push('is_ads_comms_marketing%3D1');
+                    break;
+
+                case 'is_automotive':
+                    tmpWhere.push('is_automotive%3D1');
+                    break;
+
+                case 'is_bar_restaurant':
+                    tmpWhere.push('is_bar_restaurant%3D1');
+                    break;
+
+                case 'is_construction':
+                    tmpWhere.push('is_construction%3D1');
+                    break;
+
+                case 'is_entertainment':
+                    tmpWhere.push('is_entertainment%3D1');
+                    break;
+
+                case 'is_human_services':
+                    tmpWhere.push('is_human_services%3D1');
+                    break;
+
+                case 'is_landscape':
+                    tmpWhere.push('is_landscape%3D1');
+                    break;
+
+                case 'is_legal_financial':
+                    tmpWhere.push('is_legal_financial%3D1');
+                    break;
+
+                case 'is_manufacturing_distribution':
+                    tmpWhere.push('is_manufacturing_distribution%3D1');
+                    break;
+
+                case 'is_personal_care_services':
+                    tmpWhere.push('is_personal_care_services%3D1');
+                    break;
+
+                case 'is_place_of_worship':
+                    tmpWhere.push('is_place_of_worship%3D1');
+                    break;
+
+                case 'is_retail':
+                    tmpWhere.push('is_retail%3D1');
+                    break;
+
+                case 'is_other':
+                    tmpWhere.push('is_other%3D1');
+                    break;
+
                 default:
                     break;
             }
@@ -474,9 +526,22 @@ export default class D6BusinessMap extends HTMLElement {
                     ${(tempData.properties.has_sexual_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][19]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][19]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
                     ${(tempData.properties.has_specialist_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][20]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][20]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
                     ${(tempData.properties.has_other_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][21]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][21]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_ads_comms_marketing) ? `<li><strong>${this.languageText[currentLanguage]['panel'][22]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][22]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_automotive) ? `<li><strong>${this.languageText[currentLanguage]['panel'][23]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][23]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_bar_restaurant) ? `<li><strong>${this.languageText[currentLanguage]['panel'][24]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][24]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_construction) ? `<li><strong>${this.languageText[currentLanguage]['panel'][25]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][25]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_entertainment) ? `<li><strong>${this.languageText[currentLanguage]['panel'][26]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][26]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_human_services) ? `<li><strong>${this.languageText[currentLanguage]['panel'][27]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][27]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_landscape) ? `<li><strong>${this.languageText[currentLanguage]['panel'][28]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][28]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_legal_financial) ? `<li><strong>${this.languageText[currentLanguage]['panel'][29]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][29]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_manufacturing_distribution) ? `<li><strong>${this.languageText[currentLanguage]['panel'][30]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][30]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_personal_care_services) ? `<li><strong>${this.languageText[currentLanguage]['panel'][31]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][31]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_place_of_worship) ? `<li><strong>${this.languageText[currentLanguage]['panel'][32]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][32]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_retail) ? `<li><strong>${this.languageText[currentLanguage]['panel'][33]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][33]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_other) ? `<li><strong>${this.languageText[currentLanguage]['panel'][34]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][34]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
                     </ul>
 
-                    <p><strong>${this.languageText[currentLanguage]['panel'][22]}</strong></p>
+                    <p><strong>${this.languageText[currentLanguage]['panel'][35]}</strong></p>
                     <p>
                     ${(tempData.properties.is_public_transit_accessible) ? `<cod-icon data-icon="bus-front" data-size="small"></cod-icon>` : ``}
                     ${(tempData.properties.is_ada_accessible) ? `<cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon>` : ``} 
@@ -500,7 +565,7 @@ export default class D6BusinessMap extends HTMLElement {
                 titleFilters.className = 'fs-3 fw-bold text-center';
 
                 const filterInstructions = document.createElement('p');
-                filterInstructions.innerText = this.languageText[currentLanguage]['filters'][21];
+                filterInstructions.innerText = this.languageText[currentLanguage]['filters'][34];
 
                 const ownershipSection = document.createElement('p');
                 ownershipSection.innerText = this.languageText[currentLanguage]['filters'][1];
@@ -517,7 +582,7 @@ export default class D6BusinessMap extends HTMLElement {
                 asianOwnedCheckbox.setAttribute('data-type', 'checkbox');
                 asianOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][2]);
                 asianOwnedCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
 
@@ -530,7 +595,7 @@ export default class D6BusinessMap extends HTMLElement {
                 blackOwnedCheckbox.setAttribute('data-type', 'checkbox');
                 blackOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][3]);
                 blackOwnedCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
 
@@ -543,7 +608,7 @@ export default class D6BusinessMap extends HTMLElement {
                 lgbtqOwnedCheckbox.setAttribute('data-type', 'checkbox');
                 lgbtqOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][4]);
                 lgbtqOwnedCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
 
@@ -556,7 +621,7 @@ export default class D6BusinessMap extends HTMLElement {
                 indigenousOwnedCheckbox.setAttribute('data-type', 'checkbox');
                 indigenousOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][5]);
                 indigenousOwnedCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
 
@@ -569,7 +634,7 @@ export default class D6BusinessMap extends HTMLElement {
                 middleEasternOwnedCheckbox.setAttribute('data-type', 'checkbox');
                 middleEasternOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][6]);
                 middleEasternOwnedCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
 
@@ -582,7 +647,7 @@ export default class D6BusinessMap extends HTMLElement {
                 veteranOwnedCheckbox.setAttribute('data-type', 'checkbox');
                 veteranOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][7]);
                 veteranOwnedCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });  
                 
@@ -595,7 +660,7 @@ export default class D6BusinessMap extends HTMLElement {
                 minorityOwnedCheckbox.setAttribute('data-type', 'checkbox');
                 minorityOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][8]);
                 minorityOwnedCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });  
 
@@ -608,7 +673,7 @@ export default class D6BusinessMap extends HTMLElement {
                 womanOwnedCheckbox.setAttribute('data-type', 'checkbox');
                 womanOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][9]);
                 womanOwnedCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 }); 
 
@@ -627,7 +692,7 @@ export default class D6BusinessMap extends HTMLElement {
                 communityHealthCheckbox.setAttribute('data-type', 'checkbox');
                 communityHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][11]);
                 communityHealthCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
 
@@ -640,7 +705,7 @@ export default class D6BusinessMap extends HTMLElement {
                 dentalCheckbox.setAttribute('data-type', 'checkbox');
                 dentalCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][12]);
                 dentalCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
 
@@ -653,7 +718,7 @@ export default class D6BusinessMap extends HTMLElement {
                 emergencyUrgentCareCheckbox.setAttribute('data-type', 'checkbox');
                 emergencyUrgentCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][13]);
                 emergencyUrgentCareCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
 
@@ -666,7 +731,7 @@ export default class D6BusinessMap extends HTMLElement {
                 familyHealthCheckbox.setAttribute('data-type', 'checkbox');
                 familyHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][14]);
                 familyHealthCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
                 
@@ -679,7 +744,7 @@ export default class D6BusinessMap extends HTMLElement {
                 mentalHealthCheckbox.setAttribute('data-type', 'checkbox');
                 mentalHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][15]);
                 mentalHealthCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });  
 
@@ -692,7 +757,7 @@ export default class D6BusinessMap extends HTMLElement {
                 pediatricCheckbox.setAttribute('data-type', 'checkbox');
                 pediatricCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][16]);
                 pediatricCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });  
 
@@ -705,7 +770,7 @@ export default class D6BusinessMap extends HTMLElement {
                 primaryCareCheckbox.setAttribute('data-type', 'checkbox');
                 primaryCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][17]);
                 primaryCareCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });  
                    
@@ -718,7 +783,7 @@ export default class D6BusinessMap extends HTMLElement {
                 sexualHealthCheckbox.setAttribute('data-type', 'checkbox');
                 sexualHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][18]);
                 sexualHealthCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });     
 
@@ -731,7 +796,7 @@ export default class D6BusinessMap extends HTMLElement {
                 specialistCheckbox.setAttribute('data-type', 'checkbox');
                 specialistCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][19]);
                 specialistCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
                     this.updateMainData(ev);
                 });
 
@@ -744,7 +809,176 @@ export default class D6BusinessMap extends HTMLElement {
                 otherHealthCheckbox.setAttribute('data-type', 'checkbox');
                 otherHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][20]);
                 otherHealthCheckbox.addEventListener('change', (ev) => {
-                    console.log(ev.target.formCheck.checked);
+                    
+                    this.updateMainData(ev);
+                });
+
+                const marketingCheckbox = document.createElement('cod-form-check');
+                marketingCheckbox.setAttribute('data-checked', 'false');
+                marketingCheckbox.setAttribute('data-id', 'marketing');
+                marketingCheckbox.setAttribute('data-name', 'data-filters');
+                marketingCheckbox.setAttribute('data-value', 'is_ads_comms_marketing');
+                (currenFilters.includes('is_ads_comms_marketing')) ? marketingCheckbox.setAttribute('data-checked', true) : 0;
+                marketingCheckbox.setAttribute('data-type', 'checkbox');
+                marketingCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][21]);
+                marketingCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const automotiveCheckbox = document.createElement('cod-form-check');
+                automotiveCheckbox.setAttribute('data-checked', 'false');
+                automotiveCheckbox.setAttribute('data-id', 'automotive');
+                automotiveCheckbox.setAttribute('data-name', 'data-filters');
+                automotiveCheckbox.setAttribute('data-value', 'is_automotive');
+                (currenFilters.includes('is_automotive')) ? automotiveCheckbox.setAttribute('data-checked', true) : 0;
+                automotiveCheckbox.setAttribute('data-type', 'checkbox');
+                automotiveCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][22]);
+                automotiveCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const barRestaurantCheckbox = document.createElement('cod-form-check');
+                barRestaurantCheckbox.setAttribute('data-checked', 'false');
+                barRestaurantCheckbox.setAttribute('data-id', 'bar-restaurant');
+                barRestaurantCheckbox.setAttribute('data-name', 'data-filters');
+                barRestaurantCheckbox.setAttribute('data-value', 'is_bar_restaurant');
+                (currenFilters.includes('is_bar_restaurant')) ? barRestaurantCheckbox.setAttribute('data-checked', true) : 0;
+                barRestaurantCheckbox.setAttribute('data-type', 'checkbox');
+                barRestaurantCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][23]);
+                barRestaurantCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const constructionCheckbox = document.createElement('cod-form-check');
+                constructionCheckbox.setAttribute('data-checked', 'false');
+                constructionCheckbox.setAttribute('data-id', 'construction');
+                constructionCheckbox.setAttribute('data-name', 'data-filters');
+                constructionCheckbox.setAttribute('data-value', 'is_construction');
+                (currenFilters.includes('is_construction')) ? constructionCheckbox.setAttribute('data-checked', true) : 0;
+                constructionCheckbox.setAttribute('data-type', 'checkbox');
+                constructionCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][24]);
+                constructionCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const entertainmentCheckbox = document.createElement('cod-form-check');
+                entertainmentCheckbox.setAttribute('data-checked', 'false');
+                entertainmentCheckbox.setAttribute('data-id', 'entertainment');
+                entertainmentCheckbox.setAttribute('data-name', 'data-filters');
+                entertainmentCheckbox.setAttribute('data-value', 'is_entertainment');
+                (currenFilters.includes('is_entertainment')) ? entertainmentCheckbox.setAttribute('data-checked', true) : 0;
+                entertainmentCheckbox.setAttribute('data-type', 'checkbox');
+                entertainmentCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][25]);
+                entertainmentCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const humanServicesCheckbox = document.createElement('cod-form-check');
+                humanServicesCheckbox.setAttribute('data-checked', 'false');
+                humanServicesCheckbox.setAttribute('data-id', 'human-services');
+                humanServicesCheckbox.setAttribute('data-name', 'data-filters');
+                humanServicesCheckbox.setAttribute('data-value', 'is_human_services');
+                (currenFilters.includes('is_human_services')) ? humanServicesCheckbox.setAttribute('data-checked', true) : 0;
+                humanServicesCheckbox.setAttribute('data-type', 'checkbox');
+                humanServicesCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][26]);
+                humanServicesCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const landscapeCheckbox = document.createElement('cod-form-check');
+                landscapeCheckbox.setAttribute('data-checked', 'false');
+                landscapeCheckbox.setAttribute('data-id', 'landscape');
+                landscapeCheckbox.setAttribute('data-name', 'data-filters');
+                landscapeCheckbox.setAttribute('data-value', 'is_landscape');
+                (currenFilters.includes('is_landscape')) ? landscapeCheckbox.setAttribute('data-checked', true) : 0;
+                landscapeCheckbox.setAttribute('data-type', 'checkbox');
+                landscapeCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][27]);
+                landscapeCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const legalFinancialCheckbox = document.createElement('cod-form-check');
+                legalFinancialCheckbox.setAttribute('data-checked', 'false');
+                legalFinancialCheckbox.setAttribute('data-id', 'legal-financial');
+                legalFinancialCheckbox.setAttribute('data-name', 'data-filters');
+                legalFinancialCheckbox.setAttribute('data-value', 'is_legal_financial');
+                (currenFilters.includes('is_legal_financial')) ? legalFinancialCheckbox.setAttribute('data-checked', true) : 0;
+                legalFinancialCheckbox.setAttribute('data-type', 'checkbox');
+                legalFinancialCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][28]);
+                legalFinancialCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const manufacturingCheckbox = document.createElement('cod-form-check');
+                manufacturingCheckbox.setAttribute('data-checked', 'false');
+                manufacturingCheckbox.setAttribute('data-id', 'manufacturing-distribution');
+                manufacturingCheckbox.setAttribute('data-name', 'data-filters');
+                manufacturingCheckbox.setAttribute('data-value', 'is_manufacturing_distribution');
+                (currenFilters.includes('is_manufacturing_distribution')) ? manufacturingCheckbox.setAttribute('data-checked', true) : 0;
+                manufacturingCheckbox.setAttribute('data-type', 'checkbox');
+                manufacturingCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][29]);
+                manufacturingCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const personalCareCheckbox = document.createElement('cod-form-check');
+                personalCareCheckbox.setAttribute('data-checked', 'false');
+                personalCareCheckbox.setAttribute('data-id', 'personal-care');
+                personalCareCheckbox.setAttribute('data-name', 'data-filters');
+                personalCareCheckbox.setAttribute('data-value', 'is_personal_care_services');
+                (currenFilters.includes('is_personal_care_services')) ? personalCareCheckbox.setAttribute('data-checked', true) : 0;
+                personalCareCheckbox.setAttribute('data-type', 'checkbox');
+                personalCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][30]);
+                personalCareCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const worshipCheckbox = document.createElement('cod-form-check');
+                worshipCheckbox.setAttribute('data-checked', 'false');
+                worshipCheckbox.setAttribute('data-id', 'worship');
+                worshipCheckbox.setAttribute('data-name', 'data-filters');
+                worshipCheckbox.setAttribute('data-value', 'is_place_of_worship');
+                (currenFilters.includes('is_place_of_worship')) ? worshipCheckbox.setAttribute('data-checked', true) : 0;
+                worshipCheckbox.setAttribute('data-type', 'checkbox');
+                worshipCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][31]);
+                worshipCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const retailCheckbox = document.createElement('cod-form-check');
+                retailCheckbox.setAttribute('data-checked', 'false');
+                retailCheckbox.setAttribute('data-id', 'retail');
+                retailCheckbox.setAttribute('data-name', 'data-filters');
+                retailCheckbox.setAttribute('data-value', 'is_retail');
+                (currenFilters.includes('is_retail')) ? retailCheckbox.setAttribute('data-checked', true) : 0;
+                retailCheckbox.setAttribute('data-type', 'checkbox');
+                retailCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][32]);
+                retailCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const otherCheckbox = document.createElement('cod-form-check');
+                otherCheckbox.setAttribute('data-checked', 'false');
+                otherCheckbox.setAttribute('data-id', 'other-service');
+                otherCheckbox.setAttribute('data-name', 'data-filters');
+                otherCheckbox.setAttribute('data-value', 'is_other');
+                (currenFilters.includes('is_other')) ? otherCheckbox.setAttribute('data-checked', true) : 0;
+                otherCheckbox.setAttribute('data-type', 'checkbox');
+                otherCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][33]);
+                otherCheckbox.addEventListener('change', (ev) => {
+                    
                     this.updateMainData(ev);
                 });
 
@@ -771,6 +1005,19 @@ export default class D6BusinessMap extends HTMLElement {
                 servicesFilterCheckboxes.appendChild(sexualHealthCheckbox);
                 servicesFilterCheckboxes.appendChild(specialistCheckbox);
                 servicesFilterCheckboxes.appendChild(otherHealthCheckbox);
+                servicesFilterCheckboxes.appendChild(marketingCheckbox);
+                servicesFilterCheckboxes.appendChild(automotiveCheckbox);
+                servicesFilterCheckboxes.appendChild(barRestaurantCheckbox);
+                servicesFilterCheckboxes.appendChild(constructionCheckbox);
+                servicesFilterCheckboxes.appendChild(entertainmentCheckbox);
+                servicesFilterCheckboxes.appendChild(humanServicesCheckbox);
+                servicesFilterCheckboxes.appendChild(landscapeCheckbox);
+                servicesFilterCheckboxes.appendChild(legalFinancialCheckbox);
+                servicesFilterCheckboxes.appendChild(manufacturingCheckbox);
+                servicesFilterCheckboxes.appendChild(personalCareCheckbox);
+                servicesFilterCheckboxes.appendChild(worshipCheckbox);
+                servicesFilterCheckboxes.appendChild(retailCheckbox);
+                servicesFilterCheckboxes.appendChild(otherCheckbox);
                 this.panelContent.appendChild(servicesFilterCheckboxes);
 
                 this.panel.setAttribute('data-show', 'true');
@@ -794,7 +1041,7 @@ export default class D6BusinessMap extends HTMLElement {
                 // councilCheckbox.setAttribute('data-type', 'checkbox');
                 // councilCheckbox.setAttribute('data-label', 'Council District');
                 // councilCheckbox.addEventListener('change', (ev) => {
-                //     console.log(ev.target.formCheck.checked);
+                //     
                 //     this.updateBoundaries(ev);
                 // });
 
