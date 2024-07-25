@@ -115,6 +115,8 @@ export default class D6BusinessMap extends HTMLElement {
 
         this.panelBody = document.createElement('cod-offcanvas-body');
         this.panelContent = document.createElement('article');
+        this.panelContent.style.height = "800px";
+        this.panelContent.style.overflowY = "auto";
         this.panelContent.innerHTML = ``;
         this.panelBody.appendChild(this.panelContent);
 
