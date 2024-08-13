@@ -83,7 +83,16 @@
       "Place of Worship",
       "Retail",
       "Other",
-      "Note: Selecting multiple filters will include only businesses who meet all criteria, not just one or some of them."
+      "Note: Selecting multiple filters will include only businesses who meet all criteria, not just one or some of them.",
+      "By Amenities:",
+      "Public Transit Accessible",
+      "ADA Accessible",
+      "Bike Rack",
+      "Parking lot",
+      "Cash only",
+      "Free WIFI",
+      "Gender Neutral Bathrooms",
+      "Rental Space"
     ],
     "info": [
       "Information",
@@ -183,7 +192,16 @@
       "Lugar de Adoración",
       "Tienda",
       "Otro",
-      "Nota: Al seleccionar varios filtros, solo se incluirán las empresas que cumplan con todos los criterios, no solo uno o algunos de ellos."
+      "Nota: Al seleccionar varios filtros, solo se incluirán las empresas que cumplan con todos los criterios, no solo uno o algunos de ellos.",
+      "Por comodidades:",
+      "Transporte público accesible",
+      "Accesible según la ADA",
+      "Portabicicletas",
+      "Estacionamiento",
+      "Solamente efectivo",
+      "WIFI gratuito",
+      "Baños de género neutro",
+      "Espacio de alquiler"
     ],
     "info": [
       "Información",
@@ -283,7 +301,16 @@
       "উপাসনা স্থান",
       "খুচরা",
       "অন্যান্য",
-      "দ্রষ্টব্য: একাধিক ফিল্টার নির্বাচন করা শুধুমাত্র এমন ব্যবসাগুলিকে অন্তর্ভুক্ত করবে যারা সমস্ত মানদণ্ড পূরণ করে, শুধুমাত্র একটি বা তাদের মধ্যে কয়েকটি নয়।"
+      "দ্রষ্টব্য: একাধিক ফিল্টার নির্বাচন করা শুধুমাত্র এমন ব্যবসাগুলিকে অন্তর্ভুক্ত করবে যারা সমস্ত মানদণ্ড পূরণ করে, শুধুমাত্র একটি বা তাদের মধ্যে কয়েকটি নয়।",
+      "সুবিধার দ্বারা:",
+      "পাবলিক ট্রানজিট অ্যাক্সেসযোগ্য",
+      "ADA অ্যাক্সেসযোগ্য",
+      "বাইক র্যাক",
+      "পার্কিং লট",
+      "শুধুমাত্র নগদ",
+      "ফ্রি ওয়াইফাই",
+      "লিঙ্গ নিরপেক্ষ বাথরুম",
+      "ভাড়ার স্থান"
     ],
     "info": [
       "তথ্য",
@@ -383,7 +410,16 @@
       "مكان للعبادة",
       "بيع بالتجزئة",
       "آخر",
-      "ملاحظة: سيؤدي تحديد عوامل تصفية متعددة إلى تضمين الأنشطة التجارية التي تستوفي جميع المعايير فقط، وليس معيارًا واحدًا فقط أو بعضها."
+      "ملاحظة: سيؤدي تحديد عوامل تصفية متعددة إلى تضمين الأنشطة التجارية التي تستوفي جميع المعايير فقط، وليس معيارًا واحدًا فقط أو بعضها.",
+      "حسب وسائل الراحة:",
+      "وسائل النقل العام يمكن الوصول إليها",
+      "ADA يمكن الوصول إليها",
+      "رف الدراجة",
+      "موقف للسيارات",
+      "نقد فقط",
+      "خدمة الاتصال اللاسلكي بالإنترنت عبر تقنية واي فاي",
+      "حمامات محايدة بين الجنسين",
+      "مساحة الإيجار"
     ],
     "info": [
       "معلومة",

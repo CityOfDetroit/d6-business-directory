@@ -423,6 +423,38 @@ export default class D6BusinessMap extends HTMLElement {
                     tmpWhere.push('is_other%3D1');
                     break;
 
+                case 'is_public_transit_accessible':
+                    tmpWhere.push('is_public_transit_accessible%3D1');
+                    break;
+
+                case 'is_ada_accessible':
+                    tmpWhere.push('is_ada_accessible%3D1');
+                    break;
+
+                case 'has_bike_rack':
+                    tmpWhere.push('has_bike_rack%3D1');
+                    break;
+                    
+                case 'has_parking_lot':
+                    tmpWhere.push('has_parking_lot%3D1');
+                    break;
+
+                case 'is_cash_only':
+                    tmpWhere.push('is_cash_only%3D1');
+                    break;
+
+                case 'has_free_wifi':
+                    tmpWhere.push('has_free_wifi%3D1');
+                    break;
+
+                case 'has_gender_neutral_bathrooms':
+                    tmpWhere.push('has_gender_neutral_bathrooms%3D1');
+                    break;
+
+                case 'has_rental_space':
+                    tmpWhere.push('has_rental_space%3D1');
+                    break;
+
                 default:
                     break;
             }
@@ -686,135 +718,136 @@ export default class D6BusinessMap extends HTMLElement {
 
                 const servicesFilterCheckboxes = document.createElement('section');
 
-                const communityHealthCheckbox = document.createElement('cod-form-check');
-                communityHealthCheckbox.setAttribute('data-checked', 'false');
-                communityHealthCheckbox.setAttribute('data-id', 'community-health');
-                communityHealthCheckbox.setAttribute('data-name', 'data-filters');
-                communityHealthCheckbox.setAttribute('data-value', 'has_clinic_community_health_ser');
-                (currenFilters.includes('has_clinic_community_health_ser')) ? communityHealthCheckbox.setAttribute('data-checked', true) : 0;
-                communityHealthCheckbox.setAttribute('data-type', 'checkbox');
-                communityHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][11]);
-                communityHealthCheckbox.addEventListener('change', (ev) => {
+                // ====================== Disabling Health type filters ====================
+                // const communityHealthCheckbox = document.createElement('cod-form-check');
+                // communityHealthCheckbox.setAttribute('data-checked', 'false');
+                // communityHealthCheckbox.setAttribute('data-id', 'community-health');
+                // communityHealthCheckbox.setAttribute('data-name', 'data-filters');
+                // communityHealthCheckbox.setAttribute('data-value', 'has_clinic_community_health_ser');
+                // (currenFilters.includes('has_clinic_community_health_ser')) ? communityHealthCheckbox.setAttribute('data-checked', true) : 0;
+                // communityHealthCheckbox.setAttribute('data-type', 'checkbox');
+                // communityHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][11]);
+                // communityHealthCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });
+                //     this.updateMainData(ev);
+                // });
 
-                const dentalCheckbox = document.createElement('cod-form-check');
-                dentalCheckbox.setAttribute('data-checked', 'false');
-                dentalCheckbox.setAttribute('data-id', 'dental');
-                dentalCheckbox.setAttribute('data-name', 'data-filters');
-                dentalCheckbox.setAttribute('data-value', 'has_dental_service');
-                (currenFilters.includes('has_dental_service')) ? dentalCheckbox.setAttribute('data-checked', true) : 0;
-                dentalCheckbox.setAttribute('data-type', 'checkbox');
-                dentalCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][12]);
-                dentalCheckbox.addEventListener('change', (ev) => {
+                // const dentalCheckbox = document.createElement('cod-form-check');
+                // dentalCheckbox.setAttribute('data-checked', 'false');
+                // dentalCheckbox.setAttribute('data-id', 'dental');
+                // dentalCheckbox.setAttribute('data-name', 'data-filters');
+                // dentalCheckbox.setAttribute('data-value', 'has_dental_service');
+                // (currenFilters.includes('has_dental_service')) ? dentalCheckbox.setAttribute('data-checked', true) : 0;
+                // dentalCheckbox.setAttribute('data-type', 'checkbox');
+                // dentalCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][12]);
+                // dentalCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });
+                //     this.updateMainData(ev);
+                // });
 
-                const emergencyUrgentCareCheckbox = document.createElement('cod-form-check');
-                emergencyUrgentCareCheckbox.setAttribute('data-checked', 'false');
-                emergencyUrgentCareCheckbox.setAttribute('data-id', 'emergency-urgent-care');
-                emergencyUrgentCareCheckbox.setAttribute('data-name', 'data-filters');
-                emergencyUrgentCareCheckbox.setAttribute('data-value', 'has_emergency_urgent_care_servi');
-                (currenFilters.includes('has_emergency_urgent_care_servi')) ? emergencyUrgentCareCheckbox.setAttribute('data-checked', true) : 0;
-                emergencyUrgentCareCheckbox.setAttribute('data-type', 'checkbox');
-                emergencyUrgentCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][13]);
-                emergencyUrgentCareCheckbox.addEventListener('change', (ev) => {
+                // const emergencyUrgentCareCheckbox = document.createElement('cod-form-check');
+                // emergencyUrgentCareCheckbox.setAttribute('data-checked', 'false');
+                // emergencyUrgentCareCheckbox.setAttribute('data-id', 'emergency-urgent-care');
+                // emergencyUrgentCareCheckbox.setAttribute('data-name', 'data-filters');
+                // emergencyUrgentCareCheckbox.setAttribute('data-value', 'has_emergency_urgent_care_servi');
+                // (currenFilters.includes('has_emergency_urgent_care_servi')) ? emergencyUrgentCareCheckbox.setAttribute('data-checked', true) : 0;
+                // emergencyUrgentCareCheckbox.setAttribute('data-type', 'checkbox');
+                // emergencyUrgentCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][13]);
+                // emergencyUrgentCareCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });
+                //     this.updateMainData(ev);
+                // });
 
-                const familyHealthCheckbox = document.createElement('cod-form-check');
-                familyHealthCheckbox.setAttribute('data-checked', 'false');
-                familyHealthCheckbox.setAttribute('data-id', 'family-health');
-                familyHealthCheckbox.setAttribute('data-name', 'data-filters');
-                familyHealthCheckbox.setAttribute('data-value', 'has_family_health_service');
-                (currenFilters.includes('has_family_health_service')) ? familyHealthCheckbox.setAttribute('data-checked', true) : 0;
-                familyHealthCheckbox.setAttribute('data-type', 'checkbox');
-                familyHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][14]);
-                familyHealthCheckbox.addEventListener('change', (ev) => {
+                // const familyHealthCheckbox = document.createElement('cod-form-check');
+                // familyHealthCheckbox.setAttribute('data-checked', 'false');
+                // familyHealthCheckbox.setAttribute('data-id', 'family-health');
+                // familyHealthCheckbox.setAttribute('data-name', 'data-filters');
+                // familyHealthCheckbox.setAttribute('data-value', 'has_family_health_service');
+                // (currenFilters.includes('has_family_health_service')) ? familyHealthCheckbox.setAttribute('data-checked', true) : 0;
+                // familyHealthCheckbox.setAttribute('data-type', 'checkbox');
+                // familyHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][14]);
+                // familyHealthCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });
+                //     this.updateMainData(ev);
+                // });
                 
-                const mentalHealthCheckbox = document.createElement('cod-form-check');
-                mentalHealthCheckbox.setAttribute('data-checked', 'false');
-                mentalHealthCheckbox.setAttribute('data-id', 'mental-health');
-                mentalHealthCheckbox.setAttribute('data-name', 'data-filters');
-                mentalHealthCheckbox.setAttribute('data-value', 'has_mental_health_service');
-                (currenFilters.includes('has_mental_health_service')) ? mentalHealthCheckbox.setAttribute('data-checked', true) : 0;
-                mentalHealthCheckbox.setAttribute('data-type', 'checkbox');
-                mentalHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][15]);
-                mentalHealthCheckbox.addEventListener('change', (ev) => {
+                // const mentalHealthCheckbox = document.createElement('cod-form-check');
+                // mentalHealthCheckbox.setAttribute('data-checked', 'false');
+                // mentalHealthCheckbox.setAttribute('data-id', 'mental-health');
+                // mentalHealthCheckbox.setAttribute('data-name', 'data-filters');
+                // mentalHealthCheckbox.setAttribute('data-value', 'has_mental_health_service');
+                // (currenFilters.includes('has_mental_health_service')) ? mentalHealthCheckbox.setAttribute('data-checked', true) : 0;
+                // mentalHealthCheckbox.setAttribute('data-type', 'checkbox');
+                // mentalHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][15]);
+                // mentalHealthCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });  
+                //     this.updateMainData(ev);
+                // });  
 
-                const pediatricCheckbox = document.createElement('cod-form-check');
-                pediatricCheckbox.setAttribute('data-checked', 'false');
-                pediatricCheckbox.setAttribute('data-id', 'pediatric');
-                pediatricCheckbox.setAttribute('data-name', 'data-filters');
-                pediatricCheckbox.setAttribute('data-value', 'has_pediatric_service');
-                (currenFilters.includes('has_pediatric_service')) ? pediatricCheckbox.setAttribute('data-checked', true) : 0;
-                pediatricCheckbox.setAttribute('data-type', 'checkbox');
-                pediatricCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][16]);
-                pediatricCheckbox.addEventListener('change', (ev) => {
+                // const pediatricCheckbox = document.createElement('cod-form-check');
+                // pediatricCheckbox.setAttribute('data-checked', 'false');
+                // pediatricCheckbox.setAttribute('data-id', 'pediatric');
+                // pediatricCheckbox.setAttribute('data-name', 'data-filters');
+                // pediatricCheckbox.setAttribute('data-value', 'has_pediatric_service');
+                // (currenFilters.includes('has_pediatric_service')) ? pediatricCheckbox.setAttribute('data-checked', true) : 0;
+                // pediatricCheckbox.setAttribute('data-type', 'checkbox');
+                // pediatricCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][16]);
+                // pediatricCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });  
+                //     this.updateMainData(ev);
+                // });  
 
-                const primaryCareCheckbox = document.createElement('cod-form-check');
-                primaryCareCheckbox.setAttribute('data-checked', 'false');
-                primaryCareCheckbox.setAttribute('data-id', 'primary-care');
-                primaryCareCheckbox.setAttribute('data-name', 'data-filters');
-                primaryCareCheckbox.setAttribute('data-value', 'has_primary_care_service');
-                (currenFilters.includes('has_primary_care_service')) ? primaryCareCheckbox.setAttribute('data-checked', true) : 0;
-                primaryCareCheckbox.setAttribute('data-type', 'checkbox');
-                primaryCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][17]);
-                primaryCareCheckbox.addEventListener('change', (ev) => {
+                // const primaryCareCheckbox = document.createElement('cod-form-check');
+                // primaryCareCheckbox.setAttribute('data-checked', 'false');
+                // primaryCareCheckbox.setAttribute('data-id', 'primary-care');
+                // primaryCareCheckbox.setAttribute('data-name', 'data-filters');
+                // primaryCareCheckbox.setAttribute('data-value', 'has_primary_care_service');
+                // (currenFilters.includes('has_primary_care_service')) ? primaryCareCheckbox.setAttribute('data-checked', true) : 0;
+                // primaryCareCheckbox.setAttribute('data-type', 'checkbox');
+                // primaryCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][17]);
+                // primaryCareCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });  
+                //     this.updateMainData(ev);
+                // });  
                    
-                const sexualHealthCheckbox = document.createElement('cod-form-check');
-                sexualHealthCheckbox.setAttribute('data-checked', 'false');
-                sexualHealthCheckbox.setAttribute('data-id', 'sexual-health');
-                sexualHealthCheckbox.setAttribute('data-name', 'data-filters');
-                sexualHealthCheckbox.setAttribute('data-value', 'has_sexual_health_service');
-                (currenFilters.includes('has_sexual_health_service')) ? sexualHealthCheckbox.setAttribute('data-checked', true) : 0;
-                sexualHealthCheckbox.setAttribute('data-type', 'checkbox');
-                sexualHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][18]);
-                sexualHealthCheckbox.addEventListener('change', (ev) => {
+                // const sexualHealthCheckbox = document.createElement('cod-form-check');
+                // sexualHealthCheckbox.setAttribute('data-checked', 'false');
+                // sexualHealthCheckbox.setAttribute('data-id', 'sexual-health');
+                // sexualHealthCheckbox.setAttribute('data-name', 'data-filters');
+                // sexualHealthCheckbox.setAttribute('data-value', 'has_sexual_health_service');
+                // (currenFilters.includes('has_sexual_health_service')) ? sexualHealthCheckbox.setAttribute('data-checked', true) : 0;
+                // sexualHealthCheckbox.setAttribute('data-type', 'checkbox');
+                // sexualHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][18]);
+                // sexualHealthCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });     
+                //     this.updateMainData(ev);
+                // });     
 
-                const specialistCheckbox = document.createElement('cod-form-check');
-                specialistCheckbox.setAttribute('data-checked', 'false');
-                specialistCheckbox.setAttribute('data-id', 'specialist');
-                specialistCheckbox.setAttribute('data-name', 'data-filters');
-                specialistCheckbox.setAttribute('data-value', 'has_specialist_service');
-                (currenFilters.includes('has_specialist_service')) ? specialistCheckbox.setAttribute('data-checked', true) : 0;
-                specialistCheckbox.setAttribute('data-type', 'checkbox');
-                specialistCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][19]);
-                specialistCheckbox.addEventListener('change', (ev) => {
+                // const specialistCheckbox = document.createElement('cod-form-check');
+                // specialistCheckbox.setAttribute('data-checked', 'false');
+                // specialistCheckbox.setAttribute('data-id', 'specialist');
+                // specialistCheckbox.setAttribute('data-name', 'data-filters');
+                // specialistCheckbox.setAttribute('data-value', 'has_specialist_service');
+                // (currenFilters.includes('has_specialist_service')) ? specialistCheckbox.setAttribute('data-checked', true) : 0;
+                // specialistCheckbox.setAttribute('data-type', 'checkbox');
+                // specialistCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][19]);
+                // specialistCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });
+                //     this.updateMainData(ev);
+                // });
 
-                const otherHealthCheckbox = document.createElement('cod-form-check');
-                otherHealthCheckbox.setAttribute('data-checked', 'false');
-                otherHealthCheckbox.setAttribute('data-id', 'other-health');
-                otherHealthCheckbox.setAttribute('data-name', 'data-filters');
-                otherHealthCheckbox.setAttribute('data-value', 'has_other_health_service');
-                (currenFilters.includes('has_other_health_service')) ? otherHealthCheckbox.setAttribute('data-checked', true) : 0;
-                otherHealthCheckbox.setAttribute('data-type', 'checkbox');
-                otherHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][20]);
-                otherHealthCheckbox.addEventListener('change', (ev) => {
+                // const otherHealthCheckbox = document.createElement('cod-form-check');
+                // otherHealthCheckbox.setAttribute('data-checked', 'false');
+                // otherHealthCheckbox.setAttribute('data-id', 'other-health');
+                // otherHealthCheckbox.setAttribute('data-name', 'data-filters');
+                // otherHealthCheckbox.setAttribute('data-value', 'has_other_health_service');
+                // (currenFilters.includes('has_other_health_service')) ? otherHealthCheckbox.setAttribute('data-checked', true) : 0;
+                // otherHealthCheckbox.setAttribute('data-type', 'checkbox');
+                // otherHealthCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][20]);
+                // otherHealthCheckbox.addEventListener('change', (ev) => {
                     
-                    this.updateMainData(ev);
-                });
+                //     this.updateMainData(ev);
+                // });
 
                 const marketingCheckbox = document.createElement('cod-form-check');
                 marketingCheckbox.setAttribute('data-checked', 'false');
@@ -985,6 +1018,108 @@ export default class D6BusinessMap extends HTMLElement {
                     this.updateMainData(ev);
                 });
 
+                const amenitiesSection = document.createElement('p');
+                amenitiesSection.innerText = this.languageText[currentLanguage]['filters'][35];
+                amenitiesSection.style.fontWeight ='bold';
+
+                const amenitiesSectionCheckboxes = document.createElement('section');
+
+                const publicTransitCheckbox = document.createElement('cod-form-check');
+                publicTransitCheckbox.setAttribute('data-checked', 'false');
+                publicTransitCheckbox.setAttribute('data-id', 'public-transit');
+                publicTransitCheckbox.setAttribute('data-name', 'data-filters');
+                publicTransitCheckbox.setAttribute('data-value', 'is_public_transit_accessible');
+                (currenFilters.includes('is_public_transit_accessible')) ? publicTransitCheckbox.setAttribute('data-checked', true) : 0;
+                publicTransitCheckbox.setAttribute('data-type', 'checkbox');
+                publicTransitCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][36]);
+                publicTransitCheckbox.addEventListener('change', (ev) => {
+                    this.updateMainData(ev);
+                });
+
+                const adaCheckbox = document.createElement('cod-form-check');
+                adaCheckbox.setAttribute('data-checked', 'false');
+                adaCheckbox.setAttribute('data-id', 'ada-accessible');
+                adaCheckbox.setAttribute('data-name', 'data-filters');
+                adaCheckbox.setAttribute('data-value', 'is_ada_accessible');
+                (currenFilters.includes('is_ada_accessible')) ? adaCheckbox.setAttribute('data-checked', true) : 0;
+                adaCheckbox.setAttribute('data-type', 'checkbox');
+                adaCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][37]);
+                adaCheckbox.addEventListener('change', (ev) => {
+                    this.updateMainData(ev);
+                });
+
+                const bikeRackCheckbox = document.createElement('cod-form-check');
+                bikeRackCheckbox.setAttribute('data-checked', 'false');
+                bikeRackCheckbox.setAttribute('data-id', 'bike-rack');
+                bikeRackCheckbox.setAttribute('data-name', 'data-filters');
+                bikeRackCheckbox.setAttribute('data-value', 'has_bike_rack');
+                (currenFilters.includes('has_bike_rack')) ? bikeRackCheckbox.setAttribute('data-checked', true) : 0;
+                bikeRackCheckbox.setAttribute('data-type', 'checkbox');
+                bikeRackCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][38]);
+                bikeRackCheckbox.addEventListener('change', (ev) => {
+                    this.updateMainData(ev);
+                });
+
+                const parkingCheckbox = document.createElement('cod-form-check');
+                parkingCheckbox.setAttribute('data-checked', 'false');
+                parkingCheckbox.setAttribute('data-id', 'parking');
+                parkingCheckbox.setAttribute('data-name', 'data-filters');
+                parkingCheckbox.setAttribute('data-value', 'has_parking_lot');
+                (currenFilters.includes('has_parking_lot')) ? parkingCheckbox.setAttribute('data-checked', true) : 0;
+                parkingCheckbox.setAttribute('data-type', 'checkbox');
+                parkingCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][39]);
+                parkingCheckbox.addEventListener('change', (ev) => {
+                    this.updateMainData(ev);
+                });
+
+                const cashOnlyCheckbox = document.createElement('cod-form-check');
+                cashOnlyCheckbox.setAttribute('data-checked', 'false');
+                cashOnlyCheckbox.setAttribute('data-id', 'cash-only');
+                cashOnlyCheckbox.setAttribute('data-name', 'data-filters');
+                cashOnlyCheckbox.setAttribute('data-value', 'is_cash_only');
+                (currenFilters.includes('is_cash_only')) ? cashOnlyCheckbox.setAttribute('data-checked', true) : 0;
+                cashOnlyCheckbox.setAttribute('data-type', 'checkbox');
+                cashOnlyCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][40]);
+                cashOnlyCheckbox.addEventListener('change', (ev) => {
+                    this.updateMainData(ev);
+                });
+
+                const wifiCheckbox = document.createElement('cod-form-check');
+                wifiCheckbox.setAttribute('data-checked', 'false');
+                wifiCheckbox.setAttribute('data-id', 'wifi');
+                wifiCheckbox.setAttribute('data-name', 'data-filters');
+                wifiCheckbox.setAttribute('data-value', 'has_free_wifi');
+                (currenFilters.includes('has_free_wifi')) ? wifiCheckbox.setAttribute('data-checked', true) : 0;
+                wifiCheckbox.setAttribute('data-type', 'checkbox');
+                wifiCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][41]);
+                wifiCheckbox.addEventListener('change', (ev) => {
+                    this.updateMainData(ev);
+                });
+                
+                const genderNeutralBathroomsCheckbox = document.createElement('cod-form-check');
+                genderNeutralBathroomsCheckbox.setAttribute('data-checked', 'false');
+                genderNeutralBathroomsCheckbox.setAttribute('data-id', 'gender-neutral-bathrooms');
+                genderNeutralBathroomsCheckbox.setAttribute('data-name', 'data-filters');
+                genderNeutralBathroomsCheckbox.setAttribute('data-value', 'has_gender_neutral_bathrooms');
+                (currenFilters.includes('has_gender_neutral_bathrooms')) ? genderNeutralBathroomsCheckbox.setAttribute('data-checked', true) : 0;
+                genderNeutralBathroomsCheckbox.setAttribute('data-type', 'checkbox');
+                genderNeutralBathroomsCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][42]);
+                genderNeutralBathroomsCheckbox.addEventListener('change', (ev) => {
+                    this.updateMainData(ev);
+                });
+
+                const rentalSpaceCheckbox = document.createElement('cod-form-check');
+                rentalSpaceCheckbox.setAttribute('data-checked', 'false');
+                rentalSpaceCheckbox.setAttribute('data-id', 'rental-space');
+                rentalSpaceCheckbox.setAttribute('data-name', 'data-filters');
+                rentalSpaceCheckbox.setAttribute('data-value', 'has_rental_space');
+                (currenFilters.includes('has_rental_space')) ? rentalSpaceCheckbox.setAttribute('data-checked', true) : 0;
+                rentalSpaceCheckbox.setAttribute('data-type', 'checkbox');
+                rentalSpaceCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][43]);
+                rentalSpaceCheckbox.addEventListener('change', (ev) => {
+                    this.updateMainData(ev);
+                });
+
                 this.panelContent.appendChild(titleFilters);
                 this.panelContent.appendChild(filterInstructions);
                 this.panelContent.appendChild(ownershipSection);
@@ -998,16 +1133,17 @@ export default class D6BusinessMap extends HTMLElement {
                 ownershipFilterCheckboxes.appendChild(womanOwnedCheckbox);
                 this.panelContent.appendChild(ownershipFilterCheckboxes);
                 this.panelContent.appendChild(servicesSection);
-                servicesFilterCheckboxes.appendChild(communityHealthCheckbox);
-                servicesFilterCheckboxes.appendChild(dentalCheckbox);
-                servicesFilterCheckboxes.appendChild(emergencyUrgentCareCheckbox);
-                servicesFilterCheckboxes.appendChild(familyHealthCheckbox);
-                servicesFilterCheckboxes.appendChild(mentalHealthCheckbox);
-                servicesFilterCheckboxes.appendChild(pediatricCheckbox);
-                servicesFilterCheckboxes.appendChild(primaryCareCheckbox);
-                servicesFilterCheckboxes.appendChild(sexualHealthCheckbox);
-                servicesFilterCheckboxes.appendChild(specialistCheckbox);
-                servicesFilterCheckboxes.appendChild(otherHealthCheckbox);
+                // ====================== Disabling Health type filters ====================
+                // servicesFilterCheckboxes.appendChild(communityHealthCheckbox);
+                // servicesFilterCheckboxes.appendChild(dentalCheckbox);
+                // servicesFilterCheckboxes.appendChild(emergencyUrgentCareCheckbox);
+                // servicesFilterCheckboxes.appendChild(familyHealthCheckbox);
+                // servicesFilterCheckboxes.appendChild(mentalHealthCheckbox);
+                // servicesFilterCheckboxes.appendChild(pediatricCheckbox);
+                // servicesFilterCheckboxes.appendChild(primaryCareCheckbox);
+                // servicesFilterCheckboxes.appendChild(sexualHealthCheckbox);
+                // servicesFilterCheckboxes.appendChild(specialistCheckbox);
+                // servicesFilterCheckboxes.appendChild(otherHealthCheckbox);
                 servicesFilterCheckboxes.appendChild(marketingCheckbox);
                 servicesFilterCheckboxes.appendChild(automotiveCheckbox);
                 servicesFilterCheckboxes.appendChild(barRestaurantCheckbox);
@@ -1022,6 +1158,16 @@ export default class D6BusinessMap extends HTMLElement {
                 servicesFilterCheckboxes.appendChild(retailCheckbox);
                 servicesFilterCheckboxes.appendChild(otherCheckbox);
                 this.panelContent.appendChild(servicesFilterCheckboxes);
+                this.panelContent.appendChild(amenitiesSection);
+                amenitiesSectionCheckboxes.appendChild(publicTransitCheckbox);
+                amenitiesSectionCheckboxes.appendChild(adaCheckbox);
+                amenitiesSectionCheckboxes.appendChild(bikeRackCheckbox);
+                amenitiesSectionCheckboxes.appendChild(parkingCheckbox);
+                amenitiesSectionCheckboxes.appendChild(cashOnlyCheckbox);
+                amenitiesSectionCheckboxes.appendChild(wifiCheckbox);
+                amenitiesSectionCheckboxes.appendChild(genderNeutralBathroomsCheckbox);
+                amenitiesSectionCheckboxes.appendChild(rentalSpaceCheckbox);
+                this.panelContent.appendChild(amenitiesSectionCheckboxes);
 
                 this.panel.setAttribute('data-show', 'true');
                 break;
