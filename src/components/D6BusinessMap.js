@@ -732,18 +732,18 @@ export default class D6BusinessMap extends HTMLElement {
                 //     this.updateMainData(ev);
                 // });
 
-                // const dentalCheckbox = document.createElement('cod-form-check');
-                // dentalCheckbox.setAttribute('data-checked', 'false');
-                // dentalCheckbox.setAttribute('data-id', 'dental');
-                // dentalCheckbox.setAttribute('data-name', 'data-filters');
-                // dentalCheckbox.setAttribute('data-value', 'has_dental_service');
-                // (currenFilters.includes('has_dental_service')) ? dentalCheckbox.setAttribute('data-checked', true) : 0;
-                // dentalCheckbox.setAttribute('data-type', 'checkbox');
-                // dentalCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][12]);
-                // dentalCheckbox.addEventListener('change', (ev) => {
+                const dentalCheckbox = document.createElement('cod-form-check');
+                dentalCheckbox.setAttribute('data-checked', 'false');
+                dentalCheckbox.setAttribute('data-id', 'dental');
+                dentalCheckbox.setAttribute('data-name', 'data-filters');
+                dentalCheckbox.setAttribute('data-value', 'has_dental_service');
+                (currenFilters.includes('has_dental_service')) ? dentalCheckbox.setAttribute('data-checked', true) : 0;
+                dentalCheckbox.setAttribute('data-type', 'checkbox');
+                dentalCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][12]);
+                dentalCheckbox.addEventListener('change', (ev) => {
                     
-                //     this.updateMainData(ev);
-                // });
+                    this.updateMainData(ev);
+                });
 
                 // const emergencyUrgentCareCheckbox = document.createElement('cod-form-check');
                 // emergencyUrgentCareCheckbox.setAttribute('data-checked', 'false');
@@ -1135,7 +1135,7 @@ export default class D6BusinessMap extends HTMLElement {
                 this.panelContent.appendChild(servicesSection);
                 // ====================== Disabling Health type filters ====================
                 // servicesFilterCheckboxes.appendChild(communityHealthCheckbox);
-                // servicesFilterCheckboxes.appendChild(dentalCheckbox);
+                servicesFilterCheckboxes.appendChild(dentalCheckbox);
                 // servicesFilterCheckboxes.appendChild(emergencyUrgentCareCheckbox);
                 // servicesFilterCheckboxes.appendChild(familyHealthCheckbox);
                 // servicesFilterCheckboxes.appendChild(mentalHealthCheckbox);
