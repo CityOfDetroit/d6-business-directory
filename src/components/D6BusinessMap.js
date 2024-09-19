@@ -145,7 +145,7 @@ export default class D6BusinessMap extends HTMLElement {
                 </ul>
             </li>
         </ul>
-        <p>If you are a local business in D6 and would like to be included, please complete <strong><a href="https://google.com" target="_blank">this form</a></strong> for review.</p>
+        <p>If you are a local business in D6 and would like to be included, please complete <strong><a href="https://survey123.arcgis.com/share/d7202441b34a4ffaaa3989fe3426a7f3?" target="_blank">this form</a></strong> for review.</p>
         <p>For any questions, please email <a href="mailto:councilmembergabriela@detroitmi.gov">councilmembergabriela@detroitmi.gov</a> with subject line "D6 Directory".</p>
         </cod-modal-body>
         <cod-modal-footer data-extra-classes="border-top-0" data-button-extra-classes="btn-secondary">
