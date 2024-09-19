@@ -539,41 +539,41 @@ export default class D6BusinessMap extends HTMLElement {
 
                     <p><strong>${this.languageText[currentLanguage]['panel'][2]}</strong></p>
                     <ul>
-                    ${(tempData.properties.is_asian_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][3]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][3]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_black_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][4]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][4]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_lgbtq_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][5]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][5]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_indigenous_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][6]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][6]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_middle_eastern_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][7]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][7]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_veteran_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][8]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][8]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_minority_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][9]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][9]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_woman_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][10]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][10]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_asian_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][3]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_black_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][4]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_indigenous_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][6]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_lgbtq_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][5]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_middle_eastern_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][7]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_minority_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][9]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_veteran_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][8]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_woman_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][10]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     </ul>
 
                     <p><strong>${this.languageText[currentLanguage]['panel'][11]}</strong></p>
                     <ul>
-                    ${(tempData.properties.has_clinic_community_health_ser) ? `<li><strong>${this.languageText[currentLanguage]['panel'][12]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][12]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.has_dental_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][13]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][13]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.has_emergency_urgent_care_servi) ? `<li><strong>${this.languageText[currentLanguage]['panel'][14]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][14]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.has_family_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][15]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][15]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.has_mental_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][16]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][16]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.has_pediatric_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][17]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][17]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.has_primary_care_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][18]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][18]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.has_sexual_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][19]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][19]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.has_specialist_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][20]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][20]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.has_other_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][21]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][21]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_ads_comms_marketing) ? `<li><strong>${this.languageText[currentLanguage]['panel'][22]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][22]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_automotive) ? `<li><strong>${this.languageText[currentLanguage]['panel'][23]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][23]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_bar_restaurant) ? `<li><strong>${this.languageText[currentLanguage]['panel'][24]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][24]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_construction) ? `<li><strong>${this.languageText[currentLanguage]['panel'][25]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][25]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_entertainment) ? `<li><strong>${this.languageText[currentLanguage]['panel'][26]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][26]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_human_services) ? `<li><strong>${this.languageText[currentLanguage]['panel'][27]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][27]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_landscape) ? `<li><strong>${this.languageText[currentLanguage]['panel'][28]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][28]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_legal_financial) ? `<li><strong>${this.languageText[currentLanguage]['panel'][29]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][29]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_manufacturing_distribution) ? `<li><strong>${this.languageText[currentLanguage]['panel'][30]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][30]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_personal_care_services) ? `<li><strong>${this.languageText[currentLanguage]['panel'][31]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][31]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_place_of_worship) ? `<li><strong>${this.languageText[currentLanguage]['panel'][32]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][32]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_retail) ? `<li><strong>${this.languageText[currentLanguage]['panel'][33]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][33]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
-                    ${(tempData.properties.is_other) ? `<li><strong>${this.languageText[currentLanguage]['panel'][34]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : `<li><strong>${this.languageText[currentLanguage]['panel'][34]}</strong> ${this.languageText[currentLanguage]['no'][0]}</li>`}
+                    ${(tempData.properties.is_ads_comms_marketing) ? `<li><strong>${this.languageText[currentLanguage]['panel'][22]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_automotive) ? `<li><strong>${this.languageText[currentLanguage]['panel'][23]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_bar_restaurant) ? `<li><strong>${this.languageText[currentLanguage]['panel'][24]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_clinic_community_health_ser) ? `<li><strong>${this.languageText[currentLanguage]['panel'][12]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_construction) ? `<li><strong>${this.languageText[currentLanguage]['panel'][25]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_dental_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][13]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_entertainment) ? `<li><strong>${this.languageText[currentLanguage]['panel'][26]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_family_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][15]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_human_services) ? `<li><strong>${this.languageText[currentLanguage]['panel'][27]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_landscape) ? `<li><strong>${this.languageText[currentLanguage]['panel'][28]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_legal_financial) ? `<li><strong>${this.languageText[currentLanguage]['panel'][29]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_manufacturing_distribution) ? `<li><strong>${this.languageText[currentLanguage]['panel'][30]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_mental_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][16]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_other_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][21]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_other) ? `<li><strong>${this.languageText[currentLanguage]['panel'][34]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_pediatric_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][17]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_personal_care_services) ? `<li><strong>${this.languageText[currentLanguage]['panel'][31]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_place_of_worship) ? `<li><strong>${this.languageText[currentLanguage]['panel'][32]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_primary_care_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][18]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_retail) ? `<li><strong>${this.languageText[currentLanguage]['panel'][33]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_sexual_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][19]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_specialist_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][20]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.has_emergency_urgent_care_servi) ? `<li><strong>${this.languageText[currentLanguage]['panel'][14]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     </ul>
 
                     <p><strong>${this.languageText[currentLanguage]['panel'][35]}</strong></p>
@@ -1135,7 +1135,6 @@ export default class D6BusinessMap extends HTMLElement {
                 this.panelContent.appendChild(servicesSection);
                 // ====================== Disabling Health type filters ====================
                 // servicesFilterCheckboxes.appendChild(communityHealthCheckbox);
-                servicesFilterCheckboxes.appendChild(dentalCheckbox);
                 // servicesFilterCheckboxes.appendChild(emergencyUrgentCareCheckbox);
                 // servicesFilterCheckboxes.appendChild(familyHealthCheckbox);
                 // servicesFilterCheckboxes.appendChild(mentalHealthCheckbox);
@@ -1149,12 +1148,13 @@ export default class D6BusinessMap extends HTMLElement {
                 servicesFilterCheckboxes.appendChild(barRestaurantCheckbox);
                 servicesFilterCheckboxes.appendChild(constructionCheckbox);
                 servicesFilterCheckboxes.appendChild(entertainmentCheckbox);
+                servicesFilterCheckboxes.appendChild(dentalCheckbox);
                 servicesFilterCheckboxes.appendChild(humanServicesCheckbox);
                 servicesFilterCheckboxes.appendChild(landscapeCheckbox);
                 servicesFilterCheckboxes.appendChild(legalFinancialCheckbox);
                 servicesFilterCheckboxes.appendChild(manufacturingCheckbox);
-                servicesFilterCheckboxes.appendChild(personalCareCheckbox);
                 servicesFilterCheckboxes.appendChild(worshipCheckbox);
+                servicesFilterCheckboxes.appendChild(personalCareCheckbox);
                 servicesFilterCheckboxes.appendChild(retailCheckbox);
                 servicesFilterCheckboxes.appendChild(otherCheckbox);
                 this.panelContent.appendChild(servicesFilterCheckboxes);
