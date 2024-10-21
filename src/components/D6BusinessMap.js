@@ -1281,6 +1281,7 @@ export default class D6BusinessMap extends HTMLElement {
                 notes.innerHTML =  `
                 <hr>
                 ${this.languageText[currentLanguage]['info'][10]}
+                <a href="https://survey123.arcgis.com/share/d7202441b34a4ffaaa3989fe3426a7f3?" target="_blank">${this.languageText[currentLanguage]['info'][11]}</a>
                 `;
 
                 const iconLabels = document.createElement('article');
