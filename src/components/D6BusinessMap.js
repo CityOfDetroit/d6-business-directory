@@ -532,7 +532,9 @@ export default class D6BusinessMap extends HTMLElement {
             case 'active-panel':
                 let tempData = JSON.parse(this.getAttribute('data-panel-data'));
                 console.log(tempData.properties);
+                console.log(tempData.properties.photo_url == '');
                 this.panelContent.innerHTML = `
+                    ${(tempData.properties.photo_url == '') ? `` : `<img style="width:100%" src="${tempData.properties.photo_url}"></img>`}
                     <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">${tempData.properties.business_name}</p>
                     <p><strong>${this.languageText[currentLanguage]['panel'][0]}</strong> ${tempData.properties.address}
                     ${(tempData.properties.profit_or_nonprofit) ? `<p><strong>${this.languageText[currentLanguage]['panel'][1]}</strong> ${tempData.properties.profit_or_nonprofit}</p>` : ``}
