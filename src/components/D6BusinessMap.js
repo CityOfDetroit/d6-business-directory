@@ -310,6 +310,10 @@ export default class D6BusinessMap extends HTMLElement {
                 case 'is_lgbtq_owned':
                     tmpWhere.push('is_lgbtq_owned%3D1');
                     break;
+                
+                case 'is_latinx_owned':
+                    tmpWhere.push('is_latinx_owned%3D1');
+                    break;
 
                 case 'is_indigenous_owned':
                     tmpWhere.push('is_indigenous_owned%3D1');
@@ -389,6 +393,14 @@ export default class D6BusinessMap extends HTMLElement {
 
                 case 'is_entertainment':
                     tmpWhere.push('is_entertainment%3D1');
+                    break;
+
+                case 'is_healthcare_medical_dental':
+                    tmpWhere.push('is_healthcare_medical_dental%3D1');
+                    break;
+                
+                case 'is_hospitality':
+                    tmpWhere.push('is_hospitality%3D1');
                     break;
 
                 case 'is_human_services':
@@ -544,6 +556,7 @@ export default class D6BusinessMap extends HTMLElement {
                     ${(tempData.properties.is_asian_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][3]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.is_black_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][4]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.is_indigenous_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][6]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_latinx_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][36]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.is_lgbtq_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][5]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.is_middle_eastern_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][7]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.is_minority_owned) ? `<li><strong>${this.languageText[currentLanguage]['panel'][9]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
@@ -561,6 +574,8 @@ export default class D6BusinessMap extends HTMLElement {
                     ${(tempData.properties.has_dental_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][13]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.is_entertainment) ? `<li><strong>${this.languageText[currentLanguage]['panel'][26]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.has_family_health_service) ? `<li><strong>${this.languageText[currentLanguage]['panel'][15]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_healthcare_medical_dental) ? `<li><strong>${this.languageText[currentLanguage]['panel'][37]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
+                    ${(tempData.properties.is_hospitality) ? `<li><strong>${this.languageText[currentLanguage]['panel'][38]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.is_human_services) ? `<li><strong>${this.languageText[currentLanguage]['panel'][27]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.is_landscape) ? `<li><strong>${this.languageText[currentLanguage]['panel'][28]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
                     ${(tempData.properties.is_legal_financial) ? `<li><strong>${this.languageText[currentLanguage]['panel'][29]}</strong> ${this.languageText[currentLanguage]['yes'][0]}</li>` : ``}
@@ -645,6 +660,19 @@ export default class D6BusinessMap extends HTMLElement {
                 lgbtqOwnedCheckbox.setAttribute('data-type', 'checkbox');
                 lgbtqOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][4]);
                 lgbtqOwnedCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const latinxOwnedCheckbox = document.createElement('cod-form-check');
+                latinxOwnedCheckbox.setAttribute('data-checked', 'false');
+                latinxOwnedCheckbox.setAttribute('data-id', 'latinx-owned');
+                latinxOwnedCheckbox.setAttribute('data-name', 'data-filters');
+                latinxOwnedCheckbox.setAttribute('data-value', 'is_latinx_owned');
+                (currenFilters.includes('is_latinx_owned')) ? latinxOwnedCheckbox.setAttribute('data-checked', true) : 0;
+                latinxOwnedCheckbox.setAttribute('data-type', 'checkbox');
+                latinxOwnedCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][44]);
+                latinxOwnedCheckbox.addEventListener('change', (ev) => {
                     
                     this.updateMainData(ev);
                 });
@@ -916,6 +944,32 @@ export default class D6BusinessMap extends HTMLElement {
                     this.updateMainData(ev);
                 });
 
+                const healthcareCheckbox = document.createElement('cod-form-check');
+                healthcareCheckbox.setAttribute('data-checked', 'false');
+                healthcareCheckbox.setAttribute('data-id', 'healthcare-services');
+                healthcareCheckbox.setAttribute('data-name', 'data-filters');
+                healthcareCheckbox.setAttribute('data-value', 'is_healthcare_medical_dental');
+                (currenFilters.includes('is_healthcare_medical_dental')) ? healthcareCheckbox.setAttribute('data-checked', true) : 0;
+                healthcareCheckbox.setAttribute('data-type', 'checkbox');
+                healthcareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][45]);
+                healthcareCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
+                const hospitalityCheckbox = document.createElement('cod-form-check');
+                hospitalityCheckbox.setAttribute('data-checked', 'false');
+                hospitalityCheckbox.setAttribute('data-id', 'hospitality-services');
+                hospitalityCheckbox.setAttribute('data-name', 'data-filters');
+                hospitalityCheckbox.setAttribute('data-value', 'is_hospitality');
+                (currenFilters.includes('is_hospitality')) ? hospitalityCheckbox.setAttribute('data-checked', true) : 0;
+                hospitalityCheckbox.setAttribute('data-type', 'checkbox');
+                hospitalityCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][46]);
+                hospitalityCheckbox.addEventListener('change', (ev) => {
+                    
+                    this.updateMainData(ev);
+                });
+
                 const humanServicesCheckbox = document.createElement('cod-form-check');
                 humanServicesCheckbox.setAttribute('data-checked', 'false');
                 humanServicesCheckbox.setAttribute('data-id', 'human-services');
@@ -962,7 +1016,7 @@ export default class D6BusinessMap extends HTMLElement {
                 manufacturingCheckbox.setAttribute('data-value', 'is_manufacturing_distribution');
                 (currenFilters.includes('is_manufacturing_distribution')) ? manufacturingCheckbox.setAttribute('data-checked', true) : 0;
                 manufacturingCheckbox.setAttribute('data-type', 'checkbox');
-                manufacturingCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][29]);
+                manufacturingCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][30]);
                 manufacturingCheckbox.addEventListener('change', (ev) => {
                     
                     this.updateMainData(ev);
@@ -975,7 +1029,7 @@ export default class D6BusinessMap extends HTMLElement {
                 personalCareCheckbox.setAttribute('data-value', 'is_personal_care_services');
                 (currenFilters.includes('is_personal_care_services')) ? personalCareCheckbox.setAttribute('data-checked', true) : 0;
                 personalCareCheckbox.setAttribute('data-type', 'checkbox');
-                personalCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][30]);
+                personalCareCheckbox.setAttribute('data-label', this.languageText[currentLanguage]['filters'][29]);
                 personalCareCheckbox.addEventListener('change', (ev) => {
                     
                     this.updateMainData(ev);
@@ -1127,11 +1181,12 @@ export default class D6BusinessMap extends HTMLElement {
                 this.panelContent.appendChild(ownershipSection);
                 ownershipFilterCheckboxes.appendChild(asianOwnedCheckbox);
                 ownershipFilterCheckboxes.appendChild(blackOwnedCheckbox);
-                ownershipFilterCheckboxes.appendChild(lgbtqOwnedCheckbox);
                 ownershipFilterCheckboxes.appendChild(indigenousOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(latinxOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(lgbtqOwnedCheckbox);
                 ownershipFilterCheckboxes.appendChild(middleEasternOwnedCheckbox);
-                ownershipFilterCheckboxes.appendChild(veteranOwnedCheckbox);
                 ownershipFilterCheckboxes.appendChild(minorityOwnedCheckbox);
+                ownershipFilterCheckboxes.appendChild(veteranOwnedCheckbox);
                 ownershipFilterCheckboxes.appendChild(womanOwnedCheckbox);
                 this.panelContent.appendChild(ownershipFilterCheckboxes);
                 this.panelContent.appendChild(servicesSection);
@@ -1150,7 +1205,8 @@ export default class D6BusinessMap extends HTMLElement {
                 servicesFilterCheckboxes.appendChild(barRestaurantCheckbox);
                 servicesFilterCheckboxes.appendChild(constructionCheckbox);
                 servicesFilterCheckboxes.appendChild(entertainmentCheckbox);
-                servicesFilterCheckboxes.appendChild(dentalCheckbox);
+                servicesFilterCheckboxes.appendChild(healthcareCheckbox);
+                servicesFilterCheckboxes.appendChild(hospitalityCheckbox);
                 servicesFilterCheckboxes.appendChild(humanServicesCheckbox);
                 servicesFilterCheckboxes.appendChild(landscapeCheckbox);
                 servicesFilterCheckboxes.appendChild(legalFinancialCheckbox);
@@ -1161,13 +1217,13 @@ export default class D6BusinessMap extends HTMLElement {
                 servicesFilterCheckboxes.appendChild(otherCheckbox);
                 this.panelContent.appendChild(servicesFilterCheckboxes);
                 this.panelContent.appendChild(amenitiesSection);
-                amenitiesSectionCheckboxes.appendChild(publicTransitCheckbox);
                 amenitiesSectionCheckboxes.appendChild(adaCheckbox);
                 amenitiesSectionCheckboxes.appendChild(bikeRackCheckbox);
-                amenitiesSectionCheckboxes.appendChild(parkingCheckbox);
                 amenitiesSectionCheckboxes.appendChild(cashOnlyCheckbox);
                 amenitiesSectionCheckboxes.appendChild(wifiCheckbox);
                 amenitiesSectionCheckboxes.appendChild(genderNeutralBathroomsCheckbox);
+                amenitiesSectionCheckboxes.appendChild(parkingCheckbox);
+                amenitiesSectionCheckboxes.appendChild(publicTransitCheckbox);
                 amenitiesSectionCheckboxes.appendChild(rentalSpaceCheckbox);
                 this.panelContent.appendChild(amenitiesSectionCheckboxes);
 

@@ -39,7 +39,10 @@
       "Place of Worship:",
       "Retail:",
       "Other:",
-      "Amenities:"
+      "Amenities:",
+      "Latinx-owned:",
+      "Healthcare/Medical/Dental:",
+      "Hospitality/Travel:"
     ],
     "boundaries": [
       "Boundaries",
@@ -92,7 +95,10 @@
       "Cash only",
       "Free WIFI",
       "Gender Neutral Bathrooms",
-      "Rental Space"
+      "Rental Space",
+      "Latinx Owned",
+      "Healthcare/Medical/Dental",
+      "Hospitality/Travel"
     ],
     "info": [
       "Information",
@@ -150,7 +156,10 @@
       "Lugar de Adoración:",
       "Tienda:",
       "Otro:",
-      "Comodidades:"
+      "Comodidades:",
+      "Propiedad latina:",
+      "Atención médica / médica / dental:",
+      "Hospitalidad/Viajes:"
     ],
     "boundaries": [
       "Zonas",
@@ -203,7 +212,10 @@
       "Solamente efectivo",
       "WIFI gratuito",
       "Baños de género neutro",
-      "Espacio de alquiler"
+      "Espacio de alquiler",
+      "Propiedad latina",
+      "Atención sanitaria/médica/dental",
+      "Hospitalidad/Viajes"
     ],
     "info": [
       "Información",
@@ -261,7 +273,10 @@
       "উপাসনা স্থান:",
       "খুচরা:",
       "অন্যান্য:",
-      "সুযোগ-সুবিধা:"
+      "সুযোগ-সুবিধা:",
+      "ল্যাটিনক্স মালিকানাধীন:",
+      "স্বাস্থ্যসেবা/মেডিকেল/ডেন্টাল:",
+      "আতিথেয়তা/ভ্রমণ:"
     ],
     "boundaries": [
       "সীমানা",
@@ -314,7 +329,10 @@
       "শুধুমাত্র নগদ",
       "ফ্রি ওয়াইফাই",
       "লিঙ্গ নিরপেক্ষ বাথরুম",
-      "ভাড়ার স্থান"
+      "ভাড়ার স্থান",
+      "ল্যাটিনক্স মালিকানাধীন",
+      "স্বাস্থ্যসেবা/মেডিকেল/ডেন্টাল",
+      "আতিথেয়তা/ভ্রমণ"
     ],
     "info": [
       "তথ্য",
@@ -372,7 +390,10 @@
       "مكان للعبادة:",
       "بيع بالتجزئة:",
       "آخر:",
-      "وسائل الراحة:"
+      "وسائل الراحة:",
+      "مملوكة لاتينكس:",
+      "الرعاية الصحية/الطبية/طب الأسنان:",
+      "الضيافة/السفر:"
     ],
     "boundaries": [
       "حدود",
@@ -425,7 +446,10 @@
       "نقد فقط",
       "خدمة الاتصال اللاسلكي بالإنترنت عبر تقنية واي فاي",
       "حمامات محايدة بين الجنسين",
-      "مساحة الإيجار"
+      "مساحة الإيجار",
+      "لاتينكس مملوكة",
+      "الرعاية الصحية / الطبية / طب الأسنان",
+      "الضيافة / السفر"
     ],
     "info": [
       "معلومة",
