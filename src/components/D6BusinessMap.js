@@ -3,7 +3,6 @@ import styles from '!!raw-loader!./D6BusinessMap.css';
 import Display from './Display';
 import layers from './layers.json';
 import languageText from './language-text.json';
-import logo from '../assets/logo2.png';
 import centroid from '@turf/centroid';
 
 customElements.define('app-display', Display);
@@ -103,6 +102,7 @@ export default class D6BusinessMap extends HTMLElement {
         shadow.appendChild(this.nav);
 
         // create panel component
+        const logo = "https://detroitmi.gov/sites/detroitmi.localhost/files/2025-03/logo2.png"
         this.panel = document.createElement('cod-offcanvas');
         this.panel.id = 'd6-map-panel';
         this.panelHeader = document.createElement('cod-offcanvas-header');
