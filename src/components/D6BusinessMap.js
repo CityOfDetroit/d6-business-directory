@@ -1350,9 +1350,9 @@ export default class D6BusinessMap extends HTMLElement {
                 <p><cod-icon data-icon="universal-access-circle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][3]}</p>
                 <p><cod-icon data-icon="bicycle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][4]}</p>
                 <p><cod-icon data-icon="p-circle" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][5]}</p>
-                <p><cod-icon data-icon="cash" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][6]}</p>
                 <p><cod-icon data-icon="wifi" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][7]}</p>
                 <p><cod-icon data-icon="building" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][8]}</p>
+                <p><cod-icon data-icon="toilet" data-size="small"></cod-icon> ${this.languageText[currentLanguage]['info'][13]}
                 `;
 
                 this.panelContent.appendChild(infoTitle);
