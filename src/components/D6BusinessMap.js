@@ -1219,7 +1219,6 @@ export default class D6BusinessMap extends HTMLElement {
                 this.panelContent.appendChild(amenitiesSection);
                 amenitiesSectionCheckboxes.appendChild(adaCheckbox);
                 amenitiesSectionCheckboxes.appendChild(bikeRackCheckbox);
-                amenitiesSectionCheckboxes.appendChild(cashOnlyCheckbox);
                 amenitiesSectionCheckboxes.appendChild(wifiCheckbox);
                 amenitiesSectionCheckboxes.appendChild(genderNeutralBathroomsCheckbox);
                 amenitiesSectionCheckboxes.appendChild(parkingCheckbox);
