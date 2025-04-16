@@ -548,7 +548,9 @@ export default class D6BusinessMap extends HTMLElement {
                 this.panelContent.innerHTML = `
                     ${(tempData.properties.photo_url == '') ? `` : `<img style="width:100%" src="${tempData.properties.photo_url}"></img>`}
                     <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">${tempData.properties.business_name}</p>
-                    <p><strong>${this.languageText[currentLanguage]['panel'][0]}</strong> ${tempData.properties.address}
+                    <p><strong>${this.languageText[currentLanguage]['panel'][0]}</strong> ${tempData.properties.address}</p>
+                    ${(tempData.properties.business_phone_number) ? `<p><strong>${this.languageText[currentLanguage]['panel'][39]}</strong> ${tempData.properties.business_phone_number}</p>` : ``}
+                    ${(tempData.properties.business_website) ? `<p><strong><a href="http://${tempData.properties.business_website}" target="_blank">${this.languageText[currentLanguage]['panel'][40]}</a></strong></p>` : ``}
                     ${(tempData.properties.profit_or_nonprofit) ? `<p><strong>${this.languageText[currentLanguage]['panel'][1]}</strong> ${tempData.properties.profit_or_nonprofit}</p>` : ``}
 
                     <p><strong>${this.languageText[currentLanguage]['panel'][2]}</strong></p>

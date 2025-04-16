@@ -42,7 +42,9 @@
       "Amenities:",
       "Latinx-owned:",
       "Healthcare/Medical/Dental:",
-      "Hospitality/Travel:"
+      "Hospitality/Travel:",
+      "Phone:",
+      "Website"
     ],
     "boundaries": [
       "Boundaries",
@@ -160,7 +162,9 @@
       "Comodidades:",
       "Propiedad latina:",
       "Atención médica / médica / dental:",
-      "Hospitalidad/Viajes:"
+      "Hospitalidad/Viajes:",
+      "Teléfono:",
+      "Sitio web"
     ],
     "boundaries": [
       "Zonas",
@@ -278,7 +282,9 @@
       "সুযোগ-সুবিধা:",
       "ল্যাটিনক্স মালিকানাধীন:",
       "স্বাস্থ্যসেবা/মেডিকেল/ডেন্টাল:",
-      "আতিথেয়তা/ভ্রমণ:"
+      "আতিথেয়তা/ভ্রমণ:",
+      "ফোন:",
+      "ওয়েবসাইট"
     ],
     "boundaries": [
       "সীমানা",
@@ -396,7 +402,9 @@
       "وسائل الراحة:",
       "مملوكة لاتينكس:",
       "الرعاية الصحية/الطبية/طب الأسنان:",
-      "الضيافة/السفر:"
+      "الضيافة/السفر:",
+      "هاتف:",
+      "موقع إلكتروني"
     ],
     "boundaries": [
       "حدود",
