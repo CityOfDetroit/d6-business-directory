@@ -44,18 +44,14 @@ export default class D6BusinessMap extends HTMLElement {
         this.nav = document.createElement('section');
         this.nav.id = 'd6-map-nav';
         this.filterBtn = document.createElement('cod-button');
-        this.filterBtn.setAttribute('data-label', '');
-        this.filterBtn.setAttribute('data-size', 'lg');
-        this.filterBtn.setAttribute('data-img', '');
-        this.filterBtn.setAttribute('data-img-alt', '');
-        this.filterBtn.setAttribute('data-shape', 'square');
+        this.filterIcon = document.createElement('cod-icon');
+        this.filterIcon.setAttribute('data-icon', 'funnel');
+        this.filterIcon.setAttribute('data-size', 'medium');
+        this.filterBtn.appendChild(this.filterIcon);
+        this.filterBtn.setAttribute('variant','primary');
+        this.filterBtn.setAttribute('size', 'large');
+        this.filterBtn.setAttribute('square', '');
         this.filterBtn.setAttribute('data-nav-value', 'filters');
-        this.filterBtn.setAttribute('data-icon', 'funnel');
-        this.filterBtn.setAttribute('data-icon-size', 'medium');
-        this.filterBtn.setAttribute('data-aria-label', 'Filters');
-        this.filterBtn.setAttribute('data-extra-classes', 'icon-center');
-        this.filterBtn.setAttribute('data-background-color', 'primary');
-        this.filterBtn.setAttribute('data-primary', true);
         this.filterBtn.addEventListener('click', (ev) => {
             let app = document.getElementsByTagName('d6-business-map');
             app[0].setAttribute('data-app-state', 'active-filters');
@@ -63,18 +59,14 @@ export default class D6BusinessMap extends HTMLElement {
         this.nav.appendChild(this.filterBtn);
 
         this.LayerBtn = document.createElement('cod-button');
-        this.LayerBtn.setAttribute('data-label', '');
-        this.LayerBtn.setAttribute('data-size', 'lg');
-        this.LayerBtn.setAttribute('data-img', '');
-        this.LayerBtn.setAttribute('data-img-alt', '');
-        this.LayerBtn.setAttribute('data-shape', 'square');
+        this.LayerIcon = document.createElement('cod-icon');
+        this.LayerIcon.setAttribute('data-icon', 'bounding-box');
+        this.LayerIcon.setAttribute('data-size', 'medium');
+        this.LayerBtn.appendChild(this.LayerIcon);
+        this.LayerBtn.setAttribute('variant','primary');
+        this.LayerBtn.setAttribute('size', 'large');
+        this.LayerBtn.setAttribute('square', '');
         this.LayerBtn.setAttribute('data-nav-value', 'layers');
-        this.LayerBtn.setAttribute('data-icon', 'bounding-box');
-        this.LayerBtn.setAttribute('data-icon-size', 'medium');
-        this.LayerBtn.setAttribute('data-aria-label', 'Layers');
-        this.LayerBtn.setAttribute('data-extra-classes', 'icon-center');
-        this.LayerBtn.setAttribute('data-background-color', 'primary');
-        this.LayerBtn.setAttribute('data-primary', true);
         this.LayerBtn.addEventListener('click', (ev) => {
             let app = document.getElementsByTagName('d6-business-map');
             app[0].setAttribute('data-app-state', 'active-layers');
@@ -82,18 +74,14 @@ export default class D6BusinessMap extends HTMLElement {
         this.nav.appendChild(this.LayerBtn);
 
         this.infoBtn = document.createElement('cod-button');
-        this.infoBtn.setAttribute('data-label', '');
-        this.infoBtn.setAttribute('data-size', 'lg');
-        this.infoBtn.setAttribute('data-img', '');
-        this.infoBtn.setAttribute('data-img-alt', '');
-        this.infoBtn.setAttribute('data-shape', 'square');
+        this.infoIcon = document.createElement('cod-icon');
+        this.infoIcon.setAttribute('data-icon', 'exclamation-circle');
+        this.infoIcon.setAttribute('data-size', 'medium');
+        this.infoBtn.appendChild(this.infoIcon);
+        this.infoBtn.setAttribute('variant','primary');
+        this.infoBtn.setAttribute('size', 'large');
+        this.infoBtn.setAttribute('square', '');
         this.infoBtn.setAttribute('data-nav-value', 'info');
-        this.infoBtn.setAttribute('data-icon', 'exclamation-circle');
-        this.infoBtn.setAttribute('data-icon-size', 'medium');
-        this.infoBtn.setAttribute('data-aria-label', 'Information');
-        this.infoBtn.setAttribute('data-extra-classes', 'icon-center');
-        this.infoBtn.setAttribute('data-background-color', 'primary');
-        this.infoBtn.setAttribute('data-primary', true);
         this.infoBtn.addEventListener('click', (ev) => {
             let app = document.getElementsByTagName('d6-business-map');
             app[0].setAttribute('data-app-state', 'active-info');
@@ -103,26 +91,22 @@ export default class D6BusinessMap extends HTMLElement {
 
         // create panel component
         const logo = "https://detroitmi.gov/sites/detroitmi.localhost/files/2025-03/logo2.png"
-        this.panel = document.createElement('cod-offcanvas');
+        this.panel = document.createElement('cod-drawer');
+        this.panelHeader = document.createElement('div');
+        this.panelHeader.setAttribute('slot','label');
         this.panel.id = 'd6-map-panel';
-        this.panelHeader = document.createElement('cod-offcanvas-header');
         this.panelLogo = document.createElement('img');
         this.panelLogo.style.width = '6em';
         this.panelLogo.style.position = 'relative';
         this.panelLogo.style.left = '8em';
         this.panelLogo.src = logo;
         this.panelHeader.appendChild(this.panelLogo);
-
-        let viewHeight = window.innerHeight - 150;
-        this.panelBody = document.createElement('cod-offcanvas-body');
-        this.panelContent = document.createElement('article');
-        this.panelContent.style.height = `${viewHeight}px`;
-        this.panelContent.style.overflowY = "auto";
-        this.panelContent.innerHTML = ``;
-        this.panelBody.appendChild(this.panelContent);
-
         this.panel.appendChild(this.panelHeader);
-        this.panel.appendChild(this.panelBody);
+
+        this.panelContent = document.createElement('article');
+        this.panelContent.innerHTML = ``;
+        this.panel.appendChild(this.panelContent);
+
         shadow.appendChild(this.panel);
 
         // create start screen
@@ -147,9 +131,8 @@ export default class D6BusinessMap extends HTMLElement {
         </ul>
         <p>If you are a local business in D6 and would like to be included, please complete <strong><a href="https://survey123.arcgis.com/share/d7202441b34a4ffaaa3989fe3426a7f3?" target="_blank">this form</a></strong> for review.</p>
         <p>For any questions, please email <a href="mailto:councilmembergabriela@detroitmi.gov">councilmembergabriela@detroitmi.gov</a> with subject line "D6 Directory".</p>
+            <cod-button variant="default" size="medium">Close</cod-button>
         </cod-modal-body>
-        <cod-modal-footer data-extra-classes="border-top-0" data-button-extra-classes="btn-secondary">
-        </cod-modal-footer>
         `;
 
         shadow.appendChild(this.startScreen);
@@ -547,7 +530,7 @@ export default class D6BusinessMap extends HTMLElement {
                 console.log(tempData.properties.photo_url == '');
                 this.panelContent.innerHTML = `
                     ${(tempData.properties.photo_url == '') ? `` : `<img style="width:100%" src="${tempData.properties.photo_url}"></img>`}
-                    <p style="background-color:#745DA8;color:#fff" class="fs-3 fw-bold text-center">${tempData.properties.business_name}</p>
+                    <p style="background-color:#745DA8;color:#fff;font-weight:bold;font-size:1.75em;text-align:center;margin-top:0;">${tempData.properties.business_name}</p>
                     <p><strong>${this.languageText[currentLanguage]['panel'][0]}</strong> ${tempData.properties.address}</p>
                     ${(tempData.properties.business_phone_number) ? `<p><strong>${this.languageText[currentLanguage]['panel'][39]}</strong> ${tempData.properties.business_phone_number}</p>` : ``}
                     ${(tempData.properties.business_website) ? `<p><strong><a href="http://${tempData.properties.business_website}" target="_blank">${this.languageText[currentLanguage]['panel'][40]}</a></strong></p>` : ``}
@@ -607,7 +590,7 @@ export default class D6BusinessMap extends HTMLElement {
                     ${(tempData.properties.has_rental_space) ? `<cod-icon data-icon="building" data-size="small"></cod-icon>` : ``} 
                     </p>
                 `;
-                this.panel.setAttribute('data-show', 'true');
+                this.panel.setAttribute('open', 'true');
                 break;
 
             case 'active-filters':
@@ -616,7 +599,10 @@ export default class D6BusinessMap extends HTMLElement {
                 titleFilters.innerText = this.languageText[currentLanguage]['filters'][0];
                 titleFilters.style.backgroundColor = '#745DA8';
                 titleFilters.style.color = '#fff';
-                titleFilters.className = 'fs-3 fw-bold text-center';
+                titleFilters.style.fontWeight = 'bold';
+                titleFilters.style.fontSize = '1.75em';
+                titleFilters.style.textAlign = 'center';
+                titleFilters.style.marginTop = '0';
 
                 const filterInstructions = document.createElement('p');
                 filterInstructions.innerText = this.languageText[currentLanguage]['filters'][34];
@@ -1228,7 +1214,7 @@ export default class D6BusinessMap extends HTMLElement {
                 amenitiesSectionCheckboxes.appendChild(rentalSpaceCheckbox);
                 this.panelContent.appendChild(amenitiesSectionCheckboxes);
 
-                this.panel.setAttribute('data-show', 'true');
+                this.panel.setAttribute('open', 'true');
                 break;
 
             case 'active-layers':
@@ -1237,7 +1223,10 @@ export default class D6BusinessMap extends HTMLElement {
                 title.innerText = this.languageText[currentLanguage]['boundaries'][0];
                 title.style.backgroundColor = '#745DA8';
                 title.style.color = '#fff';
-                title.className = 'fs-3 fw-bold text-center';
+                title.style.fontWeight = 'bold';
+                title.style.fontSize = '1.75em';
+                title.style.textAlign = 'center';
+                title.style.marginTop = '0';
 
                 const layerCheckboxes = document.createElement('section');
 
@@ -1305,7 +1294,7 @@ export default class D6BusinessMap extends HTMLElement {
                 layerCheckboxes.appendChild(cityFacilitiesCheckbox);
                 this.panelContent.appendChild(layerCheckboxes);
 
-                this.panel.setAttribute('data-show', 'true');
+                this.panel.setAttribute('open', 'true');
                 break;
 
             case 'active-info':
@@ -1314,7 +1303,11 @@ export default class D6BusinessMap extends HTMLElement {
                 infoTitle.innerText = this.languageText[currentLanguage]['info'][0];
                 infoTitle.style.backgroundColor = '#745DA8';
                 infoTitle.style.color = '#fff';
-                infoTitle.className = 'fs-3 fw-bold text-center';
+                infoTitle.style.color = '#fff';
+                infoTitle.style.fontWeight = 'bold';
+                infoTitle.style.fontSize = '1.75em';
+                infoTitle.style.textAlign = 'center';
+                infoTitle.style.marginTop = '0';
 
                 const lngLabel = document.createElement('label');
                 lngLabel.className = 'fw-bold';
@@ -1361,7 +1354,7 @@ export default class D6BusinessMap extends HTMLElement {
                 this.panelContent.appendChild(lngSelector);
                 this.panelContent.appendChild(notes);
                 this.panelContent.appendChild(iconLabels);
-                this.panel.setAttribute('data-show', 'true');
+                this.panel.setAttribute('open', 'true');
                 break;
 
             case 'error':
