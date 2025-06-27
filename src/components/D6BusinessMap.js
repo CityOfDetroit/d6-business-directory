@@ -1,11 +1,8 @@
 'use strict';
 import styles from '!!raw-loader!./D6BusinessMap.css';
-import Display from './Display';
 import layers from './layers.json';
 import languageText from './language-text.json';
 import centroid from '@turf/centroid';
-
-customElements.define('app-display', Display);
 
 export default class D6BusinessMap extends HTMLElement {
     static get observedAttributes() {
@@ -104,18 +101,21 @@ export default class D6BusinessMap extends HTMLElement {
         this.panel.appendChild(this.panelHeader);
 
         this.panelContent = document.createElement('article');
+        this.panelContent.style.height = '150vh';
         this.panelContent.innerHTML = ``;
         this.panel.appendChild(this.panelContent);
 
         shadow.appendChild(this.panel);
 
         // create start screen
-        this.startScreen = document.createElement('cod-modal');
+        this.startScreenContainer = document.createElement('article');
+        this.startScreenContainer.id = 'welcome-container';
+        this.startScreen = document.createElement('div');
         this.startScreen.setAttribute('data-id', 'd6-start-screen');
+        this.startScreen.id = 'd6-start-screen';
         this.startScreen.innerHTML = `
-        <cod-modal-body data-extra-classes="">
-        <div class="modal-title d-flex" id="exampleModalLabel"><img class="w-50 m-auto" src="${logo}" alt="Gabriela Santiago-Romero Detroit City Council District 6"></div>
-        <p class="h5 text-center" style="background-color:#745DA8;color:#fff">Welcome to Council Member Santiago-Romero's District 6 Business Directory!</h2>
+        <div id="d6-start-screen-logo"><img src="${logo}" alt="Gabriela Santiago-Romero Detroit City Council District 6"></div>
+        <h5 background-color:#745DA8;color:#fff;font-weight:bold;text-align:center;padding:1em;font-size: 1.25em;margin: 0;>Welcome to Council Member Santiago-Romero's District 6 Business Directory!</h5>
         <p>This directory provides an overview of businesses located within Detroit City Council District 6 (D6). Those listed have opted-in to this directory, so please note this is not exhaustive of all D6 businesses.</p>
         <p>Here are some other helpful tips for navigating this directory:</p>
         <ul>
@@ -131,13 +131,18 @@ export default class D6BusinessMap extends HTMLElement {
         </ul>
         <p>If you are a local business in D6 and would like to be included, please complete <strong><a href="https://survey123.arcgis.com/share/d7202441b34a4ffaaa3989fe3426a7f3?" target="_blank">this form</a></strong> for review.</p>
         <p>For any questions, please email <a href="mailto:councilmembergabriela@detroitmi.gov">councilmembergabriela@detroitmi.gov</a> with subject line "D6 Directory".</p>
-            <cod-button variant="default" size="medium">Close</cod-button>
-        </cod-modal-body>
         `;
+        this.closeStartScreenBtn = document.createElement('cod-button');
+        this.closeStartScreenBtn.setAttribute('variant', 'primary');
+        this.closeStartScreenBtn.innerText = 'Close';
+        this.closeStartScreenBtn.addEventListener('click', (ev)=>{
+            console.log(ev.target.parentElement.parentElement);
+            ev.target.parentElement.parentElement.className = 'close';
+        });
+        this.startScreen.appendChild(this.closeStartScreenBtn);
+        this.startScreenContainer.appendChild(this.startScreen);
 
-        shadow.appendChild(this.startScreen);
-
-        this.startScreen.setAttribute('data-show', true);
+        shadow.appendChild(this.startScreenContainer);
 
         // Add label layers
         this.layers = this.createLabelLayers();
