@@ -1,3 +1,6 @@
+d6-business-map{
+    position: relative;
+}
 #app-wrapper{
     position: relative;
     display: flex;
@@ -26,4 +29,34 @@ cod-map{
 
 #d6-start-screen{
     z-index: 11;
+}
+
+#welcome-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    background: rgba(0, 0, 0, .5);
+}
+
+#welcome-container.close{
+    display: none;
+}
+
+#d6-start-screen{
+    width: 35em;
+    background: white;
+    margin: 1em auto 7em auto;
+    padding: 1em;
+    max-width: 90%;
+}
+
+#d6-start-screen-logo{
+    display: flex;
+}
+
+#d6-start-screen-logo img{
+    max-width: 15em;
+    margin: auto;
 }
